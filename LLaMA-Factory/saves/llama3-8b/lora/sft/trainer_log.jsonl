@@ -1,0 +1,2 @@
+{"current_steps": 10, "total_steps": 105, "loss": 1.2603, "lr": 8.181818181818183e-05, "epoch": 0.29304029304029305, "percentage": 9.52, "elapsed_time": "0:02:27", "remaining_time": "0:23:21"}
+{"current_steps": 20, "total_steps": 105, "loss": 1.1262, "lr": 9.822345875271883e-05, "epoch": 0.5860805860805861, "percentage": 19.05, "elapsed_time": "0:04:51", "remaining_time": "0:20:39"}
