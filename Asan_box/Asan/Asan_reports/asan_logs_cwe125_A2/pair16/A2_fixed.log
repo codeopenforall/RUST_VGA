@@ -1,0 +1,15 @@
+$ (cwd=/tmp/asan_pair16_a2_fixed_abm6e_0p) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_a2_fixed v0.1.0 (/tmp/asan_pair16_a2_fixed_abm6e_0p)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair16_a2_fixed-8f40c71ca0d3e630)
+
+running 1 test
+
+thread 'tests::test_oracle' (3983845) panicked at src/lib.rs:15:36:
+Index out-of-bounds
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_oracle ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

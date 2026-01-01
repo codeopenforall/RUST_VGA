@@ -1,0 +1,8 @@
+$ (cwd=/tmp/asan_pair3_a2_fixed_fjd0gle3) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_a2_fixed v0.1.0 (/tmp/asan_pair3_a2_fixed_fjd0gle3)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running unittests src/lib.rs (target/debug/deps/pair3_a2_fixed-101116017890d7ba)
+
+running 1 test
+test tests::concurrent_counter_test has been running for over 60 seconds

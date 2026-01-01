@@ -1,0 +1,84 @@
+$ (cwd=/tmp/asan_pair16_a2_vulnerable_5ifky2lo) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_a2_vulnerable v0.1.0 (/tmp/asan_pair16_a2_vulnerable_5ifky2lo)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair16_a2_vulnerable-549d256da81430d1)
+
+running 1 test
+=================================================================
+==4027349==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x7a1159be18b4 at pc 0x5bb10d498605 bp 0x79e1575fe230 sp 0x79e1575fe228
+WRITE of size 4 at 0x7a1159be18b4 thread T1
+    #0 0x5bb10d498604  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x123604) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #1 0x5bb10d495d2f  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x120d2f) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #2 0x5bb10d497106  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x122106) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #3 0x5bb10d499655  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x124655) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #4 0x5bb10d4ba93a  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x14593a) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #5 0x5bb10d4d0324  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x15b324) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #6 0x5bb10d4a6d43  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x131d43) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #7 0x5bb10d4aa729  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x135729) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #8 0x5bb10d4f034e  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x17b34e) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #9 0x5bb10d465676  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0xf0676) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #10 0x7de15aa94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #11 0x7de15ab2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x7a1159be18b4 is located 0 bytes after 20-byte region [0x7a1159be18a0,0x7a1159be18b4)
+allocated by thread T1 here:
+    #0 0x5bb10d4677b4  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0xf27b4) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #1 0x5bb10d496f83  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x121f83) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #2 0x5bb10d496c84  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x121c84) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #3 0x5bb10d495d2f  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x120d2f) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #4 0x5bb10d497106  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x122106) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #5 0x5bb10d4d0324  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x15b324) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #6 0x5bb10d4a6d43  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x131d43) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #7 0x5bb10d4aa729  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x135729) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #8 0x5bb10d4f034e  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x17b34e) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #9 0x5bb10d465676  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0xf0676) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+
+Thread T1 created by T0 here:
+    #0 0x5bb10d44c0a1  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0xd70a1) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #1 0x5bb10d4f056f  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x17b56f) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #2 0x5bb10d4cee9d  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x159e9d) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #3 0x5bb10d4c81e4  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x1531e4) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #4 0x5bb10d4d1825  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x15c825) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #5 0x5bb10d4ba57a  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x14557a) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #6 0x5bb10d498792  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x123792) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #7 0x5bb10d495b2f  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x120b2f) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+    #8 0x5bb10d4987bd  (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x1237bd) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1+0x123604) (BuildId: 50c9f8c6c18d3fd4dac1a9e4f80b063f57b50880) 
+Shadow bytes around the buggy address:
+  0x7a1159be1600: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7a1159be1680: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7a1159be1700: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7a1159be1780: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7a1159be1800: fa fa fd fd fd fd fa fa fd fd fd fd fa fa 00 00
+=>0x7a1159be1880: 00 00 fa fa 00 00[04]fa fa fa fa fa fa fa fa fa
+  0x7a1159be1900: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7a1159be1980: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7a1159be1a00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7a1159be1a80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7a1159be1b00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==4027349==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair16_a2_vulnerable_5ifky2lo/target/debug/deps/pair16_a2_vulnerable-549d256da81430d1 --nocapture` (exit status: 1)

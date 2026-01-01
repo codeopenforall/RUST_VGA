@@ -1,0 +1,85 @@
+$ (cwd=/tmp/asan_pair6_vulnerable_3n0n4rtf) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_vulnerable v0.1.0 (/tmp/asan_pair6_vulnerable_3n0n4rtf)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair6_vulnerable-17fad621274a779c)
+
+running 1 test
+=================================================================
+==3457438==ERROR: AddressSanitizer: global-buffer-overflow on address 0x5fcd0b3e0eaa at pc 0x5fcd0b4a367b bp 0x779d141fe170 sp 0x779d141fd930
+READ of size 16 at 0x5fcd0b3e0eaa thread T1
+    #0 0x5fcd0b4a367a  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0xef67a) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #1 0x5fcd0b4d4f0d  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x120f0d) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #2 0x5fcd0b4d6713  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x122713) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #3 0x5fcd0b4d53d6  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x1213d6) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #4 0x5fcd0b4d5d75  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x121d75) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #5 0x5fcd0b4f754a  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x14354a) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #6 0x5fcd0b50cf34  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x158f34) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #7 0x5fcd0b4e3953  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x12f953) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #8 0x5fcd0b4e7339  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x133339) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #9 0x5fcd0b52cf5e  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x178f5e) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #10 0x5fcd0b4a32b6  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0xef2b6) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #11 0x7b9d17494ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7b9d1752684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x5fcd0b3e0eaa is located 22 bytes before global variable 'alloc_c12b4d6532ed88ce140d4d11d67a6ef6' defined in 'ebr7lx25dlv1gbdqze9j6fmuo' (0x5fcd0b3e0ec0) of size 64
+0x5fcd0b3e0eaa is located 0 bytes after global variable 'alloc_5b254c5514ea1629ecc151e8ed41022c' defined in 'ebr7lx25dlv1gbdqze9j6fmuo' (0x5fcd0b3e0ea0) of size 10
+SUMMARY: AddressSanitizer: global-buffer-overflow (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0xef67a) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5) 
+Shadow bytes around the buggy address:
+  0x5fcd0b3e0c00: 00 00 00 00 00 00 02 f9 f9 f9 f9 f9 00 00 00 00
+  0x5fcd0b3e0c80: 00 00 f9 f9 00 03 f9 f9 00 00 00 00 00 00 00 00
+  0x5fcd0b3e0d00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5fcd0b3e0d80: 00 00 00 00 00 00 00 00 00 00 00 00 06 f9 f9 f9
+  0x5fcd0b3e0e00: f9 f9 f9 f9 00 00 f9 f9 00 00 00 00 00 00 f9 f9
+=>0x5fcd0b3e0e80: 00 00 00 00 00[02]f9 f9 00 00 00 00 00 00 00 00
+  0x5fcd0b3e0f00: f9 f9 f9 f9 00 03 f9 f9 00 00 00 00 00 00 00 00
+  0x5fcd0b3e0f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5fcd0b3e1000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5fcd0b3e1080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5fcd0b3e1100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+Thread T1 created by T0 here:
+    #0 0x5fcd0b489ce1  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0xd5ce1) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #1 0x5fcd0b52d17f  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x17917f) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #2 0x5fcd0b50baad  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x157aad) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #3 0x5fcd0b504df4  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x150df4) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #4 0x5fcd0b50e435  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x15a435) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #5 0x5fcd0b4f718a  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x14318a) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #6 0x5fcd0b4d4c62  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x120c62) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #7 0x5fcd0b4d606f  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x12206f) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+    #8 0x5fcd0b4d50ad  (/tmp/asan_pair6_vulnerable_3n0n4rtf/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x1210ad) (BuildId: 174dc57d8f9e23e371cabf1f37c78defbd9b02b5)
+
+
+thread 'tests::test_process_function' (3457439) panicked at src/lib.rs:45:9:
+assertion `left == right` failed: The processed output should match the expected full input bytes.
+  left: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 0, 0, 0, 0, 0, 0]
+ right: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_process_function ... FAILED
+
+failures:
+
+failures:
+    tests::test_process_function
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

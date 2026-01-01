@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair10_a2_vulnerable_zkdm082e) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair10_a2_vulnerable v0.1.0 (/tmp/asan_pair10_a2_vulnerable_zkdm082e)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running unittests src/lib.rs (target/debug/deps/pair10_a2_vulnerable-35f3f99edcf3b6f6)
+
+running 1 test
+test tests::test_compute_value ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

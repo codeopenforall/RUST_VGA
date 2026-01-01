@@ -1,0 +1,10 @@
+warning: unused import: `std::ptr`
+ --> /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair1/fixed.rs:1:5
+  |
+1 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: 1 warning emitted
+

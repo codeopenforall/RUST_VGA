@@ -1,0 +1,31 @@
+$ (cwd=/tmp/asan_pair2_a1_vulnerable_37j76x3i) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair2_a1_vulnerable v0.1.0 (/tmp/asan_pair2_a1_vulnerable_37j76x3i)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair2_a1_vulnerable-1715f764c6eee881)
+
+running 2 tests
+
+thread 'tests::configuration_test' (3834449) panicked at src/lib.rs:55:9:
+assertion `left == right` failed: Message field is incorrect.
+  left: ""
+ right: "default"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread '<unnamed>' (3834450) panicked at src/lib.rs:66:13:
+assertion failed: config_for_thread.validate()
+test tests::configuration_test ... FAILED
+
+thread 'tests::concurrent_access_test' (3834448) panicked at src/lib.rs:68:23:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+test tests::concurrent_access_test ... FAILED
+
+failures:
+
+failures:
+    tests::concurrent_access_test
+    tests::configuration_test
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

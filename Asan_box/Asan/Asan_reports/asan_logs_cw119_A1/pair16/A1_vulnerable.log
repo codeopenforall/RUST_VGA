@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair16_a1_vulnerable_fpkeg_0c) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_a1_vulnerable v0.1.0 (/tmp/asan_pair16_a1_vulnerable_fpkeg_0c)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair16_a1_vulnerable-9ba985deed969848)
+
+running 1 test
+
+thread 'tests::test_out_of_bounds_update' (3723347) panicked at src/lib.rs:47:9:
+assertion `left == right` failed
+  left: Ok(())
+ right: Err("index out of bounds")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_out_of_bounds_update ... FAILED
+
+failures:
+
+failures:
+    tests::test_out_of_bounds_update
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

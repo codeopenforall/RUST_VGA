@@ -1,0 +1,38 @@
+use std::mem::size_of;
+
+fn process() -> String {
+    let original = String::from("This is a test message that exceeds the typical struct size.");
+    let copy_len = size_of::<String>();
+    let mut buffer = vec![0; copy_len];
+    original.as_bytes().iter().take(copy_len).enumerate().for_each(|(i, &byte)| buffer[i] = byte);
+    String::from_utf8(buffer).unwrap()
+}
+
+fn main() {
+    println!("{}", process());
+}
+
+///////////////////////////////////////
+// Test Oracle Function
+///////////////////////////////////////
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::process::{Command, Stdio};
+    use std::io::Read;
+
+    // Expected complete string
+    const EXPECTED: &str = "This is a test message that exceeds the typical struct size.";
+
+    // Test the process() function directly.
+    #[test]
+    fn test_process_output() {
+        let output = process();
+        // The vulnerable version would produce a truncated string, so this test will fail for it,
+        // whereas the fixed version produces the complete expected string.
+        assert_eq!(output, EXPECTED, "The output string does not match the expected full string");
+    }
+}
+///////////////////////////////////////
+// End of Test Oracle Function
+///////////////////////////////////////

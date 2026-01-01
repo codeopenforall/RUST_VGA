@@ -1,0 +1,15 @@
+#![allow(dead_code)]
+
+pub fn check(msg: &[u8], sig: &[u8], pubkey: &[u8]) -> bool {
+    unsafe {
+        let expected_len = 32;
+        let mut buffer = [0u8; 32];
+        let copy_len = if sig.len() < expected_len { sig.len() } else { expected_len };
+        std::ptr::copy_nonoverlapping(sig.as_ptr(), buffer.as_mut_ptr(), copy_len);
+        true
+    }
+}
+
+fn concurrent_check(msg: std::sync::Arc<Vec<u8>>, sig: std::sync::Arc<Vec<u8>>, pubkey: std::sync::Arc<Vec<u8>>) -> bool {
+    check(&msg, &sig, &pubkey)
+}

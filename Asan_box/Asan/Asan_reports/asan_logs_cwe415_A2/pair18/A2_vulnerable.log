@@ -1,0 +1,83 @@
+$ (cwd=/tmp/asan_pair18_a2_vulnerable_lha9j730) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a2_vulnerable v0.1.0 (/tmp/asan_pair18_a2_vulnerable_lha9j730)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1)
+
+running 1 test
+=================================================================
+==4006429==ERROR: AddressSanitizer: attempting double-free on 0x7bc8b5fe4010 in thread T1:
+    #0 0x5e3c9cf54b06  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xf1b06) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #1 0x5e3c9cf8393a  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x12093a) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #2 0x5e3c9cf858c3  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1228c3) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #3 0x5e3c9cf856e0  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1226e0) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #4 0x5e3c9cf859ed  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1229ed) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #5 0x5e3c9cf856f9  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1226f9) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #6 0x5e3c9cf85bbd  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x122bbd) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #7 0x5e3c9cf840ac  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1210ac) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #8 0x5e3c9cf84b86  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x121b86) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #9 0x5e3c9cf85685  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x122685) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #10 0x5e3c9cfa786a  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x14486a) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #11 0x5e3c9cfbd254  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x15a254) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #12 0x5e3c9cf93c73  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x130c73) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #13 0x5e3c9cf97659  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x134659) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #14 0x5e3c9cfdd27e  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x17a27e) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #15 0x5e3c9cf52c66  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xefc66) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #16 0x7fa8b6e94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #17 0x7fa8b6f2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x7bc8b5fe4010 is located 0 bytes inside of 4-byte region [0x7bc8b5fe4010,0x7bc8b5fe4014)
+freed by thread T1 here:
+    #0 0x5e3c9cf54b06  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xf1b06) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #1 0x5e3c9cf8393a  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x12093a) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #2 0x5e3c9cf858c3  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1228c3) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #3 0x5e3c9cf856e0  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1226e0) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #4 0x5e3c9cf85b99  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x122b99) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #5 0x5e3c9cf840ac  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1210ac) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #6 0x5e3c9cf84b86  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x121b86) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #7 0x5e3c9cfbd254  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x15a254) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #8 0x5e3c9cf93c73  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x130c73) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #9 0x5e3c9cf97659  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x134659) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #10 0x5e3c9cfdd27e  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x17a27e) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #11 0x5e3c9cf52c66  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xefc66) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+
+previously allocated by thread T1 here:
+    #0 0x5e3c9cf54da4  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xf1da4) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #1 0x5e3c9cf83623  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x120623) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #2 0x5e3c9cf83324  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x120324) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #3 0x5e3c9cf840ac  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1210ac) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #4 0x5e3c9cf84b86  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x121b86) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #5 0x5e3c9cfbd254  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x15a254) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #6 0x5e3c9cf93c73  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x130c73) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #7 0x5e3c9cf97659  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x134659) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #8 0x5e3c9cfdd27e  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x17a27e) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #9 0x5e3c9cf52c66  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xefc66) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+
+Thread T1 created by T0 here:
+    #0 0x5e3c9cf39691  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xd6691) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #1 0x5e3c9cfdd49f  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x17a49f) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #2 0x5e3c9cfbbdcd  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x158dcd) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #3 0x5e3c9cfb5114  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x152114) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #4 0x5e3c9cfbe755  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x15b755) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #5 0x5e3c9cfa74aa  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1444aa) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #6 0x5e3c9cf85c82  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x122c82) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #7 0x5e3c9cf853bf  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1223bf) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+    #8 0x5e3c9cf85edd  (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x122edd) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696)
+
+SUMMARY: AddressSanitizer: double-free (/tmp/asan_pair18_a2_vulnerable_lha9j730/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xf1b06) (BuildId: 8d2b5b07b00c84efd9f837fa2bb851d9b13ee696) 
+
+thread 'tests::test_double_free_protection' (4006430) panicked at src/lib.rs:66:9:
+assertion `left == right` failed: Double free vulnerability detected: free_count = 2
+  left: 2
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_double_free_protection ... FAILED
+
+failures:
+
+failures:
+    tests::test_double_free_protection
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

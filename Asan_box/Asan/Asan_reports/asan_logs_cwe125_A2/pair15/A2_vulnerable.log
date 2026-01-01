@@ -1,0 +1,25 @@
+$ (cwd=/tmp/asan_pair15_a2_vulnerable_z093b_cm) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair15_a2_vulnerable v0.1.0 (/tmp/asan_pair15_a2_vulnerable_z093b_cm)
+error[E0422]: cannot find struct, variant or union type `Container` in this scope
+  --> src/lib.rs:36:34
+   |
+36 |         let container = Arc::new(Container { buffer: vec![1, 2, 3, 4, 5] });
+   |                                  ^^^^^^^^^ not found in this scope
+
+error[E0282]: type annotations needed for `Arc<_, _>`
+  --> src/lib.rs:37:13
+   |
+37 |         let container_clone = Arc::clone(&container);
+   |             ^^^^^^^^^^^^^^^
+38 |         let handle = thread::spawn(move || container_clone.compute());
+   |                                                            ------- type must be known at this point
+   |
+help: consider giving `container_clone` an explicit type, where the placeholders `_` are specified
+   |
+37 |         let container_clone: Arc<T, A> = Arc::clone(&container);
+   |                            +++++++++++
+
+Some errors have detailed explanations: E0282, E0422.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `pair15_a2_vulnerable` (lib test) due to 2 previous errors

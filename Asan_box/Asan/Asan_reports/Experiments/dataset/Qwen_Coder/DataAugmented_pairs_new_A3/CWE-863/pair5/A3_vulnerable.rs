@@ -1,0 +1,63 @@
+use std::env;
+use std::thread;
+use std::sync::{Arc, Mutex};
+static mut GLOBAL_RESOURCE: Option<Arc<Mutex<Vec<u8>>>> = None;
+const MAX_WORKERS: usize = 100; 
+fn spawn_workers(count: usize) {
+    let count = if count > MAX_WORKERS { MAX_WORKERS } else { count };
+    let resource = Arc::new(Mutex::new(vec![])); // Initialize with an empty vector
+    unsafe {
+        GLOBAL_RESOURCE = Some(resource.clone());
+    }
+    let mut handles = Vec::with_capacity(count);
+    for _ in 0..count {
+        let res = resource.clone();
+        handles.push(thread::spawn(move || {
+            let mut guard = res.lock().unwrap();
+            if !guard.is_empty() {
+                guard[0] = 42; 
+            }
+        }));
+    }
+    for handle in handles {
+        let _ = handle.join();
+    }
+}
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    let count = args.get(1)
+                    .and_then(|s| s.parse::<usize>().ok())
+                    .unwrap_or(50);
+    spawn_workers(count);
+    println!("Spawned {} workers (capped)", count);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::sync::{Arc, Mutex};
+
+    // Helper function to trigger the worker spawning and then retrieve the shared value.
+    fn run_and_get_value(worker_count: usize) -> u8 {
+        // Invoke the thread spawning function.
+        spawn_workers(worker_count);
+        // Access the global resource. In the vulnerable version, the vector is empty and this will panic.
+        unsafe {
+            if let Some(res) = &GLOBAL_RESOURCE {
+                let guard = res.lock().unwrap();
+                // Attempt to access the first element; it should have been updated to 42.
+                return guard[0];
+            } else {
+                panic!("Global resource not initialized");
+            }
+        }
+    }
+
+    #[test]
+    fn test_resource_value() {
+        // Use a small number of workers to avoid overwhelming the system.
+        let value = run_and_get_value(5);
+        // The expected value is 42.
+        assert_eq!(value, 42, "The shared resource value should be updated to 42");
+    }
+}

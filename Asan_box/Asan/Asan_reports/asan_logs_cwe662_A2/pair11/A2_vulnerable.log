@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair11_a2_vulnerable_wr32w6rp) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a2_vulnerable v0.1.0 (/tmp/asan_pair11_a2_vulnerable_wr32w6rp)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair11_a2_vulnerable-9b1b753f26f9c656)
+
+running 1 test
+
+thread 'tests::test_authentication' (4101731) panicked at src/lib.rs:57:9:
+Authentication incorrectly accepted an invalid token
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_authentication ... FAILED
+
+failures:
+
+failures:
+    tests::test_authentication
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

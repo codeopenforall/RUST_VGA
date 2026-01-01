@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair13_a2_vulnerable_uyoqbm6_) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a2_vulnerable v0.1.0 (/tmp/asan_pair13_a2_vulnerable_uyoqbm6_)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair13_a2_vulnerable-e04c1c6c90fb40e6)
+
+running 1 test
+
+thread 'tests::test_underflow_prevention' (3999499) panicked at src/lib.rs:46:9:
+assertion `left == right` failed: Expected result is 0 after safe subtraction; vulnerability persists if not fixed.
+  left: 4294967286
+ right: 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_underflow_prevention ... FAILED
+
+failures:
+
+failures:
+    tests::test_underflow_prevention
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

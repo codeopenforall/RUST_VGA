@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair10_a2_vulnerable_d0sngfd2) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair10_a2_vulnerable v0.1.0 (/tmp/asan_pair10_a2_vulnerable_d0sngfd2)
+error[E0425]: cannot find function `run` in this scope
+  --> src/lib.rs:58:22
+   |
+58 |         let output = run(input);
+   |                      ^^^ not found in this scope
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `pair10_a2_vulnerable` (lib test) due to 1 previous error

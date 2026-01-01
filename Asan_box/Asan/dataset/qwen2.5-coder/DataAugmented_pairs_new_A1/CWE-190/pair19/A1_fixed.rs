@@ -1,0 +1,32 @@
+struct Processor;
+
+impl Processor {
+    pub fn compute(input: u32) -> Result<u64, &'static str> {
+        let capacity: u32 = input.checked_mul(1000).ok_or("overflow detected")?;
+        let cap_u64: u64 = capacity as u64;
+        let result = cap_u64
+            .checked_mul(cap_u64.checked_sub(1).unwrap())
+            .and_then(|v| v.checked_div(2))
+            .unwrap_or(0);
+        Ok(result)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Processor;
+
+    #[test]
+    fn test_overflow_detection() {
+        // Use an input that will cause input * 1000 to overflow a u32.
+        let input: u32 = 5_000_000;
+        let result = Processor::compute(input);
+        // The correct behavior is to detect the overflow and return an error.
+        assert!(result.is_err(), "Overflow was not detected as expected");
+    }
+}
+
+#[allow(dead_code)]
+fn test_oracle() {
+    tests::test_overflow_detection();
+}

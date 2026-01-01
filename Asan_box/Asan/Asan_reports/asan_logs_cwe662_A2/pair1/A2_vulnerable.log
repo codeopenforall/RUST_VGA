@@ -1,0 +1,84 @@
+$ (cwd=/tmp/asan_pair1_a2_vulnerable_lv2lum86) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_a2_vulnerable v0.1.0 (/tmp/asan_pair1_a2_vulnerable_lv2lum86)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc)
+
+running 1 test
+=================================================================
+==4101215==ERROR: AddressSanitizer: global-buffer-overflow on address 0x5eafe146e664 at pc 0x5eafe14b9c1b bp 0x748d48ffe1e0 sp 0x748d48ffd9a8
+READ of size 5 at 0x5eafe146e664 thread T1
+    #0 0x5eafe14b9c1a  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x77c1a) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #1 0x5eafe1561196  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x11f196) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #2 0x5eafe15618f3  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x11f8f3) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #3 0x5eafe15637b9  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x1217b9) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #4 0x5eafe1562ce6  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x120ce6) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #5 0x5eafe15630d5  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x1210d5) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #6 0x5eafe1584c5a  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x142c5a) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #7 0x5eafe159a644  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x158644) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #8 0x5eafe1571063  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x12f063) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #9 0x5eafe1574a49  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x132a49) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #10 0x5eafe15ba66e  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x17866e) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #11 0x5eafe1530dc6  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0xeedc6) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #12 0x788d4c294ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #13 0x788d4c32684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x5eafe146e664 is located 28 bytes before global variable 'alloc_5018aefe9a4af1ecfe72eaaa9e75319e' defined in 'cjjmiwqf1owq2v9q28s7wrfvu' (0x5eafe146e680) of size 37
+0x5eafe146e664 is located 0 bytes after global variable 'alloc_ec1d98d8578a75e8f6c395cc733e5023' defined in 'cjjmiwqf1owq2v9q28s7wrfvu' (0x5eafe146e660) of size 4
+SUMMARY: AddressSanitizer: global-buffer-overflow (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x77c1a) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9) 
+Shadow bytes around the buggy address:
+  0x5eafe146e380: 00 00 00 00 00 00 00 00 00 00 02 f9 f9 f9 f9 f9
+  0x5eafe146e400: 00 00 00 00 00 00 00 00 00 00 00 05 f9 f9 f9 f9
+  0x5eafe146e480: 00 00 00 00 00 00 f9 f9 00 00 00 00 00 00 00 00
+  0x5eafe146e500: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5eafe146e580: 00 00 00 00 06 f9 f9 f9 f9 f9 f9 f9 00 00 f9 f9
+=>0x5eafe146e600: 00 00 00 00 00 00 03 f9 f9 f9 f9 f9[04]f9 f9 f9
+  0x5eafe146e680: 00 00 00 00 05 f9 f9 f9 f9 f9 f9 f9 00 03 f9 f9
+  0x5eafe146e700: 00 00 00 00 00 00 00 00 00 00 00 00 00 04 f9 f9
+  0x5eafe146e780: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 05 f9 f9
+  0x5eafe146e800: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5eafe146e880: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+Thread T1 created by T0 here:
+    #0 0x5eafe15177f1  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0xd57f1) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #1 0x5eafe15ba88f  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x17888f) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #2 0x5eafe15991bd  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x1571bd) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #3 0x5eafe1592504  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x150504) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #4 0x5eafe159bb45  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x159b45) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #5 0x5eafe158489a  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x14289a) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #6 0x5eafe15617d2  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x11f7d2) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #7 0x5eafe156162f  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x11f62f) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+    #8 0x5eafe1561bcd  (/tmp/asan_pair1_a2_vulnerable_lv2lum86/target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc+0x11fbcd) (BuildId: e7ff00c879608e1c5ed095a70a58d07cab9049d9)
+
+
+thread 'tests::check_authentication' (4101216) panicked at src/lib.rs:60:9:
+Backdoor token should not be accepted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::check_authentication ... FAILED
+
+failures:
+
+failures:
+    tests::check_authentication
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

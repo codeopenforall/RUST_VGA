@@ -1,0 +1,14 @@
+$ (cwd=/tmp/asan_pair11_a2_vulnerable_inzfu8g3) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a2_vulnerable v0.1.0 (/tmp/asan_pair11_a2_vulnerable_inzfu8g3)
+error[E0433]: failed to resolve: use of undeclared type `DataManager`
+  --> src/lib.rs:59:23
+   |
+59 |         let manager = DataManager::new(10);
+   |                       ^^^^^^^^^^^
+   |                       |
+   |                       use of undeclared type `DataManager`
+   |                       help: a struct with a similar name exists: `DataHandler`
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `pair11_a2_vulnerable` (lib test) due to 1 previous error

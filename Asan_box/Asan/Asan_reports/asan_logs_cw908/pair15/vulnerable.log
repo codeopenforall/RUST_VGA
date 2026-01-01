@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair15_vulnerable_u8spe7xg) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair15_vulnerable v0.1.0 (/tmp/asan_pair15_vulnerable_u8spe7xg)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair15_vulnerable-38277e6d74255afb)
+
+running 1 test
+
+thread 'tests::oracle' (3500216) panicked at src/lib.rs:47:9:
+assertion `left == right` failed: Configuration 'label' should be 'default'
+  left: ""
+ right: "default"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::oracle ... FAILED
+
+failures:
+
+failures:
+    tests::oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

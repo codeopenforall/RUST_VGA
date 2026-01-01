@@ -1,0 +1,27 @@
+$ (cwd=/tmp/asan_pair11_a3_fixed_w6tp_k2q) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a3_fixed v0.1.0 (/tmp/asan_pair11_a3_fixed_w6tp_k2q)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b)
+
+running 1 test
+test tests::test_memory_access ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=================================================================
+==4168035==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 4 byte(s) in 1 object(s) allocated from:
+    #0 0x63302b9cef24  (/tmp/asan_pair11_a3_fixed_w6tp_k2q/target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b+0xf0f24) (BuildId: 08259b389739817b57ee73b6bc18abca001ac3c1)
+    #1 0x63302b9fd4f3  (/tmp/asan_pair11_a3_fixed_w6tp_k2q/target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b+0x11f4f3) (BuildId: 08259b389739817b57ee73b6bc18abca001ac3c1)
+    #2 0x63302b9fd1f4  (/tmp/asan_pair11_a3_fixed_w6tp_k2q/target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b+0x11f1f4) (BuildId: 08259b389739817b57ee73b6bc18abca001ac3c1)
+    #3 0x63302b9ff6c6  (/tmp/asan_pair11_a3_fixed_w6tp_k2q/target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b+0x1216c6) (BuildId: 08259b389739817b57ee73b6bc18abca001ac3c1)
+    #4 0x63302ba36324  (/tmp/asan_pair11_a3_fixed_w6tp_k2q/target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b+0x158324) (BuildId: 08259b389739817b57ee73b6bc18abca001ac3c1)
+    #5 0x63302ba0cd43  (/tmp/asan_pair11_a3_fixed_w6tp_k2q/target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b+0x12ed43) (BuildId: 08259b389739817b57ee73b6bc18abca001ac3c1)
+    #6 0x63302ba10729  (/tmp/asan_pair11_a3_fixed_w6tp_k2q/target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b+0x132729) (BuildId: 08259b389739817b57ee73b6bc18abca001ac3c1)
+    #7 0x63302ba5634e  (/tmp/asan_pair11_a3_fixed_w6tp_k2q/target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b+0x17834e) (BuildId: 08259b389739817b57ee73b6bc18abca001ac3c1)
+    #8 0x63302b9ccde6  (/tmp/asan_pair11_a3_fixed_w6tp_k2q/target/debug/deps/pair11_a3_fixed-3bf9496bb649b21b+0xeede6) (BuildId: 08259b389739817b57ee73b6bc18abca001ac3c1)
+
+SUMMARY: AddressSanitizer: 4 byte(s) leaked in 1 allocation(s).

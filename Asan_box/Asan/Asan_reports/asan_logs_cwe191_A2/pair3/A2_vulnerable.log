@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair3_a2_vulnerable_l1zkmf37) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_a2_vulnerable v0.1.0 (/tmp/asan_pair3_a2_vulnerable_l1zkmf37)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair3_a2_vulnerable-c3dd5f5254e30ff5)
+
+running 1 test
+
+thread 'tests::test_underflow_prevention' (4002165) panicked at src/lib.rs:61:9:
+assertion `left == right` failed: Account balance should remain 0 after failed withdrawal
+  left: 4294967295
+ right: 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_underflow_prevention ... FAILED
+
+failures:
+
+failures:
+    tests::test_underflow_prevention
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

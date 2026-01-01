@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair11_vulnerable_im5r2roe) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_vulnerable v0.1.0 (/tmp/asan_pair11_vulnerable_im5r2roe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair11_vulnerable-12d856b102efa892)
+
+running 1 test
+
+thread 'tests::test_run_app_value' (3499461) panicked at src/lib.rs:43:9:
+assertion `left == right` failed: The configuration flag should be 42
+  left: 2459041280
+ right: 42
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_run_app_value ... FAILED
+
+failures:
+
+failures:
+    tests::test_run_app_value
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

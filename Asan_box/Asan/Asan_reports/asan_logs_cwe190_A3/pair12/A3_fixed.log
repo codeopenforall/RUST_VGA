@@ -1,0 +1,30 @@
+$ (cwd=/tmp/asan_pair12_a3_fixed_2xtn1u7i) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_a3_fixed v0.1.0 (/tmp/asan_pair12_a3_fixed_2xtn1u7i)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair12_a3_fixed-8a6972458be37a0c)
+
+running 2 tests
+
+thread 'tests::verify_computation' (4146289) panicked at src/lib.rs:25:9:
+assertion `left == right` failed: The computed product is incorrect, indicating an arithmetic overflow vulnerability.
+  left: 9000000
+ right: 9000000000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'oracle::verify_computation' (4146288) panicked at src/lib.rs:38:9:
+assertion `left == right` failed: The computed product is incorrect, indicating an arithmetic overflow vulnerability.
+  left: 9000000
+ right: 9000000000
+test tests::verify_computation ... FAILED
+test oracle::verify_computation ... FAILED
+
+failures:
+
+failures:
+    oracle::verify_computation
+    tests::verify_computation
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

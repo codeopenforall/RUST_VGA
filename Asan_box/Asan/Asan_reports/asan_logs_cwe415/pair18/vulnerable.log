@@ -1,0 +1,83 @@
+$ (cwd=/tmp/asan_pair18_vulnerable_tzolxcbb) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_vulnerable v0.1.0 (/tmp/asan_pair18_vulnerable_tzolxcbb)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair18_vulnerable-bdaccf112456475f)
+
+running 1 test
+=================================================================
+==3474049==ERROR: AddressSanitizer: attempting double-free on 0x7add2f9e4010 in thread T1:
+    #0 0x61a55c28fb06  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0xf1b06) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #1 0x61a55c2c0eba  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122eba) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #2 0x61a55c2c0423  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122423) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #3 0x61a55c2c00c0  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x1220c0) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #4 0x61a55c2c01ed  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x1221ed) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #5 0x61a55c2c0089  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122089) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #6 0x61a55c2bf63d  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x12163d) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #7 0x61a55c2be30c  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x12030c) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #8 0x61a55c2c0446  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122446) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #9 0x61a55c2c0055  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122055) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #10 0x61a55c2e286a  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x14486a) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #11 0x61a55c2f8254  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x15a254) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #12 0x61a55c2cec73  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x130c73) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #13 0x61a55c2d2659  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x134659) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #14 0x61a55c31827e  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x17a27e) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #15 0x61a55c28dc66  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0xefc66) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #16 0x7ebd30694ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #17 0x7ebd3072684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x7add2f9e4010 is located 0 bytes inside of 4-byte region [0x7add2f9e4010,0x7add2f9e4014)
+freed by thread T1 here:
+    #0 0x61a55c28fb06  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0xf1b06) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #1 0x61a55c2c0eba  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122eba) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #2 0x61a55c2c0423  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122423) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #3 0x61a55c2c00c0  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x1220c0) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #4 0x61a55c2bf619  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x121619) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #5 0x61a55c2be30c  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x12030c) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #6 0x61a55c2c0446  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122446) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #7 0x61a55c2f8254  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x15a254) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #8 0x61a55c2cec73  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x130c73) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #9 0x61a55c2d2659  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x134659) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #10 0x61a55c31827e  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x17a27e) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #11 0x61a55c28dc66  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0xefc66) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+
+previously allocated by thread T1 here:
+    #0 0x61a55c28fda4  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0xf1da4) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #1 0x61a55c2c0ba3  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122ba3) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #2 0x61a55c2c08a4  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x1228a4) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #3 0x61a55c2be30c  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x12030c) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #4 0x61a55c2c0446  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x122446) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #5 0x61a55c2f8254  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x15a254) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #6 0x61a55c2cec73  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x130c73) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #7 0x61a55c2d2659  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x134659) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #8 0x61a55c31827e  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x17a27e) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #9 0x61a55c28dc66  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0xefc66) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+
+Thread T1 created by T0 here:
+    #0 0x61a55c274691  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0xd6691) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #1 0x61a55c31849f  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x17a49f) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #2 0x61a55c2f6dcd  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x158dcd) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #3 0x61a55c2f0114  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x152114) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #4 0x61a55c2f9755  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x15b755) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #5 0x61a55c2e24aa  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x1444aa) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #6 0x61a55c2bf702  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x121702) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #7 0x61a55c2bef0f  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x120f0f) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+    #8 0x61a55c2bf95d  (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0x12195d) (BuildId: 412dbd67adae256173086149f0680d5bad431109)
+
+SUMMARY: AddressSanitizer: double-free (/tmp/asan_pair18_vulnerable_tzolxcbb/target/debug/deps/pair18_vulnerable-bdaccf112456475f+0xf1b06) (BuildId: 412dbd67adae256173086149f0680d5bad431109) 
+
+thread 'tests::test_double_free_protection' (3474050) panicked at src/lib.rs:66:9:
+assertion `left == right` failed: Double free vulnerability detected: free_count = 2
+  left: 2
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_double_free_protection ... FAILED
+
+failures:
+
+failures:
+    tests::test_double_free_protection
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

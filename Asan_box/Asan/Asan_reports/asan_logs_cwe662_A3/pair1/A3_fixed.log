@@ -1,0 +1,74 @@
+$ (cwd=/tmp/asan_pair1_a3_fixed_s_h0rsa9) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_a3_fixed v0.1.0 (/tmp/asan_pair1_a3_fixed_s_h0rsa9)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060)
+
+running 1 test
+=================================================================
+==36906==ERROR: AddressSanitizer: global-buffer-overflow on address 0x5c1393e1b124 at pc 0x5c1393e66c1b bp 0x6c9d5effe1e0 sp 0x6c9d5effd9a8
+READ of size 5 at 0x5c1393e1b124 thread T1
+    #0 0x5c1393e66c1a  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x77c1a) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #1 0x5c1393f0e506  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x11f506) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #2 0x5c1393f0fa53  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x120a53) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #3 0x5c1393f0ecf9  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x11fcf9) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #4 0x5c1393f0eeb6  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x11feb6) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #5 0x5c1393f0f5c5  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x1205c5) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #6 0x5c1393f31c5a  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x142c5a) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #7 0x5c1393f47644  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x158644) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #8 0x5c1393f1e063  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x12f063) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #9 0x5c1393f21a49  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x132a49) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #10 0x5c1393f6766e  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x17866e) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #11 0x5c1393edddc6  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0xeedc6) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #12 0x709d62294ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #13 0x709d6232684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x5c1393e1b124 is located 28 bytes before global variable 'alloc_5018aefe9a4af1ecfe72eaaa9e75319e' defined in '5wtpflswuj3plrblpu1sns9gf' (0x5c1393e1b140) of size 37
+0x5c1393e1b124 is located 0 bytes after global variable 'alloc_ec1d98d8578a75e8f6c395cc733e5023' defined in '5wtpflswuj3plrblpu1sns9gf' (0x5c1393e1b120) of size 4
+SUMMARY: AddressSanitizer: global-buffer-overflow (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x77c1a) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a) 
+Shadow bytes around the buggy address:
+  0x5c1393e1ae80: 00 00 00 00 00 00 00 00 00 00 00 00 00 06 f9 f9
+  0x5c1393e1af00: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 00 00 05
+  0x5c1393e1af80: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5c1393e1b000: 00 04 f9 f9 f9 f9 f9 f9 00 00 00 00 00 00 00 00
+  0x5c1393e1b080: 00 05 f9 f9 f9 f9 f9 f9 00 00 00 00 00 00 03 f9
+=>0x5c1393e1b100: f9 f9 f9 f9[04]f9 f9 f9 00 00 00 00 05 f9 f9 f9
+  0x5c1393e1b180: f9 f9 f9 f9 00 03 f9 f9 00 00 00 00 00 00 f9 f9
+  0x5c1393e1b200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5c1393e1b280: 00 00 00 00 00 00 00 00 00 00 00 00 06 f9 f9 f9
+  0x5c1393e1b300: f9 f9 f9 f9 00 00 f9 f9 00 00 00 00 00 00 00 00
+  0x5c1393e1b380: 00 00 00 00 00 00 01 f9 f9 f9 f9 f9 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+Thread T1 created by T0 here:
+    #0 0x5c1393ec47f1  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0xd57f1) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #1 0x5c1393f6788f  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x17888f) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #2 0x5c1393f461bd  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x1571bd) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #3 0x5c1393f3f504  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x150504) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #4 0x5c1393f48b45  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x159b45) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #5 0x5c1393f3189a  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x14289a) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #6 0x5c1393f0f932  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x120932) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #7 0x5c1393f10f4f  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x121f4f) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+    #8 0x5c1393f0fd2d  (/tmp/asan_pair1_a3_fixed_s_h0rsa9/target/debug/deps/pair1_a3_fixed-0a0b9f9fc8fd3060+0x120d2d) (BuildId: 23eac7ec90789e626e2753ae15efce204e09698a)
+
+test tests::check_authentication ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

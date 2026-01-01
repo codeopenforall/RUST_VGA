@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair2_vulnerable_nph7flp6) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair2_vulnerable v0.1.0 (/tmp/asan_pair2_vulnerable_nph7flp6)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running unittests src/lib.rs (target/debug/deps/pair2_vulnerable-cda1feb9dee2cb9c)
+
+running 1 test
+
+thread 'tests::oracle_test' (3517073) panicked at src/lib.rs:81:9:
+assertion `left == right` failed: Final count does not match expected value
+  left: 34745
+ right: 40000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::oracle_test ... FAILED
+
+failures:
+
+failures:
+    tests::oracle_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `--lib`

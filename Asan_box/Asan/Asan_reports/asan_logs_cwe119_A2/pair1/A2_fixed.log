@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair1_a2_fixed_rvuoqb3r) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_a2_fixed v0.1.0 (/tmp/asan_pair1_a2_fixed_rvuoqb3r)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair1_a2_fixed-75125fe96147c35e)
+
+running 1 test
+test tests::test_memory_bounds ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

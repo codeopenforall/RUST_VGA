@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair5_vulnerable__mvfpdya) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair5_vulnerable v0.1.0 (/tmp/asan_pair5_vulnerable__mvfpdya)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair5_vulnerable-55a9c05667f33897)
+
+running 1 test
+
+thread 'tests::test_calculation' (3451393) panicked at src/lib.rs:60:9:
+assertion `left == right` failed: Computed sum should be 10 for correct implementation
+  left: 52
+ right: 10
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_calculation ... FAILED
+
+failures:
+
+failures:
+    tests::test_calculation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

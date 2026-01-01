@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair13_a2_vulnerable_6anw4l7_) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a2_vulnerable v0.1.0 (/tmp/asan_pair13_a2_vulnerable_6anw4l7_)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair13_a2_vulnerable-e04c1c6c90fb40e6)
+
+running 1 test
+
+thread 'tests::test_compute' (4032227) panicked at src/lib.rs:53:9:
+assertion `left == right` failed: The computed value did not match the expected result.
+  left: 443
+ right: 543
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_compute ... FAILED
+
+failures:
+
+failures:
+    tests::test_compute
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

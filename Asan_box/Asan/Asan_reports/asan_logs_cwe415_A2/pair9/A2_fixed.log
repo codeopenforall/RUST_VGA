@@ -1,0 +1,12 @@
+$ (cwd=/tmp/asan_pair9_a2_fixed_bi6h50i2) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair9_a2_fixed v0.1.0 (/tmp/asan_pair9_a2_fixed_bi6h50i2)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair9_a2_fixed-dab4f202c707777d)
+
+running 1 test
+Values: 100 and 100
+test oracle::test_item_behavior ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

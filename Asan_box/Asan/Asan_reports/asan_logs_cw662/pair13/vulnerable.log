@@ -1,0 +1,30 @@
+$ (cwd=/tmp/asan_pair13_vulnerable_omdhz6o0) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_vulnerable v0.1.0 (/tmp/asan_pair13_vulnerable_omdhz6o0)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e)
+
+running 1 test
+
+thread '<unnamed>' (3515016) panicked at src/lib.rs:27:9:
+Simulated panic to poison the lock
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread '<unnamed>' (3515017) panicked at src/lib.rs:32:45:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread 'tests::test_oracle' (3515015) panicked at src/lib.rs:37:30:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread 'tests::test_oracle' (3515015) panicked at src/lib.rs:63:9:
+The run() function panicked unexpectedly
+test tests::test_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::test_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `--lib`

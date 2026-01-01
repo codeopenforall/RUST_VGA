@@ -1,0 +1,85 @@
+$ (cwd=/tmp/asan_pair1_a3_vulnerable_rkx270fx) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_a3_vulnerable v0.1.0 (/tmp/asan_pair1_a3_vulnerable_rkx270fx)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8)
+
+running 1 test
+=================================================================
+==4172967==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x75074d3e4020 at pc 0x59da5319b689 bp 0x74e74adfe150 sp 0x74e74adfe148
+READ of size 4 at 0x75074d3e4020 thread T1
+    #0 0x59da5319b688  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x121688) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #1 0x59da5319b9c2  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x1219c2) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #2 0x59da5319d31f  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x12331f) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #3 0x59da5319c556  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x122556) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #4 0x59da5319c1f5  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x1221f5) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #5 0x59da531be31a  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x14431a) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #6 0x59da531d3d04  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x159d04) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #7 0x59da531aa723  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x130723) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #8 0x59da531ae109  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x134109) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #9 0x59da531f3d2e  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x179d2e) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #10 0x59da531699b6  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0xef9b6) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #11 0x78e74e094ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x78e74e12684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x75074d3e4020 is located 0 bytes after 16-byte region [0x75074d3e4010,0x75074d3e4020)
+allocated by thread T1 here:
+    #0 0x59da5316baf4  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0xf1af4) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #1 0x59da5319a443  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x120443) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #2 0x59da5319a144  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x120144) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #3 0x59da5319d31f  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x12331f) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #4 0x59da5319c556  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x122556) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #5 0x59da531d3d04  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x159d04) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #6 0x59da531aa723  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x130723) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #7 0x59da531ae109  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x134109) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #8 0x59da531f3d2e  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x179d2e) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #9 0x59da531699b6  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0xef9b6) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+
+Thread T1 created by T0 here:
+    #0 0x59da531503e1  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0xd63e1) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #1 0x59da531f3f4f  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x179f4f) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #2 0x59da531d287d  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x15887d) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #3 0x59da531cbbc4  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x151bc4) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #4 0x59da531d5205  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x15b205) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #5 0x59da531bdf5a  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x143f5a) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #6 0x59da5319bb52  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x121b52) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #7 0x59da5319b24f  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x12124f) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+    #8 0x59da5319bb7d  (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x121b7d) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8+0x121688) (BuildId: b64276863efaed31cc38229db7e8b9eed6fd72a1) 
+Shadow bytes around the buggy address:
+  0x75074d3e3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75074d3e3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75074d3e3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75074d3e3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75074d3e3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x75074d3e4000: fa fa 00 00[fa]fa fa fa fa fa fa fa fa fa fa fa
+  0x75074d3e4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75074d3e4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75074d3e4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75074d3e4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75074d3e4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==4172967==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair1_a3_vulnerable_rkx270fx/target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8 --nocapture` (exit status: 1)

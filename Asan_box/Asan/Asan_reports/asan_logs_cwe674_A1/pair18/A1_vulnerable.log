@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair18_a1_vulnerable_v5_ul6se) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a1_vulnerable v0.1.0 (/tmp/asan_pair18_a1_vulnerable_v5_ul6se)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair18_a1_vulnerable-649cd7d0f0b50684)
+
+running 1 test
+
+thread 'tests::recursion_depth_oracle' (3825823) panicked at src/lib.rs:55:30:
+Unexpected success on deeply nested input.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::recursion_depth_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::recursion_depth_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

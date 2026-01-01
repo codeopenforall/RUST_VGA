@@ -1,0 +1,18 @@
+
+running 1 test
+test tests::oracle ... FAILED
+
+failures:
+
+---- tests::oracle stdout ----
+
+thread 'tests::oracle' (644847) panicked at /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair15/vulnerable.rs:67:9:
+Update did not panic on out-of-bounds access
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

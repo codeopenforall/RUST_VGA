@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair3_a2_vulnerable_bg2y8phh) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_a2_vulnerable v0.1.0 (/tmp/asan_pair3_a2_vulnerable_bg2y8phh)
+error[E0433]: failed to resolve: use of undeclared type `Configuration`
+  --> src/lib.rs:56:22
+   |
+56 |         let config = Configuration::create_instance();
+   |                      ^^^^^^^^^^^^^ use of undeclared type `Configuration`
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `pair3_a2_vulnerable` (lib test) due to 1 previous error

@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair16_vulnerable_71fc1j2t) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_vulnerable v0.1.0 (/tmp/asan_pair16_vulnerable_71fc1j2t)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair16_vulnerable-2c3312d0c6036846)
+
+running 1 test
+
+thread 'tests::test_data_copy' (3454873) panicked at src/lib.rs:56:9:
+assertion `left == right` failed: Buffer content does not match input string
+  left: "This is a somewh"
+ right: "This is a somewhat long input string causing miscalculation."
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_data_copy ... FAILED
+
+failures:
+
+failures:
+    tests::test_data_copy
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

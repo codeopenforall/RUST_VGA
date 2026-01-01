@@ -1,0 +1,14 @@
+$ (cwd=/tmp/asan_pair11_a2_vulnerable_4uf87wm8) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a2_vulnerable v0.1.0 (/tmp/asan_pair11_a2_vulnerable_4uf87wm8)
+error[E0425]: cannot find function `simulate_transactions` in this scope
+  --> src/lib.rs:66:22
+   |
+24 | fn run_transactions() -> Result<i32, &'static str> {
+   | -------------------------------------------------- similarly named function `run_transactions` defined here
+...
+66 |         let result = simulate_transactions();
+   |                      ^^^^^^^^^^^^^^^^^^^^^ help: a function with a similar name exists: `run_transactions`
+
+For more information about this error, try `rustc --explain E0425`.
+error: could not compile `pair11_a2_vulnerable` (lib test) due to 1 previous error

@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair11_a3_vulnerable_i2tq_ivl) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a3_vulnerable v0.1.0 (/tmp/asan_pair11_a3_vulnerable_i2tq_ivl)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair11_a3_vulnerable-73a945536955b500)
+
+running 1 test
+
+thread 'tests::check_buffer_bounds' (4128972) panicked at src/lib.rs:79:9:
+assertion `left == right` failed: Sentinel value corrupted due to buffer overflow
+  left: 16843009
+ right: 3735928559
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::check_buffer_bounds ... FAILED
+
+failures:
+
+failures:
+    tests::check_buffer_bounds
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

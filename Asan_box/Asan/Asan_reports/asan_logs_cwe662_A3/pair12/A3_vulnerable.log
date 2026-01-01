@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair12_a3_vulnerable_2h1ea6ao) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_a3_vulnerable v0.1.0 (/tmp/asan_pair12_a3_vulnerable_2h1ea6ao)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair12_a3_vulnerable-d4e8ca2b8143bc06)
+
+running 1 test
+
+thread 'tests::test_authentication' (37802) panicked at src/lib.rs:39:9:
+assertion `left == right` failed: Authentication should fail for an incorrect token.
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_authentication ... FAILED
+
+failures:
+
+failures:
+    tests::test_authentication
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

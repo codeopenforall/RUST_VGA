@@ -1,0 +1,10 @@
+warning: unused imports: `Arc` and `Mutex`
+ --> /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair8/fixed.rs:1:17
+  |
+1 | use std::sync::{Arc, Mutex};
+  |                 ^^^  ^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: 1 warning emitted
+

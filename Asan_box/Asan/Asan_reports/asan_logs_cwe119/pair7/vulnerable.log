@@ -1,0 +1,81 @@
+$ (cwd=/tmp/asan_pair7_vulnerable_djhjpruu) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair7_vulnerable v0.1.0 (/tmp/asan_pair7_vulnerable_djhjpruu)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair7_vulnerable-a54fe009eb39d90e)
+
+running 1 test
+=================================================================
+==3446300==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7b2bddbff114 at pc 0x5b02d8996c99 bp 0x7b2bde5fe1f0 sp 0x7b2bde5fe1e8
+WRITE of size 1 at 0x7b2bddbff114 thread T1
+    #0 0x5b02d8996c98  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x121c98) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #1 0x5b02d8994f04  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x11ff04) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #2 0x5b02d8997fb6  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x122fb6) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #3 0x5b02d8995c45  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x120c45) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #4 0x5b02d89b8dba  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x143dba) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #5 0x5b02d89ce7a4  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x1597a4) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #6 0x5b02d89a51c3  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x1301c3) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #7 0x5b02d89a8ba9  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x133ba9) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #8 0x5b02d89ee7ce  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x1797ce) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #9 0x5b02d89645d6  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0xef5d6) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #10 0x7f2be1894ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #11 0x7f2be192684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+Address 0x7b2bddbff114 is located in stack of thread T1 at offset 276 in frame
+    #0 0x5b02d8994d3f  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x11fd3f) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+
+  This frame has 4 object(s):
+    [32, 80) '_10' (line 49)
+    [112, 128) 'result' (line 47)
+    [144, 168) 'input' (line 46)
+    [208, 276) 'obj' (line 45) <== Memory access at offset 276 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+Thread T1 created by T0 here:
+    #0 0x5b02d894b001  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0xd6001) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #1 0x5b02d89ee9ef  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x1799ef) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #2 0x5b02d89cd31d  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x15831d) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #3 0x5b02d89c6664  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x151664) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #4 0x5b02d89cfca5  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x15aca5) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #5 0x5b02d89b89fa  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x1439fa) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #6 0x5b02d8996cd2  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x121cd2) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #7 0x5b02d89968ef  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x1218ef) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+    #8 0x5b02d8996cfd  (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x121cfd) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143)
+
+SUMMARY: AddressSanitizer: stack-buffer-overflow (/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e+0x121c98) (BuildId: 986cee1e627b5b4f7405668c410c658667c42143) 
+Shadow bytes around the buggy address:
+  0x7b2bddbfee80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b2bddbfef00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b2bddbfef80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b2bddbff000: f1 f1 f1 f1 f8 f8 f8 f8 f8 f8 f2 f2 f2 f2 00 00
+  0x7b2bddbff080: f2 f2 00 00 00 f2 f2 f2 f2 f2 00 00 00 00 00 00
+=>0x7b2bddbff100: 00 00[04]f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3
+  0x7b2bddbff180: f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3
+  0x7b2bddbff200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b2bddbff280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b2bddbff300: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7b2bddbff380: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3446300==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair7_vulnerable_djhjpruu/target/debug/deps/pair7_vulnerable-a54fe009eb39d90e --nocapture` (exit status: 1)

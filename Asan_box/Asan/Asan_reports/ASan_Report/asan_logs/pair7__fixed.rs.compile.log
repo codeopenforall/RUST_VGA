@@ -1,0 +1,30 @@
+warning: unused import: `std::ptr`
+ --> /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair7/fixed.rs:1:5
+  |
+1 | use std::ptr;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `magic` is never read
+ --> /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair7/fixed.rs:4:5
+  |
+2 | struct Data {
+  |        ---- field in this struct
+3 |     buffer: [u8; 64],
+4 |     magic: u32,
+  |     ^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: method `check` is never used
+  --> /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair7/fixed.rs:25:12
+   |
+ 6 | impl Data {
+   | --------- method in this implementation
+...
+25 |     pub fn check(&self) -> bool {
+   |            ^^^^^
+
+warning: 3 warnings emitted
+

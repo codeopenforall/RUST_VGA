@@ -1,0 +1,51 @@
+$ (cwd=/tmp/asan_pair11_vulnerable_8qnuhhqa) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_vulnerable v0.1.0 (/tmp/asan_pair11_vulnerable_8qnuhhqa)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair11_vulnerable-12d856b102efa892)
+
+running 1 test
+
+thread '<unnamed>' (3458923) panicked at src/lib.rs:13:20:
+attempt to add with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread '<unnamed>' (3458924) panicked at src/lib.rs:30:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (3458925) panicked at src/lib.rs:30:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (3458926) panicked at src/lib.rs:30:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (3458927) panicked at src/lib.rs:30:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (3458928) panicked at src/lib.rs:30:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread 'tests::test_overflow_detection' (3458922) panicked at src/lib.rs:36:18:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+
+thread '<unnamed>' (3458930) panicked at src/lib.rs:30:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (3458929) panicked at src/lib.rs:30:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (3458931) panicked at src/lib.rs:30:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (3458932) panicked at src/lib.rs:30:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+test tests::test_overflow_detection ... FAILED
+
+failures:
+
+failures:
+    tests::test_overflow_detection
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

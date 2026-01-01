@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair7_a2_vulnerable_cjwp0827) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair7_a2_vulnerable v0.1.0 (/tmp/asan_pair7_a2_vulnerable_cjwp0827)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair7_a2_vulnerable-4d51f814d9833b6d)
+
+running 1 test
+
+thread '<unnamed>' (4035896) panicked at src/lib.rs:61:17:
+Configuration validation failed in secondary thread.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::config_validation_test' (4035895) panicked at src/lib.rs:67:23:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+test tests::config_validation_test ... FAILED
+
+failures:
+
+failures:
+    tests::config_validation_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

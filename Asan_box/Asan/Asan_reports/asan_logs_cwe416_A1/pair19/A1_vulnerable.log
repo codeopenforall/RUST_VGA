@@ -1,0 +1,97 @@
+$ (cwd=/tmp/asan_pair19_a1_vulnerable_vzahfehb) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a1_vulnerable v0.1.0 (/tmp/asan_pair19_a1_vulnerable_vzahfehb)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121)
+
+running 1 test
+=================================================================
+==3810593==ERROR: AddressSanitizer: heap-use-after-free on address 0x7b0b13de4010 at pc 0x5ca83fcf5e5c bp 0x7aeb117fe340 sp 0x7aeb117fe338
+WRITE of size 4 at 0x7b0b13de4010 thread T1
+    #0 0x5ca83fcf5e5b  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x11fe5b) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #1 0x5ca83fcf728f  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x12128f) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #2 0x5ca83fcf8006  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x122006) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #3 0x5ca83fcf6375  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x120375) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #4 0x5ca83fd1952a  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x14352a) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #5 0x5ca83fd2ef14  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x158f14) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #6 0x5ca83fd05933  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x12f933) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #7 0x5ca83fd09319  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x133319) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #8 0x5ca83fd4ef3e  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x178f3e) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #9 0x5ca83fcc5336  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0xef336) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #10 0x7eeb14c94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #11 0x7eeb14d2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x7b0b13de4010 is located 0 bytes inside of 4-byte region [0x7b0b13de4010,0x7b0b13de4014)
+freed by thread T1 here:
+    #0 0x5ca83fcc71d6  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0xf11d6) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #1 0x5ca83fcf5d5a  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x11fd5a) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #2 0x5ca83fcf68b3  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x1208b3) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #3 0x5ca83fcf6590  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x120590) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #4 0x5ca83fcf65a9  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x1205a9) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #5 0x5ca83fcf5de4  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x11fde4) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #6 0x5ca83fcf8006  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x122006) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #7 0x5ca83fd2ef14  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x158f14) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #8 0x5ca83fd05933  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x12f933) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #9 0x5ca83fd09319  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x133319) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #10 0x5ca83fd4ef3e  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x178f3e) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #11 0x5ca83fcc5336  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0xef336) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+
+previously allocated by thread T1 here:
+    #0 0x5ca83fcc7474  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0xf1474) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #1 0x5ca83fcf5a43  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x11fa43) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #2 0x5ca83fcf5744  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x11f744) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #3 0x5ca83fcf8006  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x122006) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #4 0x5ca83fd2ef14  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x158f14) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #5 0x5ca83fd05933  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x12f933) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #6 0x5ca83fd09319  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x133319) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #7 0x5ca83fd4ef3e  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x178f3e) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #8 0x5ca83fcc5336  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0xef336) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+
+Thread T1 created by T0 here:
+    #0 0x5ca83fcabd61  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0xd5d61) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #1 0x5ca83fd4f15f  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x17915f) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #2 0x5ca83fd2da8d  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x157a8d) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #3 0x5ca83fd26dd4  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x150dd4) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #4 0x5ca83fd30415  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x15a415) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #5 0x5ca83fd1916a  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x14316a) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #6 0x5ca83fcf5f22  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x11ff22) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #7 0x5ca83fcf70df  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x1210df) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+    #8 0x5ca83fcf5fed  (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x11ffed) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f)
+
+SUMMARY: AddressSanitizer: heap-use-after-free (/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121+0x11fe5b) (BuildId: 64cac72f2550d08b6578fd9ff20c5e1408f4ac4f) 
+Shadow bytes around the buggy address:
+  0x7b0b13de3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b0b13de3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b0b13de3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b0b13de3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b0b13de3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x7b0b13de4000: fa fa[fd]fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b0b13de4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b0b13de4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b0b13de4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b0b13de4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7b0b13de4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3810593==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair19_a1_vulnerable_vzahfehb/target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121 --nocapture` (exit status: 1)

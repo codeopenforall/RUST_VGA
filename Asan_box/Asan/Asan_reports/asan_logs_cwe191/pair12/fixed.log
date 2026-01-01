@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair12_fixed_p9i3do35) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_fixed v0.1.0 (/tmp/asan_pair12_fixed_p9i3do35)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair12_fixed-636b381e81329b26)
+
+running 1 test
+test tests::test_underflow_prevention ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

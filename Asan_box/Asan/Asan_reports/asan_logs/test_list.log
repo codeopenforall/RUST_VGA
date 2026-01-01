@@ -1,0 +1,6 @@
+   Compiling rudra_big v0.1.0 (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s
+     Running unittests src/lib.rs (target/debug/deps/rudra_big-8cebfaefc201fea9)
+dataset::o3_mini::data_generation_cwe_119_pair1_vulnerable::tests::test_memory_bounds: test
+
+1 test, 0 benchmarks

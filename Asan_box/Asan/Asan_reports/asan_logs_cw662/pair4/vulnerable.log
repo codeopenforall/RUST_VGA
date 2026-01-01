@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair4_vulnerable_b6vlvze1) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_vulnerable v0.1.0 (/tmp/asan_pair4_vulnerable_b6vlvze1)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.35s
+     Running unittests src/lib.rs (target/debug/deps/pair4_vulnerable-dd121c6c5d9904fd)
+
+running 1 test
+
+thread 'tests::test_run' (3517794) panicked at src/lib.rs:78:23:
+Operation timed out: potential deadlock detected
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_run ... FAILED
+
+failures:
+
+failures:
+    tests::test_run
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.50s
+
+error: test failed, to rerun pass `--lib`

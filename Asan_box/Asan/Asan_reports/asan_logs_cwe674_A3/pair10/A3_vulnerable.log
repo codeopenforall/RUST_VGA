@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair10_a3_vulnerable_xoqbhxaf) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair10_a3_vulnerable v0.1.0 (/tmp/asan_pair10_a3_vulnerable_xoqbhxaf)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.29s
+     Running unittests src/lib.rs (target/debug/deps/pair10_a3_vulnerable-2612b3092d427c3a)
+
+running 1 test
+
+thread 'oracle::test_recursion_depth_limit' (4187147) panicked at src/lib.rs:81:17:
+Expected an error due to recursion depth limit
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test oracle::test_recursion_depth_limit ... FAILED
+
+failures:
+
+failures:
+    oracle::test_recursion_depth_limit
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

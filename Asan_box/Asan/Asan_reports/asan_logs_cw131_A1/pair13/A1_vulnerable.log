@@ -1,0 +1,116 @@
+$ (cwd=/tmp/asan_pair13_a1_vulnerable_tikejbu6) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a1_vulnerable v0.1.0 (/tmp/asan_pair13_a1_vulnerable_tikejbu6)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13)
+
+running 1 test
+=================================================================
+==3795030==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x751bad1e4020 at pc 0x5defabf1f3c6 bp 0x74fbaabfe1a0 sp 0x74fbaabfd948
+READ of size 41 at 0x751bad1e4020 thread T1
+    #0 0x5defabf1f3c5  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x7d3c5) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #1 0x5defabf1f7dc  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x7d7dc) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #2 0x5defabfc3b44  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x121b44) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #3 0x5defabfc3adc  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x121adc) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #4 0x5defabfc2843  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120843) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #5 0x5defabfc4654  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x122654) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #6 0x5defabfc18b6  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11f8b6) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #7 0x5defabfc43a5  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x1223a5) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #8 0x5defabfe552a  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x14352a) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #9 0x5defabffaf14  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x158f14) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #10 0x5defabfd1933  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12f933) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #11 0x5defabfd5319  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x133319) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #12 0x5defac01af3e  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x178f3e) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #13 0x5defabf913e6  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xef3e6) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #14 0x78fbae094ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #15 0x78fbae12684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x751bad1e4020 is located 0 bytes after 16-byte region [0x751bad1e4010,0x751bad1e4020)
+allocated by thread T1 here:
+    #0 0x5defabf93524  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xf1524) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #1 0x5defabfc2b7f  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120b7f) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #2 0x5defabfc1fe0  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11ffe0) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #3 0x5defabfc45a9  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x1225a9) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #4 0x5defabfc18b6  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11f8b6) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #5 0x5defabffaf14  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x158f14) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #6 0x5defabfd1933  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12f933) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #7 0x5defabfd5319  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x133319) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #8 0x5defac01af3e  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x178f3e) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #9 0x5defabf913e6  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xef3e6) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+
+Thread T1 created by T0 here:
+    #0 0x5defabf77e11  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xd5e11) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #1 0x5defac01b15f  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x17915f) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #2 0x5defabff9a8d  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x157a8d) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #3 0x5defabff2dd4  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x150dd4) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #4 0x5defabffc415  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x15a415) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #5 0x5defabfe516a  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x14316a) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #6 0x5defabfc1d82  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11fd82) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #7 0x5defabfc2dff  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120dff) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #8 0x5defabfc213d  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12013d) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x7d3c5) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a) 
+Shadow bytes around the buggy address:
+  0x751bad1e3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x751bad1e3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x751bad1e3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x751bad1e3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x751bad1e3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x751bad1e4000: fa fa 00 00[fa]fa fa fa fa fa fa fa fa fa fa fa
+  0x751bad1e4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x751bad1e4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x751bad1e4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x751bad1e4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x751bad1e4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+thread 'tests::validate_copy_integrity' (3795031) panicked at src/lib.rs:50:13:
+assertion `left == right` failed: Buffer copy mismatch; vulnerability detected.
+  left: [84, 104, 105, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 32, 115, 3, 17, 0, 0, 16, 0, 0, 0, 248, 0, 0, 0, 1, 0, 0, 0, 249, 0, 0, 0, 1, 0, 0, 0, 110]
+ right: [84, 104, 105, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 32, 115, 116, 114, 105, 110, 103, 32, 102, 111, 114, 32, 98, 117, 102, 102, 101, 114, 32, 99, 111, 112, 121, 105, 110, 103, 46]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::validate_copy_integrity ... FAILED
+
+failures:
+
+failures:
+    tests::validate_copy_integrity
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=================================================================
+==3795030==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x5defabf93524  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xf1524) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #1 0x5defabfc2b7f  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120b7f) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #2 0x5defabfc1fe0  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11ffe0) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #3 0x5defabfc45a9  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x1225a9) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #4 0x5defabfc18b6  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11f8b6) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #5 0x5defabffaf14  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x158f14) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #6 0x5defabfd1933  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12f933) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #7 0x5defabfd5319  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x133319) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #8 0x5defac01af3e  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x178f3e) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+    #9 0x5defabf913e6  (/tmp/asan_pair13_a1_vulnerable_tikejbu6/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xef3e6) (BuildId: 2934f999ee76885f8467da3db3b28e4835cc544a)
+
+SUMMARY: AddressSanitizer: 16 byte(s) leaked in 1 allocation(s).
+error: test failed, to rerun pass `--lib`

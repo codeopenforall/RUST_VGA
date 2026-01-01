@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair19_a1_fixed_g6dq12w2) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a1_fixed v0.1.0 (/tmp/asan_pair19_a1_fixed_g6dq12w2)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair19_a1_fixed-293ca0dc2f2d24ad)
+
+running 1 test
+test tests::buffer_integrity ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

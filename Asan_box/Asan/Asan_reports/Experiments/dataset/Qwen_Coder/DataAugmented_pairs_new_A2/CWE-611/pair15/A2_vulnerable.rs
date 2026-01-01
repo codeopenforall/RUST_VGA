@@ -1,0 +1,64 @@
+use std::env;
+use std::thread;
+use std::time::Duration;
+static mut GLOBAL: Option<&'static str> = None;
+struct ConfigProcessor;
+impl ConfigProcessor {
+    fn new() -> Self {
+        ConfigProcessor
+    }
+    fn process(&self, xml: &str) -> String {
+        if xml.contains("<!ENTITY") {
+            let result = self.resolve_entity(xml);
+            result
+        } else {
+            format!("Safe: {}", xml)
+        }
+    }
+    fn resolve_entity(&self, _xml: &str) -> String {
+        let handle = thread::spawn(|| {
+            unsafe {
+                GLOBAL = Some("sensitive_information");
+            }
+            thread::sleep(Duration::from_millis(10));
+        });
+        let _ = handle.join();
+        unsafe {
+            match GLOBAL {
+                Some(data) => data.to_string(),
+                None => String::from("Error"),
+            }
+        }
+    }
+}
+fn main() {
+    let processor = ConfigProcessor::new();
+    let input = env::args().nth(1).unwrap_or(String::from("<!DOCTYPE config [<!ENTITY exploit SYSTEM \"file:///etc/passwd\">]>"));
+    let result = processor.process(&input);
+    println!("{}", result);
+}
+
+//////////////////////////////////////////////
+// Test Oracle
+// This test validates the functionality of the fixed implementation versus the vulnerable one.
+// It uses a predetermined malicious XML input containing an external entity declaration.
+// The expected behavior is that the safe (fixed) implementation will return 
+// "Rejected external entity", while the vulnerable implementation would erroneously return sensitive data.
+// When running this test against the vulnerable executable, the assertion will fail.
+//////////////////////////////////////////////
+
+#[cfg(test)]
+mod tests {
+    // Bring the ConfigProcessor into scope.
+    use super::ConfigProcessor;
+
+    #[test]
+    fn test_external_entity_rejection() {
+        // Malicious XML input aiming to trigger the external entity resolution.
+        let malicious_input = "<!DOCTYPE config [<!ENTITY exploit SYSTEM \"file:///etc/passwd\">]>";
+        let processor = ConfigProcessor::new();
+        let result = processor.process(malicious_input);
+        // The fixed implementation should reject the external entity resolution.
+        assert_eq!(result, "Rejected external entity", "External entity resolution not blocked");
+    }
+}

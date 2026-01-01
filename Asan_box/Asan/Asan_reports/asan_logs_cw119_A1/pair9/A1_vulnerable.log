@@ -1,0 +1,88 @@
+$ (cwd=/tmp/asan_pair9_a1_vulnerable_2fjhexcx) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair9_a1_vulnerable v0.1.0 (/tmp/asan_pair9_a1_vulnerable_2fjhexcx)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19)
+
+running 1 test
+=================================================================
+==3726546==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x6ee7fc2ff030 at pc 0x571dc792a03e bp 0x6ee7fcffe210 sp 0x6ee7fcffd9d0
+WRITE of size 20 at 0x6ee7fc2ff030 thread T1
+    #0 0x571dc792a03d  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0xf003d) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #1 0x571dc795c75d  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x12275d) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #2 0x571dc795a414  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x120414) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #3 0x571dc795ab46  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x120b46) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #4 0x571dc795aed5  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x120ed5) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #5 0x571dc797e8ca  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x1448ca) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #6 0x571dc79942b4  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x15a2b4) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #7 0x571dc796acd3  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x130cd3) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #8 0x571dc796e6b9  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x1346b9) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #9 0x571dc79b42de  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x17a2de) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #10 0x571dc7929bd6  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0xefbd6) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #11 0x72e800294ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x72e80032684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+Address 0x6ee7fc2ff030 is located in stack of thread T1 at offset 48 in frame
+    #0 0x571dc795c61f  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x12261f) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+
+  This frame has 1 object(s):
+    [32, 48) 'buf' (line 5) <== Memory access at offset 48 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+Thread T1 created by T0 here:
+    #0 0x571dc7910601  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0xd6601) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #1 0x571dc79b44ff  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x17a4ff) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #2 0x571dc7992e2d  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x158e2d) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #3 0x571dc798c174  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x152174) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #4 0x571dc79957b5  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x15b7b5) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #5 0x571dc797e50a  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x14450a) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #6 0x571dc795c862  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x122862) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #7 0x571dc795cdff  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x122dff) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+    #8 0x571dc795c88d  (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0x12288d) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017)
+
+SUMMARY: AddressSanitizer: stack-buffer-overflow (/tmp/asan_pair9_a1_vulnerable_2fjhexcx/target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19+0xf003d) (BuildId: 2fbb71a0978fb1185c87621a5f488973890c4017) 
+Shadow bytes around the buggy address:
+  0x6ee7fc2fed80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x6ee7fc2fee00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x6ee7fc2fee80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x6ee7fc2fef00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x6ee7fc2fef80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x6ee7fc2ff000: f1 f1 f1 f1 00 00[f3]f3 00 00 00 00 00 00 00 00
+  0x6ee7fc2ff080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x6ee7fc2ff100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x6ee7fc2ff180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x6ee7fc2ff200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x6ee7fc2ff280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+thread 'tests::test_memory_bounds' (3726547) panicked at src/lib.rs:39:9:
+Expected error on oversized input, but got a valid result
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_memory_bounds ... FAILED
+
+failures:
+
+failures:
+    tests::test_memory_bounds
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

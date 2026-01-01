@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair1_a1_vulnerable_sztj6m4x) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_a1_vulnerable v0.1.0 (/tmp/asan_pair1_a1_vulnerable_sztj6m4x)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair1_a1_vulnerable-842298711ad05eec)
+
+running 1 test
+
+thread 'tests::test_serialization_buffer_size' (3794068) panicked at src/lib.rs:59:9:
+assertion `left == right` failed: Buffer size incorrect. Expected 54, got 27. This test should fail for the vulnerable version and pass for the corrected version.
+  left: 27
+ right: 54
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_serialization_buffer_size ... FAILED
+
+failures:
+
+failures:
+    tests::test_serialization_buffer_size
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

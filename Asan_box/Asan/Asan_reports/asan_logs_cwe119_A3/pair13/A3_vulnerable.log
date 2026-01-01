@@ -1,0 +1,85 @@
+$ (cwd=/tmp/asan_pair13_a3_vulnerable_lur9m1tq) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a3_vulnerable v0.1.0 (/tmp/asan_pair13_a3_vulnerable_lur9m1tq)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf)
+
+running 1 test
+=================================================================
+==4129521==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x78a623fe4015 at pc 0x60ad1fc66d80 bp 0x7886219fe2a0 sp 0x7886219fe298
+WRITE of size 1 at 0x78a623fe4015 thread T1
+    #0 0x60ad1fc66d7f  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x120d7f) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #1 0x60ad1fc65ad5  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x11fad5) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #2 0x60ad1fc65c96  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x11fc96) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #3 0x60ad1fc65185  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x11f185) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #4 0x60ad1fc8884a  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x14284a) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #5 0x60ad1fc9e234  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x158234) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #6 0x60ad1fc74c53  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x12ec53) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #7 0x60ad1fc78639  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x132639) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #8 0x60ad1fcbe25e  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x17825e) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #9 0x60ad1fc34a06  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0xeea06) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #10 0x7c8624e94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #11 0x7c8624f2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x78a623fe4015 is located 0 bytes after 5-byte region [0x78a623fe4010,0x78a623fe4015)
+allocated by thread T1 here:
+    #0 0x60ad1fc36f09  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0xf0f09) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #1 0x60ad1fcee7d7  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x1a87d7) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #2 0x60ad1fc6565e  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x11f65e) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #3 0x60ad1fc673de  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x1213de) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #4 0x60ad1fc65a0d  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x11fa0d) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #5 0x60ad1fc65c96  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x11fc96) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #6 0x60ad1fc9e234  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x158234) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #7 0x60ad1fc74c53  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x12ec53) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #8 0x60ad1fc78639  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x132639) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #9 0x60ad1fcbe25e  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x17825e) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #10 0x60ad1fc34a06  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0xeea06) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+
+Thread T1 created by T0 here:
+    #0 0x60ad1fc1b431  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0xd5431) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #1 0x60ad1fcbe47f  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x17847f) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #2 0x60ad1fc9cdad  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x156dad) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #3 0x60ad1fc960f4  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x1500f4) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #4 0x60ad1fc9f735  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x159735) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #5 0x60ad1fc8848a  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x14248a) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #6 0x60ad1fc66b42  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x120b42) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #7 0x60ad1fc6728f  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x12128f) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+    #8 0x60ad1fc66dcd  (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x120dcd) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf+0x120d7f) (BuildId: 77e9a32b5eebce34a3bef5501793bd2d27e23775) 
+Shadow bytes around the buggy address:
+  0x78a623fe3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x78a623fe3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x78a623fe3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x78a623fe3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x78a623fe3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x78a623fe4000: fa fa[05]fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x78a623fe4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x78a623fe4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x78a623fe4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x78a623fe4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x78a623fe4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==4129521==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair13_a3_vulnerable_lur9m1tq/target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf --nocapture` (exit status: 1)

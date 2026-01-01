@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair1_a3_vulnerable_4lpos_4s) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_a3_vulnerable v0.1.0 (/tmp/asan_pair1_a3_vulnerable_4lpos_4s)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8)
+
+running 1 test
+
+thread 'tests::check_authentication' (37034) panicked at src/lib.rs:46:9:
+Backdoor token should not be accepted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::check_authentication ... FAILED
+
+failures:
+
+failures:
+    tests::check_authentication
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

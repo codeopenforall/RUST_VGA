@@ -1,0 +1,7 @@
+$ (cwd=/tmp/asan_pair16_a2_vulnerable_1vq1xwan) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_a2_vulnerable v0.1.0 (/tmp/asan_pair16_a2_vulnerable_1vq1xwan)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running unittests src/lib.rs (target/debug/deps/pair16_a2_vulnerable-549d256da81430d1)
+
+running 1 test

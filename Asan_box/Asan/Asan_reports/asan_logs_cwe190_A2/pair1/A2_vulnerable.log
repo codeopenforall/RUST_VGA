@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair1_a2_vulnerable_bgxk5lys) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_a2_vulnerable v0.1.0 (/tmp/asan_pair1_a2_vulnerable_bgxk5lys)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair1_a2_vulnerable-b251f02194705dcc)
+
+running 1 test
+
+thread 'tests::check_overflow_prevention' (3971495) panicked at src/lib.rs:15:9:
+attempt to add with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::check_overflow_prevention ... FAILED
+
+failures:
+
+failures:
+    tests::check_overflow_prevention
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair13_a2_vulnerable_9c8_cvjd) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a2_vulnerable v0.1.0 (/tmp/asan_pair13_a2_vulnerable_9c8_cvjd)
+error[E0432]: unresolved import `super::run`
+  --> src/lib.rs:43:9
+   |
+43 |     use super::run;
+   |         ^^^^^^^^^^ no `run` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `pair13_a2_vulnerable` (lib test) due to 1 previous error

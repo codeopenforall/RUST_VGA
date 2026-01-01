@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair14_fixed_k44enp5m) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair14_fixed v0.1.0 (/tmp/asan_pair14_fixed_k44enp5m)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair14_fixed-c912348eb6947064)
+
+running 1 test
+test tests::invariant_test ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+

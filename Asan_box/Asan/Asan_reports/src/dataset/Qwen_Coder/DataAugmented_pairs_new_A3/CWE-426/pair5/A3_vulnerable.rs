@@ -1,0 +1,50 @@
+use std::sync::Arc;
+use std::process::Command;
+
+pub struct Processor {
+    tool: String,
+}
+
+impl Processor {
+    pub fn new(tool: &str) -> Self {
+        Processor {
+            tool: tool.to_string(),
+        }
+    }
+
+    pub fn get_version(&self) -> Result<String, String> {
+        unsafe {
+            let output = Command::new(&self.tool).arg("--version").output();
+            match output {
+                Ok(o) => Ok(String::from_utf8_lossy(&o.stdout).into_owned()),
+                Err(e) => Err(format!("Command failed: {}", e)),
+            }
+        }
+    }
+}
+
+fn main() {
+    let runner = Arc::new(Processor::new("untrusted_executable"));
+    println!("Program execution complete (vulnerable).");
+}
+
+/*
+Test Oracle Function:
+This test checks that creating a new Processor with a relative executable path causes a panic.
+For the fixed (corrected) code, the following unit test will pass.
+For the vulnerable code, where no such check exists, the test will fail.
+
+Note: This oracle function should be compiled and run separately from the vulnerable/fixed binaries.
+*/
+
+#[cfg(test)]
+mod tests {
+    use super::Processor;
+
+    #[test]
+    #[should_panic(expected = "Only absolute paths are allowed")]
+    fn test_absolute_path_enforcement() {
+        // This should panic in the corrected version, ensuring that only absolute paths are permitted.
+        let _instance = Processor::new("relative_executable");
+    }
+}

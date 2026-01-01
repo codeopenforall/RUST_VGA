@@ -1,0 +1,86 @@
+use std::sync::{Arc, Mutex};
+use std::collections::HashMap;
+use std::thread;
+
+struct Session {
+    token: String,
+}
+
+impl Session {
+    fn new(token: &str) -> Self {
+        Session { token: token.to_owned() }
+    }
+}
+
+struct AuthManager {
+    expected: String,
+    sessions: Arc<Mutex<HashMap<u64, Session>>>,
+}
+
+impl AuthManager {
+    fn new(expected: &str) -> Self {
+        AuthManager {
+            expected: expected.to_owned(),
+            sessions: Arc::new(Mutex::new(HashMap::new())),
+        }
+    }
+
+    fn validate(&self, user_token: &str) -> bool {
+        self.expected == user_token
+    }
+
+    fn add_session(&self, user_id: u64, token: &str) {
+        let mut sessions = self.sessions.lock().unwrap();
+        sessions.insert(user_id, Session::new(token));
+    }
+}
+
+fn main() {
+    let manager = AuthManager::new("SuperSecret");
+    let handles: Vec<_> = (0..5)
+        .map(|i| {
+            let sessions_clone = manager.sessions.clone();
+            let expected_clone = manager.expected.clone();
+            thread::spawn(move || {
+                let auth = AuthManager::new(&expected_clone);
+                let token = if i % 2 == 0 {
+                    "SuperSecretExtra" 
+                } else {
+                    "WrongToken"
+                };
+                let result = auth.validate(token);
+                if result {
+                    let mut sessions = sessions_clone.lock().unwrap();
+                    sessions.insert(i, Session::new(token));
+                }
+                println!("Thread {} authentication result: {}", i, result);
+                result
+            })
+        })
+        .collect();
+    for handle in handles {
+        let _ = handle.join().unwrap();
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    // Bring the AuthManager from the current module into scope.
+    // In practice, these tests would be compiled against either the vulnerable or fixed version.
+    use super::AuthManager;
+
+    #[test]
+    fn test_authentication_token() {
+        // Instantiate the authentication manager with the expected token.
+        let manager = AuthManager::new("SuperSecret");
+        // A malicious token that contains the correct prefix plus extra characters.
+        let malicious_token = "SuperSecretExtra";
+        // In the fixed implementation, this should be rejected.
+        // In the vulnerable implementation, this would erroneously be accepted.
+        let result = manager.validate(malicious_token);
+        assert!(
+            !result,
+            "Authentication should fail when extra characters are appended to the expected token."
+        );
+    }
+}

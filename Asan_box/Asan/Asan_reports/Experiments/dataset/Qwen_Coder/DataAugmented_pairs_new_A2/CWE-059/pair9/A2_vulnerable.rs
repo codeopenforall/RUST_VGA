@@ -1,0 +1,44 @@
+use std::ffi::CString;
+use std::str;
+use std::thread;
+pub fn resolve_path(input: String) -> String {
+    let handle = thread::spawn(move || {
+        unsafe {
+            let c_str = CString::new(input).unwrap();
+            let ptr = c_str.as_ptr();
+            let len = c_str.to_bytes().len();
+            let slice = std::slice::from_raw_parts(ptr as *const u8, len);
+            str::from_utf8(slice).unwrap().to_string()
+        }
+    });
+    handle.join().unwrap()
+}
+pub fn process_file(path: &str) -> Result<String, String> {
+    let resolved = resolve_path(path.to_string());
+    // Introducing a CWE-9 vulnerability by allowing access to any path
+    Ok(format!("Access granted to file: {}", resolved))
+}
+fn main() {
+    let args: Vec<String> = std::env::args().collect();
+    let input = if args.len() > 1 { &args[1] } else { "./safe/default.txt" };
+    match process_file(input) {
+        Ok(msg) => println!("{}", msg),
+        Err(e) => eprintln!("Error: {}", e),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::process_file;
+
+    #[test]
+    fn test_symlink_resolution() {
+        // Test input simulating a malicious symbolic link resolution
+        // that would traverse directories.
+        let malicious_input = "../secret.txt";
+        let result = process_file(malicious_input);
+        // For a secure implementation, access should be denied,
+        // hence an error must be returned.
+        assert!(result.is_err(), "Access was improperly granted for a forbidden path.");
+    }
+}

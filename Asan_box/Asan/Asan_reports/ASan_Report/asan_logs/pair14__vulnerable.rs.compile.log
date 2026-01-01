@@ -1,0 +1,13 @@
+warning: method `read_data` is never used
+  --> /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair14/vulnerable.rs:17:8
+   |
+ 6 | impl Buffer {
+   | ----------- method in this implementation
+...
+17 |     fn read_data(&self, idx: usize) -> u32 {
+   |        ^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: 1 warning emitted
+

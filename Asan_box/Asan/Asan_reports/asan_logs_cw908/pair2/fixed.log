@@ -1,0 +1,12 @@
+$ (cwd=/tmp/asan_pair2_fixed_a3skg2j9) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair2_fixed v0.1.0 (/tmp/asan_pair2_fixed_a3skg2j9)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair2_fixed-6b187d1ca46a90a7)
+
+running 2 tests
+test tests::configuration_test ... ok
+test tests::concurrent_access_test ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,50 @@
+$ (cwd=/tmp/asan_pair3_a3_vulnerable_nd3agvkc) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_a3_vulnerable v0.1.0 (/tmp/asan_pair3_a3_vulnerable_nd3agvkc)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd)
+
+running 1 test
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==4176408==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x7531660c49d0 bp 0x713162dfe230 sp 0x713162dfd9e8 T1)
+==4176408==The signal is caused by a READ memory access.
+==4176408==Hint: address points to the zero page.
+    #0 0x7531660c49d0  (/lib/x86_64-linux-gnu/libc.so.6+0xc49d0) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #1 0x5698a3f5ed0b  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0xeed0b) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #2 0x5698a3f8fe5c  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x11fe5c) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #3 0x5698a3f9140b  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x12140b) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #4 0x5698a3f8ff06  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x11ff06) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #5 0x5698a3f8f1e5  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x11f1e5) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #6 0x5698a3fb260a  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x14260a) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #7 0x5698a3fc7ff4  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x157ff4) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #8 0x5698a3f9ea13  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x12ea13) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #9 0x5698a3fa23f9  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x1323f9) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #10 0x5698a3fe801e  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x17801e) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #11 0x5698a3f5ebc6  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0xeebc6) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #12 0x753166094ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #13 0x75316612684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+==4176408==Register values:
+rax = 0x00007131620ff020  rbx = 0xf3f3f304f1f1f101  rcx = 0x00000e26ac417e04  rdx = 0x0000000000000004  
+rdi = 0x00007131620ff020  rsi = 0x0000000000000004  rbp = 0x0000713162dfe230  rsp = 0x0000713162dfd9e8  
+ r8 = 0x00000e262c41fe04   r9 = 0x0000000000000000  r10 = 0x00000e262c41fe04  r11 = 0x0000000000000004  
+r12 = 0x00000e26ac417e00  r13 = 0xffffffffffffffc3  r14 = 0x000000003b9aca00  r15 = 0x0000000000000001  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/lib/x86_64-linux-gnu/libc.so.6+0xc49d0) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd) 
+Thread T1 created by T0 here:
+    #0 0x5698a3f455f1  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0xd55f1) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #1 0x5698a3fe823f  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x17823f) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #2 0x5698a3fc6b6d  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x156b6d) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #3 0x5698a3fbfeb4  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x14feb4) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #4 0x5698a3fc94f5  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x1594f5) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #5 0x5698a3fb224a  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x14224a) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #6 0x5698a3f8fd02  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x11fd02) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #7 0x5698a3f8f07f  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x11f07f) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+    #8 0x5698a3f8feed  (/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd+0x11feed) (BuildId: 0130c8004db681d246626af262a66102a553023a)
+
+==4176408==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair3_a3_vulnerable_nd3agvkc/target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd --nocapture` (exit status: 1)

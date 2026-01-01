@@ -1,0 +1,32 @@
+$ (cwd=/tmp/asan_pair2_a3_fixed_5_ytb33c) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair2_a3_fixed v0.1.0 (/tmp/asan_pair2_a3_fixed_5_ytb33c)
+error[E0277]: `*const u32` cannot be sent between threads safely
+  --> src/lib.rs:28:32
+   |
+28 |       let handle = thread::spawn(move || {
+   |                    ------------- ^------
+   |                    |             |
+   |  __________________|_____________within this `{closure@src/lib.rs:28:32: 28:39}`
+   | |                  |
+   | |                  required by a bound introduced by this call
+29 | |         proc_inst.compute()
+30 | |     });
+   | |_____^ `*const u32` cannot be sent between threads safely
+   |
+   = help: within `{closure@src/lib.rs:28:32: 28:39}`, the trait `Send` is not implemented for `*const u32`
+note: required because it appears within the type `Processor`
+  --> src/lib.rs:3:12
+   |
+ 3 | pub struct Processor {
+   |            ^^^^^^^^^
+note: required because it's used within this closure
+  --> src/lib.rs:28:32
+   |
+28 |     let handle = thread::spawn(move || {
+   |                                ^^^^^^^
+note: required by a bound in `spawn`
+  --> /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/std/src/thread/mod.rs:723:1
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `pair2_a3_fixed` (lib test) due to 1 previous error

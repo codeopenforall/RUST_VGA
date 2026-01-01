@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair3_a2_vulnerable_6rabhyy4) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_a2_vulnerable v0.1.0 (/tmp/asan_pair3_a2_vulnerable_6rabhyy4)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair3_a2_vulnerable-c3dd5f5254e30ff5)
+
+running 1 test
+
+thread 'tests::resource_management_test' (4007510) panicked at src/lib.rs:16:9:
+Double free detected!
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::resource_management_test' (4007510) panicked at src/lib.rs:48:9:
+Test failed: the process triggered a double free panic!
+test tests::resource_management_test ... FAILED
+
+failures:
+
+failures:
+    tests::resource_management_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

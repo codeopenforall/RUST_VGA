@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair15_a2_vulnerable_rt5qccva) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair15_a2_vulnerable v0.1.0 (/tmp/asan_pair15_a2_vulnerable_rt5qccva)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running unittests src/lib.rs (target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3)
+
+running 1 test
+
+thread 'tests::test_recursion_limit' (4021556) panicked at src/lib.rs:87:26:
+Expected error due to recursion limit being exceeded, but got successful parse.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_recursion_limit ... FAILED
+
+failures:
+
+failures:
+    tests::test_recursion_limit
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--lib`

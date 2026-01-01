@@ -1,0 +1,82 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running unittests src/lib.rs (target/debug/deps/rudra_big-8cebfaefc201fea9)
+
+running 1 test
+=================================================================
+==3407837==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x756c9c1e401a at pc 0x5ca46164b91d bp 0x754c99bfe190 sp 0x754c99bfe188
+WRITE of size 1 at 0x756c9c1e401a thread T1
+    #0 0x5ca46164b91c  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x12491c) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #1 0x5ca46164a1b5  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x1231b5) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #2 0x5ca461649f96  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x122f96) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #3 0x5ca461647f55  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x120f55) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #4 0x5ca46166c59a  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x14559a) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #5 0x5ca461681f84  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x15af84) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #6 0x5ca4616589a3  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x1319a3) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #7 0x5ca46165c389  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x135389) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #8 0x5ca4616a1fae  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x17afae) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #9 0x5ca461617386  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0xf0386) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #10 0x794c9ce94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #11 0x794c9cf2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x756c9c1e401a is located 0 bytes after 10-byte region [0x756c9c1e4010,0x756c9c1e401a)
+allocated by thread T1 here:
+    #0 0x5ca461619889  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0xf2889) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #1 0x5ca4616d2527  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x1ab527) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #2 0x5ca461649cee  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x122cee) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #3 0x5ca46164865e  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x12165e) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #4 0x5ca46164a18b  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x12318b) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #5 0x5ca461649f96  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x122f96) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #6 0x5ca461681f84  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x15af84) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #7 0x5ca4616589a3  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x1319a3) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #8 0x5ca46165c389  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x135389) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #9 0x5ca4616a1fae  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x17afae) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #10 0x5ca461617386  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0xf0386) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+
+Thread T1 created by T0 here:
+    #0 0x5ca4615fddb1  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0xd6db1) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #1 0x5ca4616a21cf  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x17b1cf) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #2 0x5ca461680afd  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x159afd) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #3 0x5ca461679e44  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x152e44) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #4 0x5ca461683485  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x15c485) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #5 0x5ca46166c1da  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x1451da) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #6 0x5ca461649852  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x122852) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #7 0x5ca46164884f  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x12184f) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+    #8 0x5ca46164987d  (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x12287d) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9+0x12491c) (BuildId: 6b0c1c39c6426b5dcb1928bd51abdf5710bf79ed) 
+Shadow bytes around the buggy address:
+  0x756c9c1e3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x756c9c1e3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x756c9c1e3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x756c9c1e3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x756c9c1e3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x756c9c1e4000: fa fa 00[02]fa fa fa fa fa fa fa fa fa fa fa fa
+  0x756c9c1e4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x756c9c1e4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x756c9c1e4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x756c9c1e4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x756c9c1e4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3407837==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/target/debug/deps/rudra_big-8cebfaefc201fea9 'dataset::o3_mini::data_generation_cwe_119_pair1_vulnerable::tests::test_memory_bounds' --exact --nocapture --color never` (exit status: 1)

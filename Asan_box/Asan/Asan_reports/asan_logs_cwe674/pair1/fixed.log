@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair1_fixed_wc4x6pbd) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_fixed v0.1.0 (/tmp/asan_pair1_fixed_wc4x6pbd)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running unittests src/lib.rs (target/debug/deps/pair1_fixed-583ac61728e357bc)
+
+running 1 test
+test tests::recursion_safety_test ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,18 @@
+$ (cwd=/tmp/asan_pair8_a3_vulnerable_wmmvj_rk) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair8_a3_vulnerable v0.1.0 (/tmp/asan_pair8_a3_vulnerable_wmmvj_rk)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair8_a3_vulnerable-42c8a2750bfc9449)
+
+running 1 test
+
+thread 'tests::test_out_of_bounds' (4117056) panicked at src/lib.rs:13:29:
+unsafe precondition(s) violated: slice::get_unchecked requires that the index is within the slice
+
+This indicates a bug in the program. This Undefined Behavior check is optional, and cannot be relied on for safety.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread caused non-unwinding panic. aborting.
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair8_a3_vulnerable_wmmvj_rk/target/debug/deps/pair8_a3_vulnerable-42c8a2750bfc9449 --nocapture` (signal: 6, SIGABRT: process abort signal)

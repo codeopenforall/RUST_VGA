@@ -1,0 +1,83 @@
+$ (cwd=/tmp/asan_pair20_a1_vulnerable_igpoyaui) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair20_a1_vulnerable v0.1.0 (/tmp/asan_pair20_a1_vulnerable_igpoyaui)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c)
+
+running 1 test
+=================================================================
+==3724695==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7628a25ff10a at pc 0x580c9e2c58a6 bp 0x7628a2ffe1e0 sp 0x7628a2ffe1d8
+WRITE of size 1 at 0x7628a25ff10a thread T1
+    #0 0x580c9e2c58a5  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x1218a5) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #1 0x580c9e2c392a  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x11f92a) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #2 0x580c9e2c4a12  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x120a12) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #3 0x580c9e2c4bf6  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x120bf6) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #4 0x580c9e2c46d5  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x1206d5) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #5 0x580c9e2e698a  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x14298a) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #6 0x580c9e2fc374  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x158374) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #7 0x580c9e2d2d93  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x12ed93) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #8 0x580c9e2d6779  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x132779) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #9 0x580c9e31c39e  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x17839e) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #10 0x580c9e292a76  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0xeea76) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #11 0x7a28a6494ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7a28a652684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+Address 0x7628a25ff10a is located in stack of thread T1 at offset 266 in frame
+    #0 0x580c9e2c48cf  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x1208cf) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+
+  This frame has 5 object(s):
+    [32, 80) '_21' (line 61)
+    [112, 160) '_20' (line 61)
+    [192, 208) '_12' (line 61)
+    [224, 240) 'expected' (line 60)
+    [256, 266) 'instance' (line 48) <== Memory access at offset 266 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+Thread T1 created by T0 here:
+    #0 0x580c9e2794a1  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0xd54a1) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #1 0x580c9e31c5bf  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x1785bf) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #2 0x580c9e2faeed  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x156eed) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #3 0x580c9e2f4234  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x150234) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #4 0x580c9e2fd875  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x159875) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #5 0x580c9e2e65ca  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x1425ca) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #6 0x580c9e2c3962  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x11f962) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #7 0x580c9e2c3d3f  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x11fd3f) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+    #8 0x580c9e2c398d  (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x11f98d) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f)
+
+SUMMARY: AddressSanitizer: stack-buffer-overflow (/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c+0x1218a5) (BuildId: ed2aa9852a02ee88d4a78e56c32915cca81b312f) 
+Shadow bytes around the buggy address:
+  0x7628a25fee80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7628a25fef00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7628a25fef80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7628a25ff000: f1 f1 f1 f1 f8 f8 f8 f8 f8 f8 f2 f2 f2 f2 f8 f8
+  0x7628a25ff080: f8 f8 f8 f8 f2 f2 f2 f2 f8 f8 f2 f2 f8 f8 f2 f2
+=>0x7628a25ff100: 00[02]f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3
+  0x7628a25ff180: f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3
+  0x7628a25ff200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7628a25ff280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7628a25ff300: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x7628a25ff380: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3724695==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair20_a1_vulnerable_igpoyaui/target/debug/deps/pair20_a1_vulnerable-d4231c808133d07c --nocapture` (exit status: 1)

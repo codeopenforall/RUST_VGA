@@ -1,0 +1,12 @@
+$ (cwd=/tmp/asan_pair6_a2_vulnerable_ck4d0m6i) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_a2_vulnerable v0.1.0 (/tmp/asan_pair6_a2_vulnerable_ck4d0m6i)
+error: expected item, found `-`
+  --> src/lib.rs:47:1
+   |
+47 | --------------------------------------------------
+   | ^ expected item
+   |
+   = note: for a full list of items that can appear in modules, see <https://doc.rust-lang.org/reference/items.html>
+
+error: could not compile `pair6_a2_vulnerable` (lib test) due to 1 previous error

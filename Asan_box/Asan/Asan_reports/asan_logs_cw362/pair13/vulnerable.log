@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair13_vulnerable_m0olhjtp) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_vulnerable v0.1.0 (/tmp/asan_pair13_vulnerable_m0olhjtp)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e)
+
+running 1 test
+
+thread 'tests::verify_counter' (3505073) panicked at src/lib.rs:47:9:
+assertion `left == right` failed: Final counter value does not match expected value.
+  left: 3229
+ right: 10000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::verify_counter ... FAILED
+
+failures:
+
+failures:
+    tests::verify_counter
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

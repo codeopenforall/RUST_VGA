@@ -1,0 +1,122 @@
+#![allow(dead_code)]
+use std::env;
+use std::fs;
+use std::sync::{Arc, Mutex};
+use std::thread;
+use std::path::{Path, PathBuf};
+use std::os::unix::ffi::OsStrExt;
+
+struct FileHandler {
+    allowed_dir: PathBuf,
+}
+
+impl FileHandler {
+    fn new(allowed: &str) -> Self {
+        Self {
+            allowed_dir: PathBuf::from(allowed),
+        }
+    }
+
+    fn load_content(&self, filename: &str) -> Result<String, String> {
+        let path = Path::new(filename);
+        let raw_path = path.as_os_str().as_bytes().as_ptr();
+        let mut resolved = unsafe {
+            let len = path.as_os_str().as_bytes().len();
+            let slice = std::slice::from_raw_parts(raw_path, len);
+            std::ffi::OsStr::from_bytes(slice).to_owned()
+        };
+        let mut final_path = PathBuf::from(&resolved);
+
+        // Check if the path is within the allowed directory
+        if !final_path.starts_with(&self.allowed_dir) {
+            return Err("Access denied".to_string());
+        }
+
+        if fs::symlink_metadata(&final_path)
+            .map(|m| m.file_type().is_symlink())
+            .unwrap_or(false)
+        {
+            final_path = fs::read_link(&final_path).map_err(|e| e.to_string())?;
+        }
+
+        // Check again after resolving the symlink
+        if !final_path.starts_with(&self.allowed_dir) {
+            return Err("Access denied".to_string());
+        }
+
+        let content = Arc::new(Mutex::new(String::new()));
+        let content_clone = Arc::clone(&content);
+        let final_path_clone = final_path.clone();
+        let handle = thread::spawn(move || {
+            if let Ok(data) = fs::read_to_string(&final_path_clone) {
+                let mut lock = content_clone.lock().unwrap();
+                *lock = data;
+            }
+        });
+        handle.join().map_err(|_| "Thread panicked".to_string())?;
+        let result = Arc::try_unwrap(content)
+            .map_err(|_| "Lock still active".to_string())?
+            .into_inner()
+            .unwrap();
+        if result.is_empty() {
+            Err("Empty file or failed to read".to_string())
+        } else {
+            Ok(result)
+        }
+    }
+}
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    let file_name = args.get(1).expect("Please provide a filename");
+    let handler = FileHandler::new("/safe_directory");
+    match handler.load_content(file_name) {
+        Ok(content) => println!("File content loaded: {}", content),
+        Err(e) => eprintln!("Error: {}", e),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::fs::{self, File};
+    use std::io::Write;
+    use std::os::unix::fs::symlink;
+    use std::path::PathBuf;
+
+    // Sets up a controlled environment for testing.
+    // It creates a safe directory, an inside file, an unsafe file outside,
+    // and a symlink inside the safe directory that points to the unsafe file.
+    fn setup_test_env() -> (PathBuf, PathBuf, PathBuf) {
+        // Create a safe directory.
+        let safe_dir = PathBuf::from("safe_directory_test");
+        let _ = fs::create_dir(&safe_dir);
+        // Create a safe file inside the directory.
+        let safe_file = safe_dir.join("file.txt");
+        let mut f = File::create(&safe_file).unwrap();
+        writeln!(f, "Safe Content").unwrap();
+        // Create an unsafe file outside of the safe directory.
+        let unsafe_file = PathBuf::from("unsafe.txt");
+        let mut uf = File::create(&unsafe_file).unwrap();
+        writeln!(uf, "Unsafe Content").unwrap();
+        // Create a symlink inside the safe directory that points to the unsafe file.
+        let malicious_link = safe_dir.join("malicious_link");
+        let _ = symlink(&unsafe_file, &malicious_link);
+        (safe_dir, safe_file, malicious_link)
+    }
+
+    #[test]
+    fn test_symlink_traversal() {
+        let (safe_dir, _safe_file, malicious_link) = setup_test_env();
+
+        // When a file is loaded using the secure routine, the symlink pointing outside
+        // the allowed directory should be rejected.
+        let handler = FileHandler::new(safe_dir.to_str().unwrap());
+        let res = handler.load_content(malicious_link.to_str().unwrap());
+        // In the fixed version, access is denied, so the result must be an error indicating that.
+        assert!(res.is_err(), "Access through symlink should be denied in the secure version");
+        if let Err(e) = res {
+            assert!(e.contains("Access denied"), "Expected an access denial error, got: {}", e);
+        }
+    }
+}

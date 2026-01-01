@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair13_vulnerable_asgjt316) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_vulnerable v0.1.0 (/tmp/asan_pair13_vulnerable_asgjt316)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e)
+
+running 1 test
+
+thread 'tests::test_excessive_nesting' (3489009) panicked at src/lib.rs:88:32:
+Test failed: Expected an error due to recursion depth; returned value 1501
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_excessive_nesting ... FAILED
+
+failures:
+
+failures:
+    tests::test_excessive_nesting
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

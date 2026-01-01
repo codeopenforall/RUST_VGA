@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair6_a3_vulnerable_p_cr7thn) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_a3_vulnerable v0.1.0 (/tmp/asan_pair6_a3_vulnerable_p_cr7thn)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair6_a3_vulnerable-649d6490019e4669)
+
+running 1 test
+
+thread 'tests::test_recursion_limit' (4191274) panicked at src/lib.rs:71:22:
+Expected error due to excess recursion depth
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_recursion_limit ... FAILED
+
+failures:
+
+failures:
+    tests::test_recursion_limit
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

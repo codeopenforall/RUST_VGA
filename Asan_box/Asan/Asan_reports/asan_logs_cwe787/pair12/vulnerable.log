@@ -1,0 +1,98 @@
+$ (cwd=/tmp/asan_pair12_vulnerable_xinobh80) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_vulnerable v0.1.0 (/tmp/asan_pair12_vulnerable_xinobh80)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair12_vulnerable-ee05745e1aea1080)
+
+running 1 test
+=================================================================
+==3494397==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x75d2cf5e401a at pc 0x5ac9e84bd32e bp 0x75b2ccffe090 sp 0x75b2ccffd850
+WRITE of size 5 at 0x75d2cf5e401a thread T1
+    #0 0x5ac9e84bd32d  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0xef32d) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #1 0x5ac9e84efe36  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x121e36) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #2 0x5ac9e84f0103  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x122103) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #3 0x5ac9e84ef382  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x121382) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #4 0x5ac9e84edffa  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x11fffa) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #5 0x5ac9e84ede91  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x11fe91) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #6 0x5ac9e84edb84  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x11fb84) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #7 0x5ac9e84f0236  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x122236) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #8 0x5ac9e84ef4d5  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x1214d5) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #9 0x5ac9e851134a  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x14334a) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #10 0x5ac9e8526d34  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x158d34) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #11 0x5ac9e84fd753  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x12f753) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #12 0x5ac9e8501139  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x133139) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #13 0x5ac9e8546d5e  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x178d5e) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #14 0x5ac9e84bcec6  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0xeeec6) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #15 0x79b2d0294ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #16 0x79b2d032684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x75d2cf5e401a is located 0 bytes after 10-byte region [0x75d2cf5e4010,0x75d2cf5e401a)
+allocated by thread T1 here:
+    #0 0x5ac9e84bf004  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0xf1004) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #1 0x5ac9e85772ed  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x1a92ed) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #2 0x5ac9e84f038e  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x12238e) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #3 0x5ac9e84efb9c  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x121b9c) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #4 0x5ac9e84f00ec  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x1220ec) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #5 0x5ac9e84ef382  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x121382) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #6 0x5ac9e84edb84  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x11fb84) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #7 0x5ac9e84f0236  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x122236) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #8 0x5ac9e8526d34  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x158d34) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #9 0x5ac9e84fd753  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x12f753) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #10 0x5ac9e8501139  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x133139) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #11 0x5ac9e8546d5e  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x178d5e) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #12 0x5ac9e84bcec6  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0xeeec6) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+
+Thread T1 created by T0 here:
+    #0 0x5ac9e84a38f1  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0xd58f1) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #1 0x5ac9e8546f7f  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x178f7f) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #2 0x5ac9e85258ad  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x1578ad) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #3 0x5ac9e851ebf4  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x150bf4) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #4 0x5ac9e8528235  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x15a235) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #5 0x5ac9e8510f8a  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x142f8a) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #6 0x5ac9e84efd82  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x121d82) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #7 0x5ac9e84f063f  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x12263f) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+    #8 0x5ac9e84f000d  (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0x12200d) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080+0xef32d) (BuildId: 738a987206700b374b6fa79b836d710df26ac4c7) 
+Shadow bytes around the buggy address:
+  0x75d2cf5e3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75d2cf5e3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75d2cf5e3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75d2cf5e3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75d2cf5e3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x75d2cf5e4000: fa fa 00[02]fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75d2cf5e4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75d2cf5e4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75d2cf5e4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75d2cf5e4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x75d2cf5e4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+thread 'tests::test_out_of_bound_write' (3494398) panicked at /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/alloc/src/vec/mod.rs:1979:9:
+unsafe precondition(s) violated: Vec::set_len requires that new_len <= capacity()
+
+This indicates a bug in the program. This Undefined Behavior check is optional, and cannot be relied on for safety.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread caused non-unwinding panic. aborting.
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair12_vulnerable_xinobh80/target/debug/deps/pair12_vulnerable-ee05745e1aea1080 --nocapture` (signal: 6, SIGABRT: process abort signal)

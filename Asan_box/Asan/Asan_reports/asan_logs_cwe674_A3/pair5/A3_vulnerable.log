@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair5_a3_vulnerable_sk1frhr4) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair5_a3_vulnerable v0.1.0 (/tmp/asan_pair5_a3_vulnerable_sk1frhr4)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair5_a3_vulnerable-a5b34d13e0f6ea0f)
+
+running 1 test
+
+thread 'tests::recursion_test' (4191015) panicked at src/lib.rs:89:25:
+assertion `left == right` failed: Test failed: unexpected error message.
+  left: "Unexpected closing parenthesis"
+ right: "Maximum recursion depth exceeded"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::recursion_test ... FAILED
+
+failures:
+
+failures:
+    tests::recursion_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

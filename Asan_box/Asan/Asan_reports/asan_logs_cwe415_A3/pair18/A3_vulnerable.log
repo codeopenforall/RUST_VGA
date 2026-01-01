@@ -1,0 +1,83 @@
+$ (cwd=/tmp/asan_pair18_a3_vulnerable_exp4z5fv) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a3_vulnerable v0.1.0 (/tmp/asan_pair18_a3_vulnerable_exp4z5fv)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3)
+
+running 1 test
+=================================================================
+==4164603==ERROR: AddressSanitizer: attempting double-free on 0x6edf69fe4010 in thread T1:
+    #0 0x61a520c71b16  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0xf1b16) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #1 0x61a520ca228a  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x12228a) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #2 0x61a520ca3a83  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x123a83) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #3 0x61a520ca38a0  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x1238a0) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #4 0x61a520ca3bad  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x123bad) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #5 0x61a520ca38b9  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x1238b9) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #6 0x61a520ca18fd  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x1218fd) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #7 0x61a520ca0ebc  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x120ebc) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #8 0x61a520ca0876  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x120876) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #9 0x61a520ca3845  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x123845) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #10 0x61a520cc487a  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x14487a) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #11 0x61a520cda264  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x15a264) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #12 0x61a520cb0c83  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x130c83) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #13 0x61a520cb4669  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x134669) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #14 0x61a520cfa28e  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x17a28e) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #15 0x61a520c6fc76  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0xefc76) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #16 0x72bf6ae94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #17 0x72bf6af2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x6edf69fe4010 is located 0 bytes inside of 4-byte region [0x6edf69fe4010,0x6edf69fe4014)
+freed by thread T1 here:
+    #0 0x61a520c71b16  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0xf1b16) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #1 0x61a520ca228a  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x12228a) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #2 0x61a520ca3a83  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x123a83) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #3 0x61a520ca38a0  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x1238a0) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #4 0x61a520ca18d9  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x1218d9) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #5 0x61a520ca0ebc  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x120ebc) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #6 0x61a520ca0876  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x120876) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #7 0x61a520cda264  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x15a264) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #8 0x61a520cb0c83  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x130c83) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #9 0x61a520cb4669  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x134669) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #10 0x61a520cfa28e  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x17a28e) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #11 0x61a520c6fc76  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0xefc76) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+
+previously allocated by thread T1 here:
+    #0 0x61a520c71db4  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0xf1db4) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #1 0x61a520ca1f73  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x121f73) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #2 0x61a520ca1c74  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x121c74) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #3 0x61a520ca0ebc  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x120ebc) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #4 0x61a520ca0876  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x120876) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #5 0x61a520cda264  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x15a264) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #6 0x61a520cb0c83  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x130c83) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #7 0x61a520cb4669  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x134669) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #8 0x61a520cfa28e  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x17a28e) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #9 0x61a520c6fc76  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0xefc76) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+
+Thread T1 created by T0 here:
+    #0 0x61a520c566a1  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0xd66a1) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #1 0x61a520cfa4af  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x17a4af) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #2 0x61a520cd8ddd  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x158ddd) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #3 0x61a520cd2124  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x152124) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #4 0x61a520cdb765  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x15b765) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #5 0x61a520cc44ba  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x1444ba) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #6 0x61a520ca19c2  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x1219c2) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #7 0x61a520ca012f  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x12012f) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+    #8 0x61a520ca1c1d  (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0x121c1d) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee)
+
+SUMMARY: AddressSanitizer: double-free (/tmp/asan_pair18_a3_vulnerable_exp4z5fv/target/debug/deps/pair18_a3_vulnerable-6b10e56d90f6bfe3+0xf1b16) (BuildId: 4ecf32e0fb1aebb11e681b32053656de336e24ee) 
+
+thread 'tests::test_double_free_protection' (4164604) panicked at src/lib.rs:66:9:
+assertion `left == right` failed: Double free vulnerability detected: free_count = 2
+  left: 2
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_double_free_protection ... FAILED
+
+failures:
+
+failures:
+    tests::test_double_free_protection
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

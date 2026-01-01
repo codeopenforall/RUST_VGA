@@ -1,0 +1,18 @@
+$ (cwd=/tmp/asan_pair19_a3_vulnerable_e291o_gg) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a3_vulnerable v0.1.0 (/tmp/asan_pair19_a3_vulnerable_e291o_gg)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair19_a3_vulnerable-63ebf05ed59d2ba9)
+
+running 1 test
+
+thread 'tests::buffer_integrity' (4159517) panicked at /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/alloc/src/vec/mod.rs:1979:9:
+unsafe precondition(s) violated: Vec::set_len requires that new_len <= capacity()
+
+This indicates a bug in the program. This Undefined Behavior check is optional, and cannot be relied on for safety.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread caused non-unwinding panic. aborting.
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair19_a3_vulnerable_e291o_gg/target/debug/deps/pair19_a3_vulnerable-63ebf05ed59d2ba9 --nocapture` (signal: 6, SIGABRT: process abort signal)

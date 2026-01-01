@@ -1,0 +1,10 @@
+[summary]
+  root                      : /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/Real CVEs
+  files discovered          : 2
+  compiled ok               : 2
+  compile errors            : 0
+  ran ok                    : 2
+  run errors/timeouts       : 0
+  ASan hits (total)         : 0
+    ASan hits in vulnerable : 0
+    ASan hits in fixed      : 0

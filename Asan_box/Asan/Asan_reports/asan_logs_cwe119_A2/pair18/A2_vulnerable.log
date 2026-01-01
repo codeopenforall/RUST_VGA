@@ -1,0 +1,86 @@
+$ (cwd=/tmp/asan_pair18_a2_vulnerable_ixrtn_er) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a2_vulnerable v0.1.0 (/tmp/asan_pair18_a2_vulnerable_ixrtn_er)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1)
+
+running 1 test
+=================================================================
+==3989793==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x7882d85e4040 at pc 0x5e55e5502209 bp 0x7862d5ffe050 sp 0x7862d5ffe048
+WRITE of size 4 at 0x7882d85e4040 thread T1
+    #0 0x5e55e5502208  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x125208) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #1 0x5e55e5501933  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x124933) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #2 0x5e55e54ff2da  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1222da) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #3 0x5e55e54fff86  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x122f86) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #4 0x5e55e5501185  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x124185) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #5 0x5e55e5523b9a  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x146b9a) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #6 0x5e55e5539584  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x15c584) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #7 0x5e55e550ffa3  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x132fa3) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #8 0x5e55e5513989  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x136989) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #9 0x5e55e55595ae  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x17c5ae) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #10 0x5e55e54cdc46  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xf0c46) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #11 0x7c62d9494ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7c62d952684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x7882d85e4040 is located 0 bytes after 16-byte region [0x7882d85e4030,0x7882d85e4040)
+allocated by thread T1 here:
+    #0 0x5e55e54cfd84  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xf2d84) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #1 0x5e55e54fe58f  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x12158f) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #2 0x5e55e55020a9  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1250a9) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #3 0x5e55e5501933  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x124933) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #4 0x5e55e54ff2da  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1222da) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #5 0x5e55e54fff86  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x122f86) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #6 0x5e55e5539584  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x15c584) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #7 0x5e55e550ffa3  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x132fa3) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #8 0x5e55e5513989  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x136989) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #9 0x5e55e55595ae  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x17c5ae) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #10 0x5e55e54cdc46  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xf0c46) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+
+Thread T1 created by T0 here:
+    #0 0x5e55e54b4671  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0xd7671) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #1 0x5e55e55597cf  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x17c7cf) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #2 0x5e55e55380fd  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x15b0fd) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #3 0x5e55e5531444  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x154444) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #4 0x5e55e553aa85  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x15da85) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #5 0x5e55e55237da  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1467da) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #6 0x5e55e5501ac2  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x124ac2) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #7 0x5e55e5500eef  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x123eef) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+    #8 0x5e55e55023fd  (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x1253fd) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1+0x125208) (BuildId: b7856e8a4634a234de1f84495e62acf06f600c7c) 
+Shadow bytes around the buggy address:
+  0x7882d85e3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7882d85e3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7882d85e3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7882d85e3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7882d85e3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x7882d85e4000: fa fa 00 00 fa fa 00 00[fa]fa fa fa fa fa fa fa
+  0x7882d85e4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7882d85e4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7882d85e4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7882d85e4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7882d85e4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3989793==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair18_a2_vulnerable_ixrtn_er/target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1 --nocapture` (exit status: 1)

@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair10_a2_vulnerable_u1fc9ub2) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair10_a2_vulnerable v0.1.0 (/tmp/asan_pair10_a2_vulnerable_u1fc9ub2)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair10_a2_vulnerable-35f3f99edcf3b6f6)
+
+running 1 test
+
+thread 'tests::test_final_counter' (4085454) panicked at src/lib.rs:63:9:
+assertion `left == right` failed: Final counter does not meet expected value due to race condition
+  left: 1028
+ right: 10000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_final_counter ... FAILED
+
+failures:
+
+failures:
+    tests::test_final_counter
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair6_a3_vulnerable_2l1m7bed) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_a3_vulnerable v0.1.0 (/tmp/asan_pair6_a3_vulnerable_2l1m7bed)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair6_a3_vulnerable-649d6490019e4669)
+
+running 1 test
+
+thread 'tests::test_resource_initialization' (10396) panicked at src/lib.rs:52:9:
+assertion `left == right` failed: Resource sum mismatch: configuration may be uninitialized.
+  left: 168
+ right: 208
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_resource_initialization ... FAILED
+
+failures:
+
+failures:
+    tests::test_resource_initialization
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

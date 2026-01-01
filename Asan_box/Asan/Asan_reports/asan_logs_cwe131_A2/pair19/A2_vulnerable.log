@@ -1,0 +1,17 @@
+$ (cwd=/tmp/asan_pair19_a2_vulnerable_uxs5hvhn) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a2_vulnerable v0.1.0 (/tmp/asan_pair19_a2_vulnerable_uxs5hvhn)
+error[E0432]: unresolved import `super::Formatter`
+  --> src/lib.rs:30:9
+   |
+30 |     use super::Formatter;
+   |         ^^^^^^^^^^^^^^^^ no `Formatter` in the root
+   |
+help: consider importing this struct instead
+   |
+30 -     use super::Formatter;
+30 +     use std::fmt::Formatter;
+   |
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `pair19_a2_vulnerable` (lib test) due to 1 previous error

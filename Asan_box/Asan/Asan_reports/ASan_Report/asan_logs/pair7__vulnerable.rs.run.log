@@ -1,0 +1,18 @@
+
+running 1 test
+test tests::test_oracle ... FAILED
+
+failures:
+
+---- tests::test_oracle stdout ----
+
+thread 'tests::test_oracle' (646903) panicked at /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair7/vulnerable.rs:49:9:
+Operation must reject oversized input
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::test_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

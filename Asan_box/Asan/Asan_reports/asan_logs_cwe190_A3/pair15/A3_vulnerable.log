@@ -1,0 +1,92 @@
+$ (cwd=/tmp/asan_pair15_a3_vulnerable_blafm7lc) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair15_a3_vulnerable v0.1.0 (/tmp/asan_pair15_a3_vulnerable_blafm7lc)
+error[E0603]: function `test_allocation_size` is private
+  --> src/lib.rs:96:12
+   |
+96 |     tests::test_allocation_size();
+   |            ^^^^^^^^^^^^^^^^^^^^ private function
+   |
+note: the function `test_allocation_size` is defined here
+  --> src/lib.rs:70:5
+   |
+70 |     fn test_allocation_size() {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?
+ --> src/lib.rs:1:1
+  |
+1 | extern crate libc;
+  | ^^^^^^^^^^^^^^^^^^
+  |
+  = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information
+  = help: add `#![feature(rustc_private)]` to the crate attributes to enable
+  = note: this compiler was built on 2025-09-30; consider upgrading it if it is out of date
+
+error[E0658]: use of unstable library feature `rustc_private`: this crate is being loaded from the sysroot, an unstable location; did you mean to load this crate from crates.io via `Cargo.toml` instead?
+  --> src/lib.rs:21:26
+   |
+21 |             let memory = libc::malloc(self.element_size) as *mut u8;
+   |                          ^^^^^^^^^^^^
+   |
+   = note: see issue #27812 <https://github.com/rust-lang/rust/issues/27812> for more information
+   = help: add `#![feature(rustc_private)]` to the crate attributes to enable
+   = note: this compiler was built on 2025-09-30; consider upgrading it if it is out of date
+
+error[E0277]: `*mut u8` cannot be shared between threads safely
+  --> src/lib.rs:34:40
+   |
+34 |               threads.push(thread::spawn(move || {
+   |  __________________________-------------_^
+   | |                          |
+   | |                          required by a bound introduced by this call
+35 | |                 unsafe {
+36 | |                     for j in 0..1000 {
+37 | |                         let offset = i * 1000 + j;
+...  |
+41 | |             }));
+   | |_____________^ `*mut u8` cannot be shared between threads safely
+   |
+   = help: the trait `Sync` is not implemented for `*mut u8`
+   = note: required for `Arc<*mut u8>` to implement `Send`
+note: required because it's used within this closure
+  --> src/lib.rs:34:40
+   |
+34 |             threads.push(thread::spawn(move || {
+   |                                        ^^^^^^^
+note: required by a bound in `spawn`
+  --> /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/std/src/thread/mod.rs:723:1
+
+error[E0277]: `*mut u8` cannot be sent between threads safely
+  --> src/lib.rs:34:40
+   |
+34 |               threads.push(thread::spawn(move || {
+   |  __________________________-------------_^
+   | |                          |
+   | |                          required by a bound introduced by this call
+35 | |                 unsafe {
+36 | |                     for j in 0..1000 {
+37 | |                         let offset = i * 1000 + j;
+...  |
+41 | |             }));
+   | |_____________^ `*mut u8` cannot be sent between threads safely
+   |
+   = help: the trait `Send` is not implemented for `*mut u8`
+   = note: required for `Arc<*mut u8>` to implement `Send`
+note: required because it's used within this closure
+  --> src/lib.rs:34:40
+   |
+34 |             threads.push(thread::spawn(move || {
+   |                                        ^^^^^^^
+note: required by a bound in `spawn`
+  --> /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/std/src/thread/mod.rs:723:1
+
+error[E0433]: failed to resolve: use of undeclared type `Manager`
+  --> src/lib.rs:73:23
+   |
+73 |             let mgr = Manager::new(2_000_000_000, 4);
+   |                       ^^^^^^^ use of undeclared type `Manager`
+
+Some errors have detailed explanations: E0277, E0433, E0603, E0658.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `pair15_a3_vulnerable` (lib test) due to 6 previous errors

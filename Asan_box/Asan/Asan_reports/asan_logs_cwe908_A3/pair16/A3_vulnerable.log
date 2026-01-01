@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair16_a3_vulnerable_nl7h6mr4) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_a3_vulnerable v0.1.0 (/tmp/asan_pair16_a3_vulnerable_nl7h6mr4)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80)
+
+running 1 test
+
+thread 'tests::oracle' (7780) panicked at src/lib.rs:58:9:
+Test failed: The configuration was not valid (unexpected value)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::oracle ... FAILED
+
+failures:
+
+failures:
+    tests::oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

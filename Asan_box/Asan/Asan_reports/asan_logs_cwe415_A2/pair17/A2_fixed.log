@@ -1,0 +1,32 @@
+$ (cwd=/tmp/asan_pair17_a2_fixed_5266l2ba) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair17_a2_fixed v0.1.0 (/tmp/asan_pair17_a2_fixed_5266l2ba)
+error[E0277]: `*mut i32` cannot be sent between threads safely
+  --> src/lib.rs:37:33
+   |
+37 |       let handler = thread::spawn(move || {
+   |  ___________________-------------_^
+   | |                   |
+   | |                   required by a bound introduced by this call
+38 | |         barrier_thread.wait();
+39 | |         let guard = shared.lock().unwrap();
+40 | |         if let Some(raw) = *guard {
+...  |
+44 | |     });
+   | |_____^ `*mut i32` cannot be sent between threads safely
+   |
+   = help: within `Option<*mut i32>`, the trait `Send` is not implemented for `*mut i32`
+note: required because it appears within the type `Option<*mut i32>`
+  --> /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/core/src/option.rs:594:10
+   = note: required for `std::sync::Mutex<Option<*mut i32>>` to implement `Sync`
+   = note: required for `Arc<std::sync::Mutex<Option<*mut i32>>>` to implement `Send`
+note: required because it's used within this closure
+  --> src/lib.rs:37:33
+   |
+37 |     let handler = thread::spawn(move || {
+   |                                 ^^^^^^^
+note: required by a bound in `spawn`
+  --> /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/std/src/thread/mod.rs:723:1
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `pair17_a2_fixed` (lib test) due to 1 previous error

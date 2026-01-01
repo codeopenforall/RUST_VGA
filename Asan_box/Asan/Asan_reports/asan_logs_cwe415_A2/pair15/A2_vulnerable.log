@@ -1,0 +1,88 @@
+$ (cwd=/tmp/asan_pair15_a2_vulnerable_m1rqlsvm) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair15_a2_vulnerable v0.1.0 (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3)
+
+running 1 test
+=================================================================
+==4005753==ERROR: AddressSanitizer: attempting double-free on 0x6edc945e4010 in thread T1:
+    #0 0x5618cb360656  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0xf1656) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #1 0x5618cb3910ca  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x1220ca) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #2 0x5618cb392543  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x123543) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #3 0x5618cb392080  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x123080) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #4 0x5618cb38f409  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x120409) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #5 0x5618cb391275  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x122275) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #6 0x5618cb392837  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x123837) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #7 0x5618cb38ecfa  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x11fcfa) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #8 0x5618cb38ec3d  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x11fc3d) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #9 0x5618cb39180a  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x12280a) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #10 0x5618cb391256  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x122256) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #11 0x5618cb391dd5  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x122dd5) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #12 0x5618cb3b355a  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x14455a) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #13 0x5618cb3c8f44  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x159f44) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #14 0x5618cb39f963  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x130963) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #15 0x5618cb3a3349  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x134349) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #16 0x5618cb3e8f6e  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x179f6e) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #17 0x5618cb35e7b6  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0xef7b6) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #18 0x72bc95494ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #19 0x72bc9552684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x6edc945e4010 is located 0 bytes inside of 4-byte region [0x6edc945e4010,0x6edc945e4014)
+freed by thread T1 here:
+    #0 0x5618cb360656  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0xf1656) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #1 0x5618cb3910ca  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x1220ca) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #2 0x5618cb392543  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x123543) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #3 0x5618cb392080  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x123080) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #4 0x5618cb38f2c9  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x1202c9) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #5 0x5618cb391275  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x122275) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #6 0x5618cb39180a  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x12280a) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #7 0x5618cb391256  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x122256) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #8 0x5618cb3c8f44  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x159f44) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #9 0x5618cb39f963  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x130963) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #10 0x5618cb3a3349  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x134349) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #11 0x5618cb3e8f6e  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x179f6e) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #12 0x5618cb35e7b6  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0xef7b6) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+
+previously allocated by thread T1 here:
+    #0 0x5618cb3608f4  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0xf18f4) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #1 0x5618cb390db3  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x121db3) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #2 0x5618cb390ab4  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x121ab4) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #3 0x5618cb391275  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x122275) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #4 0x5618cb39180a  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x12280a) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #5 0x5618cb391256  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x122256) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #6 0x5618cb3c8f44  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x159f44) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #7 0x5618cb39f963  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x130963) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #8 0x5618cb3a3349  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x134349) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #9 0x5618cb3e8f6e  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x179f6e) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #10 0x5618cb35e7b6  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0xef7b6) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+
+Thread T1 created by T0 here:
+    #0 0x5618cb3451e1  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0xd61e1) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #1 0x5618cb3e918f  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x17a18f) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #2 0x5618cb3c7abd  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x158abd) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #3 0x5618cb3c0e04  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x151e04) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #4 0x5618cb3ca445  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x15b445) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #5 0x5618cb3b319a  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x14419a) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #6 0x5618cb38f222  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x120222) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #7 0x5618cb38ffef  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x120fef) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+    #8 0x5618cb38f70d  (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0x12070d) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54)
+
+SUMMARY: AddressSanitizer: double-free (/tmp/asan_pair15_a2_vulnerable_m1rqlsvm/target/debug/deps/pair15_a2_vulnerable-3614967dd6853ee3+0xf1656) (BuildId: 852a6e49afcded0aea238b3dfc5ffb7a8c512c54) 
+
+thread 'tests::test_simulate' (4005754) panicked at src/lib.rs:36:17:
+Double free detected in destructor (Drop)!
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::test_simulate' (4005754) panicked at src/lib.rs:74:9:
+simulate() panicked, indicating a double free vulnerability
+test tests::test_simulate ... FAILED
+
+failures:
+
+failures:
+    tests::test_simulate
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

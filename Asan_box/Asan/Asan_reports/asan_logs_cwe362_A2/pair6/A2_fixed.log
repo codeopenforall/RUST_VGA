@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair6_a2_fixed_gc205dmy) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_a2_fixed v0.1.0 (/tmp/asan_pair6_a2_fixed_gc205dmy)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair6_a2_fixed-ccd94b7e7c7ec047)
+
+running 1 test
+test tests::test_final_count ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair13_a3_vulnerable_mds9bkgv) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a3_vulnerable v0.1.0 (/tmp/asan_pair13_a3_vulnerable_mds9bkgv)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair13_a3_vulnerable-812b5189f2c828cf)
+
+running 1 test
+
+thread 'tests::test_allocation_size' (4146642) panicked at src/lib.rs:74:9:
+assertion `left == right` failed: Computed size does not match expected safe multiplication result
+  left: 1705032704
+ right: 6000000000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_allocation_size ... FAILED
+
+failures:
+
+failures:
+    tests::test_allocation_size
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

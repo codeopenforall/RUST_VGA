@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair9_a1_vulnerable_ygdct41i) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair9_a1_vulnerable v0.1.0 (/tmp/asan_pair9_a1_vulnerable_ygdct41i)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair9_a1_vulnerable-b5212c49643dbb19)
+
+running 1 test
+
+thread 'tests::test_resource_initialization' (3836836) panicked at src/lib.rs:57:9:
+assertion `left == right` failed: Description field is not properly initialized
+  left: ""
+ right: "Initialized"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_resource_initialization ... FAILED
+
+failures:
+
+failures:
+    tests::test_resource_initialization
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

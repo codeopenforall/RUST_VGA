@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair8_a2_vulnerable_attnoqqb) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair8_a2_vulnerable v0.1.0 (/tmp/asan_pair8_a2_vulnerable_attnoqqb)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair8_a2_vulnerable-5b16dbca7eb3baa1)
+
+running 1 test
+test tests::check_subtraction_underflow ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

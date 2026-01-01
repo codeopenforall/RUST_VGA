@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair12_a1_vulnerable_aa4yza9q) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_a1_vulnerable v0.1.0 (/tmp/asan_pair12_a1_vulnerable_aa4yza9q)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair12_a1_vulnerable-0cbdfdf29a43da19)
+
+running 1 test
+
+thread 'tests::test_marker_integrity' (3815012) panicked at src/lib.rs:46:9:
+Marker should remain intact when the copy length is clamped to allowed size
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_marker_integrity ... FAILED
+
+failures:
+
+failures:
+    tests::test_marker_integrity
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

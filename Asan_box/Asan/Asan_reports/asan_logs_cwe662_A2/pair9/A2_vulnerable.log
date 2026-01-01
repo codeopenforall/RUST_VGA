@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair9_a2_vulnerable_e9iwt4vs) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair9_a2_vulnerable v0.1.0 (/tmp/asan_pair9_a2_vulnerable_e9iwt4vs)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair9_a2_vulnerable-96e3e4bf2dcaf1d5)
+
+running 1 test
+
+thread 'tests::test_authentication' (4106312) panicked at src/lib.rs:53:9:
+assertion `left == right` failed: Authentication should fail for a partial token
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_authentication ... FAILED
+
+failures:
+
+failures:
+    tests::test_authentication
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

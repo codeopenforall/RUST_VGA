@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair19_a3_vulnerable___whe8tk) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a3_vulnerable v0.1.0 (/tmp/asan_pair19_a3_vulnerable___whe8tk)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair19_a3_vulnerable-63ebf05ed59d2ba9)
+
+running 1 test
+
+thread 'tests::test_underflow_prevention' (4153721) panicked at src/lib.rs:55:9:
+assertion `left == right` failed: Final value did not saturate to 0 as expected
+  left: -35
+ right: 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_underflow_prevention ... FAILED
+
+failures:
+
+failures:
+    tests::test_underflow_prevention
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

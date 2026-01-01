@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair10_a3_vulnerable_elev4gv0) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair10_a3_vulnerable v0.1.0 (/tmp/asan_pair10_a3_vulnerable_elev4gv0)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair10_a3_vulnerable-2612b3092d427c3a)
+
+running 1 test
+
+thread 'tests::test_guard_integrity' (4128724) panicked at src/lib.rs:54:9:
+assertion `left == right` failed: Guard byte should remain unchanged after update_range
+  left: 42
+ right: 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_guard_integrity ... FAILED
+
+failures:
+
+failures:
+    tests::test_guard_integrity
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

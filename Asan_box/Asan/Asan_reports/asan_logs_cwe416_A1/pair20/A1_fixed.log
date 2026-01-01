@@ -1,0 +1,28 @@
+$ (cwd=/tmp/asan_pair20_a1_fixed_rtum5ehq) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair20_a1_fixed v0.1.0 (/tmp/asan_pair20_a1_fixed_rtum5ehq)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair20_a1_fixed-ed7d154702b705fe)
+
+running 1 test
+test test_oracle::test_run_value ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=================================================================
+==3810972==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 4 byte(s) in 1 object(s) allocated from:
+    #0 0x637f71cbbfc4  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0xf0fc4) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+    #1 0x637f71ceac13  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0x11fc13) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+    #2 0x637f71cea914  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0x11f914) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+    #3 0x637f71cec39e  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0x12139e) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+    #4 0x637f71cebe86  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0x120e86) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+    #5 0x637f71d235a4  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0x1585a4) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+    #6 0x637f71cf9fc3  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0x12efc3) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+    #7 0x637f71cfd9a9  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0x1329a9) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+    #8 0x637f71d435ce  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0x1785ce) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+    #9 0x637f71cb9e86  (/tmp/asan_pair20_a1_fixed_rtum5ehq/target/debug/deps/pair20_a1_fixed-ed7d154702b705fe+0xeee86) (BuildId: bfbcb624c29f196cc9de28da050e58d3b4409df9)
+
+SUMMARY: AddressSanitizer: 4 byte(s) leaked in 1 allocation(s).

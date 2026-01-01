@@ -1,0 +1,42 @@
+use std::ptr;
+struct DataHolder {
+    ptr: *mut i32,
+}
+impl DataHolder {
+    fn new(value: i32) -> Self {
+        let boxed = Box::new(value);
+        Self { ptr: Box::into_raw(boxed) }
+    }
+    unsafe fn release(&mut self) {
+        let _ = Box::from_raw(self.ptr);
+    }
+    unsafe fn read(&self) -> i32 {
+        *self.ptr
+    }
+}
+pub fn compute_value() -> i32 {
+    let mut holder = DataHolder::new(123);
+    unsafe {
+        holder.release();
+        let _dummy = Box::new(456);
+        holder.read()
+    }
+}
+fn main() {
+    let res = compute_value();
+    println!("Computed result: {}", res);
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::compute_value;
+
+    #[test]
+    fn test_oracle() {
+        // The expected value is 123. In the vulnerable implementation, using the freed pointer
+        // may return a different value (e.g. 456) due to memory reuse, thus failing the test.
+        let result = compute_value();
+        assert_eq!(result, 123, "Test Failed: Expected 123, got {}", result);
+    }
+}

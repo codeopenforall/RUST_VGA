@@ -1,0 +1,88 @@
+$ (cwd=/tmp/asan_pair4_a2_vulnerable_g4wysi0n) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a2_vulnerable v0.1.0 (/tmp/asan_pair4_a2_vulnerable_g4wysi0n)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c)
+
+running 1 test
+
+thread 'tests::test_memory_release' (4007772) panicked at src/lib.rs:9:13:
+double free detected
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+=================================================================
+==4007771==ERROR: AddressSanitizer: attempting double-free on 0x7b22257e4010 in thread T1:
+    #0 0x596e6f5dbb56  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xf1b56) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #1 0x596e6f60bdea  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121dea) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #2 0x596e6f60d503  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x123503) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #3 0x596e6f60cd9f  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x122d9f) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #4 0x596e6f60a974  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120974) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #5 0x596e6f60aa65  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120a65) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #6 0x596e6f60be05  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121e05) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #7 0x596e6f60c5f7  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1225f7) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #8 0x596e6f60b75a  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12175a) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #9 0x596e6f60b69d  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12169d) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #10 0x596e6f60c42a  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12242a) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #11 0x596e6f60be26  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121e26) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #12 0x596e6f60cc95  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x122c95) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #13 0x596e6f62f36a  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x14536a) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #14 0x596e6f644d54  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x15ad54) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #15 0x596e6f61b773  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x131773) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #16 0x596e6f61f159  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x135159) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #17 0x596e6f664d7e  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x17ad7e) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #18 0x596e6f5d9cb6  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xefcb6) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #19 0x7f0226494ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #20 0x7f022652684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x7b22257e4010 is located 0 bytes inside of 4-byte region [0x7b22257e4010,0x7b22257e4014)
+freed by thread T1 here:
+    #0 0x596e6f5dbb56  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xf1b56) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #1 0x596e6f60bdea  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121dea) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #2 0x596e6f60d503  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x123503) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #3 0x596e6f60cdbb  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x122dbb) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #4 0x596e6f60aa65  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120a65) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #5 0x596e6f60c42a  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12242a) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #6 0x596e6f60be26  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121e26) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #7 0x596e6f644d54  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x15ad54) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #8 0x596e6f61b773  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x131773) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #9 0x596e6f61f159  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x135159) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #10 0x596e6f664d7e  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x17ad7e) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #11 0x596e6f5d9cb6  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xefcb6) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+
+previously allocated by thread T1 here:
+    #0 0x596e6f5dbdf4  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xf1df4) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #1 0x596e6f60bad3  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121ad3) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #2 0x596e6f60b7d4  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1217d4) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #3 0x596e6f60aa65  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120a65) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #4 0x596e6f60c42a  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12242a) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #5 0x596e6f60be26  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121e26) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #6 0x596e6f644d54  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x15ad54) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #7 0x596e6f61b773  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x131773) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #8 0x596e6f61f159  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x135159) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #9 0x596e6f664d7e  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x17ad7e) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #10 0x596e6f5d9cb6  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xefcb6) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+
+Thread T1 created by T0 here:
+    #0 0x596e6f5c06e1  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xd66e1) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #1 0x596e6f664f9f  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x17af9f) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #2 0x596e6f6438cd  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1598cd) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #3 0x596e6f63cc14  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x152c14) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #4 0x596e6f646255  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x15c255) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #5 0x596e6f62efaa  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x144faa) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #6 0x596e6f60aa82  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120a82) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #7 0x596e6f60adef  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120def) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+    #8 0x596e6f60aaad  (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120aad) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37)
+
+SUMMARY: AddressSanitizer: double-free (/tmp/asan_pair4_a2_vulnerable_g4wysi0n/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xf1b56) (BuildId: 8a04a18e8d11a42d2ce97e456fb9850c4b9a2b37) 
+
+thread 'tests::test_memory_release' (4007772) panicked at src/lib.rs:45:9:
+Resource deallocation failed due to double free
+test tests::test_memory_release ... FAILED
+
+failures:
+
+failures:
+    tests::test_memory_release
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

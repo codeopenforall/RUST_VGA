@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair19_a3_vulnerable_iz645wy0) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a3_vulnerable v0.1.0 (/tmp/asan_pair19_a3_vulnerable_iz645wy0)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair19_a3_vulnerable-63ebf05ed59d2ba9)
+
+running 1 test
+
+thread 'tests::test_resource_deallocation' (4164865) panicked at src/lib.rs:9:9:
+Double free detected
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_resource_deallocation ... FAILED
+
+failures:
+
+failures:
+    tests::test_resource_deallocation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,30 @@
+$ (cwd=/tmp/asan_pair6_fixed_w7c273mx) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_fixed v0.1.0 (/tmp/asan_pair6_fixed_w7c273mx)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair6_fixed-445734661b383018)
+
+running 1 test
+test tests::test_memory_bounds ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=================================================================
+==3445912==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 40 byte(s) in 1 object(s) allocated from:
+    #0 0x5ba6291651e4  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0xf31e4) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #1 0x5ba62922066d  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x1ae66d) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #2 0x5ba629195fde  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x123fde) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #3 0x5ba62919863c  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x12663c) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #4 0x5ba629193bf3  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x121bf3) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #5 0x5ba629194555  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x122555) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #6 0x5ba629197d66  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x125d66) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #7 0x5ba6291d00b4  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x15e0b4) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #8 0x5ba6291a6ad3  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x134ad3) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #9 0x5ba6291aa4b9  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x1384b9) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #10 0x5ba6291f00de  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0x17e0de) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+    #11 0x5ba6291630a6  (/tmp/asan_pair6_fixed_w7c273mx/target/debug/deps/pair6_fixed-445734661b383018+0xf10a6) (BuildId: 95ee61d086e197dc7d6f0814cc8c6d74e2758675)
+
+SUMMARY: AddressSanitizer: 40 byte(s) leaked in 1 allocation(s).

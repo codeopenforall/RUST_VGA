@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair18_a2_vulnerable_j6sk8jyc) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a2_vulnerable v0.1.0 (/tmp/asan_pair18_a2_vulnerable_j6sk8jyc)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running unittests src/lib.rs (target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1)
+
+running 1 test
+
+thread 'tests::test_authentication' (4103675) panicked at src/lib.rs:81:9:
+assertion `left == right` failed: Authentication should fail for weak token input
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_authentication ... FAILED
+
+failures:
+
+failures:
+    tests::test_authentication
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

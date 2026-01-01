@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair15_a1_fixed_59lir4oz) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair15_a1_fixed v0.1.0 (/tmp/asan_pair15_a1_fixed_59lir4oz)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running unittests src/lib.rs (target/debug/deps/pair15_a1_fixed-db4f323a1c561887)
+
+running 1 test
+test tests::test_concurrent ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.45s
+

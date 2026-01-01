@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair7_a2_vulnerable_am4juf84) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair7_a2_vulnerable v0.1.0 (/tmp/asan_pair7_a2_vulnerable_am4juf84)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair7_a2_vulnerable-4d51f814d9833b6d)
+
+running 1 test
+
+thread 'tests::test_buffer_sum' (3997557) panicked at src/lib.rs:61:9:
+assertion `left == right` failed: The computed sum did not match the expected value.
+  left: 200
+ right: 10
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_buffer_sum ... FAILED
+
+failures:
+
+failures:
+    tests::test_buffer_sum
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

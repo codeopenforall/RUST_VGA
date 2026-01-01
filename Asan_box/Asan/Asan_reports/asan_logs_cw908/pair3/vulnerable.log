@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair3_vulnerable_llgr5r_w) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_vulnerable v0.1.0 (/tmp/asan_pair3_vulnerable_llgr5r_w)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running unittests src/lib.rs (target/debug/deps/pair3_vulnerable-b486ad0460a0c293)
+
+running 1 test
+
+thread 'tests::test_configuration_validity' (3502227) panicked at src/lib.rs:55:9:
+Configuration should be active
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_configuration_validity ... FAILED
+
+failures:
+
+failures:
+    tests::test_configuration_validity
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,29 @@
+$ (cwd=/tmp/asan_pair13_a2_fixed_3jbzau76) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a2_fixed v0.1.0 (/tmp/asan_pair13_a2_fixed_3jbzau76)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair13_a2_fixed-139d649d71c47141)
+
+running 1 test
+test tests::test_oracle ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=================================================================
+==4005103==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 4 byte(s) in 1 object(s) allocated from:
+    #0 0x57458a057ab4  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0xf1ab4) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #1 0x57458a086ba3  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0x120ba3) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #2 0x57458a0868a4  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0x1208a4) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #3 0x57458a087405  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0x121405) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #4 0x57458a086350  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0x120350) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #5 0x57458a087426  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0x121426) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #6 0x57458a0c01b4  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0x15a1b4) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #7 0x57458a096bd3  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0x130bd3) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #8 0x57458a09a5b9  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0x1345b9) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #9 0x57458a0e01de  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0x17a1de) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+    #10 0x57458a055976  (/tmp/asan_pair13_a2_fixed_3jbzau76/target/debug/deps/pair13_a2_fixed-139d649d71c47141+0xef976) (BuildId: 20552208470a786e3cf49f23ddd06332ebf749fe)
+
+SUMMARY: AddressSanitizer: 4 byte(s) leaked in 1 allocation(s).

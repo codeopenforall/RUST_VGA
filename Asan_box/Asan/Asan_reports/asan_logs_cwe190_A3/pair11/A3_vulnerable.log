@@ -1,0 +1,33 @@
+$ (cwd=/tmp/asan_pair11_a3_vulnerable_es85ifc2) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a3_vulnerable v0.1.0 (/tmp/asan_pair11_a3_vulnerable_es85ifc2)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair11_a3_vulnerable-73a945536955b500)
+
+running 1 test
+
+thread '<unnamed>' (4146152) panicked at src/lib.rs:15:9:
+attempt to add with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread '<unnamed>' (4146154) panicked at src/lib.rs:33:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (4146155) panicked at src/lib.rs:33:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (4146153) panicked at src/lib.rs:33:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+
+thread '<unnamed>' (4146158) panicked at src/lib.rs:33:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+test tests::test_overflow_detection ... ok
+
+test result: ok
+thread '<unnamed>' (4146156) panicked at src/lib.rs:33:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }
+. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+thread '<unnamed>' (4146157) panicked at src/lib.rs:33:49:
+called `Result::unwrap()` on an `Err` value: PoisonError { .. }

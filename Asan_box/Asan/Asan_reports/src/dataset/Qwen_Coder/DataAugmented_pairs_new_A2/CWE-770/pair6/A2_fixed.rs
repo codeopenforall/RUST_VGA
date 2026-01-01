@@ -1,0 +1,66 @@
+use std::alloc::{alloc, dealloc, Layout};
+use std::ptr;
+use std::thread;
+
+fn process(count: usize) -> Result<usize, &'static str> {
+    let safe_count = if count > 100 { 100 } else { count };
+    let alloc_size = safe_count.checked_mul(10).ok_or("Multiplier overflow")?;
+    unsafe {
+        let layout = Layout::from_size_align(alloc_size, 8).map_err(|_| "Layout error")?;
+        let raw_ptr = alloc(layout);
+        if raw_ptr.is_null() {
+            return Err("Memory allocation failed");
+        }
+        let vec = Vec::from_raw_parts(raw_ptr, alloc_size, alloc_size);
+        let _dummy: u8 = vec.iter().fold(0, |acc, &val| acc.wrapping_add(val));
+        std::sync::atomic::compiler_fence(std::sync::atomic::Ordering::SeqCst);
+        dealloc(raw_ptr, layout);
+        std::mem::forget(vec);
+    }
+    let mut handles = Vec::with_capacity(safe_count);
+    for i in 0..safe_count {
+        let handle = thread::spawn(move || {
+            unsafe {
+                let val = ptr::read_volatile(&i);
+                val
+            }
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        handle.join().map_err(|_| "Thread join error")?;
+    }
+    Ok(safe_count)
+}
+
+fn main() {
+    let args: Vec<String> = std::env::args().collect();
+    let count = if args.len() > 1 {
+        args[1].parse::<usize>().unwrap_or(50)
+    } else {
+        50
+    };
+    match process(count) {
+        Ok(c) => println!("Successfully processed {} resources.", c),
+        Err(e) => eprintln!("Error encountered: {}", e),
+    }
+}
+
+/////////////////////////////////////////////////////////////////
+// Test Oracle:
+// This function serves as the test entry point. It invokes the 
+// process function with an input of 150, which should be capped to 100
+// in the fixed version. For the vulnerable version, the output will be 
+// 150, causing the test assertion to fail.
+/////////////////////////////////////////////////////////////////
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn resource_limit_test() {
+        // Trigger input: 150 resources.
+        // The expected safe processing count must be capped at 100.
+        let result = process(150).expect("Processing encountered an error");
+        assert_eq!(result, 100, "The resource limit was not properly enforced");
+    }
+}

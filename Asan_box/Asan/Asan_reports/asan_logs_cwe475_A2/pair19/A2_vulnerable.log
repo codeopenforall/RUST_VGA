@@ -1,0 +1,95 @@
+$ (cwd=/tmp/asan_pair19_a2_vulnerable_mn4qhnzi) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a2_vulnerable v0.1.0 (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a)
+
+running 1 test
+=================================================================
+==4017469==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x79b2b99e4015 at pc 0x5c9dd30c188b bp 0x7992b73fe150 sp 0x7992b73fd910
+READ of size 5 at 0x79b2b99e4015 thread T1
+    #0 0x5c9dd30c188a  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0xf088a) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #1 0x5c9dd30f4f43  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x123f43) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #2 0x5c9dd30f36f6  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x1226f6) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #3 0x5c9dd30f5b86  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x124b86) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #4 0x5c9dd30f2d35  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x121d35) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #5 0x5c9dd31172fa  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x1462fa) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #6 0x5c9dd312cce4  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x15bce4) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #7 0x5c9dd3103703  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x132703) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #8 0x5c9dd31070e9  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x1360e9) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #9 0x5c9dd314cd0e  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x17bd0e) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #10 0x5c9dd30c14c6  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0xf04c6) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #11 0x7d92ba894ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7d92ba92684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x79b2b99e4015 is located 0 bytes after 5-byte region [0x79b2b99e4010,0x79b2b99e4015)
+allocated by thread T1 here:
+    #0 0x5c9dd30c37f4  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0xf27f4) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #1 0x5c9dd30f1dc3  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x120dc3) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #2 0x5c9dd30f1ac4  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x120ac4) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #3 0x5c9dd30f5b86  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x124b86) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #4 0x5c9dd312cce4  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x15bce4) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #5 0x5c9dd3103703  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x132703) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #6 0x5c9dd31070e9  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x1360e9) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #7 0x5c9dd314cd0e  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x17bd0e) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #8 0x5c9dd30c14c6  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0xf04c6) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+
+Thread T1 created by T0 here:
+    #0 0x5c9dd30a7ef1  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0xd6ef1) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #1 0x5c9dd314cf2f  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x17bf2f) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #2 0x5c9dd312b85d  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x15a85d) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #3 0x5c9dd3124ba4  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x153ba4) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #4 0x5c9dd312e1e5  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x15d1e5) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #5 0x5c9dd3116f3a  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x145f3a) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #6 0x5c9dd30f4b62  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x123b62) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #7 0x5c9dd30f2a6f  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x121a6f) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+    #8 0x5c9dd30f4ffd  (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0x123ffd) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair19_a2_vulnerable_mn4qhnzi/target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a+0xf088a) (BuildId: 57c73a2573e2202afb465eacd454e0d381f3faa3) 
+Shadow bytes around the buggy address:
+  0x79b2b99e3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x79b2b99e3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x79b2b99e3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x79b2b99e3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x79b2b99e3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x79b2b99e4000: fa fa[05]fa fa fa 05 fa fa fa fa fa fa fa fa fa
+  0x79b2b99e4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x79b2b99e4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x79b2b99e4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x79b2b99e4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x79b2b99e4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+thread 'tests::test_operation' (4017470) panicked at src/lib.rs:35:9:
+assertion `left == right` failed: The output does not match the expected result.
+  left: [20, 30, 40, 50, 0]
+ right: [20, 30, 40, 50]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_operation ... FAILED
+
+failures:
+
+failures:
+    tests::test_operation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

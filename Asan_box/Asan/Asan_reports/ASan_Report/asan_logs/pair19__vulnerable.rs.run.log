@@ -1,0 +1,20 @@
+
+running 1 test
+test tests::test_update_bounds ... FAILED
+
+failures:
+
+---- tests::test_update_bounds stdout ----
+
+thread 'tests::test_update_bounds' (645591) panicked at /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair19/vulnerable.rs:52:9:
+assertion `left == right` failed: Out-of-bound update should fail
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::test_update_bounds
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

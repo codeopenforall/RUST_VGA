@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair7_a2_vulnerable_5243027t) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair7_a2_vulnerable v0.1.0 (/tmp/asan_pair7_a2_vulnerable_5243027t)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair7_a2_vulnerable-4d51f814d9833b6d)
+
+running 1 test
+
+thread 'tests::authentication_test' (4105793) panicked at src/lib.rs:78:9:
+Authentication vulnerability: bypass key was accepted.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::authentication_test ... FAILED
+
+failures:
+
+failures:
+    tests::authentication_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,18 @@
+$ (cwd=/tmp/asan_pair18_a2_fixed_2xat0qtk) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a2_fixed v0.1.0 (/tmp/asan_pair18_a2_fixed_2xat0qtk)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair18_a2_fixed-688b163c106c3513)
+
+running 1 test
+
+thread '<unnamed>' (4000808) panicked at src/lib.rs:18:13:
+Underflow detected: cannot subtract 10 from 5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::underflow_test' (4000807) panicked at src/lib.rs:34:20:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+test tests::underflow_test ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

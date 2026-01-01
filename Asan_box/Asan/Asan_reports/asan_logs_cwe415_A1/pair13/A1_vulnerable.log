@@ -1,0 +1,74 @@
+$ (cwd=/tmp/asan_pair13_a1_vulnerable_i9dkdekj) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a1_vulnerable v0.1.0 (/tmp/asan_pair13_a1_vulnerable_i9dkdekj)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13)
+
+running 1 test
+=================================================================
+==3805778==ERROR: AddressSanitizer: attempting double-free on 0x75d92bbe4010 in thread T1:
+    #0 0x60bbb9296b36  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xf1b36) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #1 0x60bbb92c731a  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12231a) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #2 0x60bbb92c8d13  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x123d13) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #3 0x60bbb92c8790  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x123790) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #4 0x60bbb92c627c  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12127c) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #5 0x60bbb92c5155  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120155) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #6 0x60bbb92c75db  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x1225db) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #7 0x60bbb92c5aba  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120aba) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #8 0x60bbb92c594b  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12094b) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #9 0x60bbb92c8e80  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x123e80) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #10 0x60bbb92c5176  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120176) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #11 0x60bbb92c8515  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x123515) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #12 0x60bbb92e9f5a  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x144f5a) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #13 0x60bbb92ff944  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x15a944) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #14 0x60bbb92d6363  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x131363) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #15 0x60bbb92d9d49  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x134d49) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #16 0x60bbb931f96e  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x17a96e) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #17 0x60bbb9294c96  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xefc96) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #18 0x79b92ca94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #19 0x79b92cb2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x75d92bbe4010 is located 0 bytes inside of 4-byte region [0x75d92bbe4010,0x75d92bbe4014)
+freed by thread T1 here:
+    #0 0x60bbb9296b36  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xf1b36) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #1 0x60bbb92c731a  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12231a) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #2 0x60bbb92c8d13  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x123d13) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #3 0x60bbb92c8790  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x123790) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #4 0x60bbb92c5155  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120155) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #5 0x60bbb92c8e80  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x123e80) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #6 0x60bbb92c5176  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120176) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #7 0x60bbb92ff944  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x15a944) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #8 0x60bbb92d6363  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x131363) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #9 0x60bbb92d9d49  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x134d49) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #10 0x60bbb931f96e  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x17a96e) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #11 0x60bbb9294c96  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xefc96) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+
+previously allocated by thread T1 here:
+    #0 0x60bbb9296dd4  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xf1dd4) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #1 0x60bbb92c7003  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x122003) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #2 0x60bbb92c6d04  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x121d04) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #3 0x60bbb92c5155  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120155) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #4 0x60bbb92c8e80  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x123e80) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #5 0x60bbb92c5176  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120176) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #6 0x60bbb92ff944  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x15a944) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #7 0x60bbb92d6363  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x131363) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #8 0x60bbb92d9d49  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x134d49) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #9 0x60bbb931f96e  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x17a96e) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #10 0x60bbb9294c96  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xefc96) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+
+Thread T1 created by T0 here:
+    #0 0x60bbb927b6c1  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xd66c1) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #1 0x60bbb931fb8f  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x17ab8f) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #2 0x60bbb92fe4bd  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x1594bd) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #3 0x60bbb92f7804  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x152804) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #4 0x60bbb9300e45  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x15be45) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #5 0x60bbb92e9b9a  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x144b9a) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #6 0x60bbb92c6412  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x121412) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #7 0x60bbb92c742f  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12242f) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+    #8 0x60bbb92c643d  (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12143d) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef)
+
+SUMMARY: AddressSanitizer: double-free (/tmp/asan_pair13_a1_vulnerable_i9dkdekj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xf1b36) (BuildId: 81321b036b2cbc987d9a95ab0551e40fb665e7ef) 
+test tests::test_oracle ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

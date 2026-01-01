@@ -1,0 +1,17 @@
+$ (cwd=/tmp/asan_pair11_a1_vulnerable_ct3mwi7h) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a1_vulnerable v0.1.0 (/tmp/asan_pair11_a1_vulnerable_ct3mwi7h)
+error[E0433]: failed to resolve: could not find `Container` in the crate root
+  --> src/lib.rs:68:31
+   |
+68 |             let copy = super::Container::create(input);
+   |                               ^^^^^^^^^ could not find `Container` in the crate root
+
+error[E0433]: failed to resolve: could not find `Container` in the crate root
+  --> src/lib.rs:81:35
+   |
+81 |                 let copy = super::Container::create(input);
+   |                                   ^^^^^^^^^ could not find `Container` in the crate root
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `pair11_a1_vulnerable` (lib test) due to 2 previous errors

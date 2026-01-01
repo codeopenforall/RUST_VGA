@@ -1,0 +1,98 @@
+$ (cwd=/tmp/asan_pair4_a2_vulnerable_macgb_ly) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a2_vulnerable v0.1.0 (/tmp/asan_pair4_a2_vulnerable_macgb_ly)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c)
+
+running 1 test
+=================================================================
+==4013171==ERROR: AddressSanitizer: heap-use-after-free on address 0x6f7eb3de4010 at pc 0x57a6f1c3b136 bp 0x6f5eb17fe200 sp 0x6f5eb17fe1f8
+READ of size 4 at 0x6f7eb3de4010 thread T1
+    #0 0x57a6f1c3b135  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120135) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #1 0x57a6f1c3b00d  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12000d) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #2 0x57a6f1c3c77e  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12177e) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #3 0x57a6f1c3c216  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121216) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #4 0x57a6f1c3cd45  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121d45) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #5 0x57a6f1c5e4fa  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1434fa) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #6 0x57a6f1c73ee4  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x158ee4) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #7 0x57a6f1c4a903  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12f903) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #8 0x57a6f1c4e2e9  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1332e9) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #9 0x57a6f1c93f0e  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x178f0e) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #10 0x57a6f1c0a286  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xef286) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #11 0x735eb4a94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x735eb4b2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x6f7eb3de4010 is located 0 bytes inside of 4-byte region [0x6f7eb3de4010,0x6f7eb3de4014)
+freed by thread T1 here:
+    #0 0x57a6f1c0c126  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xf1126) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #1 0x57a6f1c3c1ea  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1211ea) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #2 0x57a6f1c3d0f3  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1220f3) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #3 0x57a6f1c3cf20  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121f20) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #4 0x57a6f1c3c77e  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12177e) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #5 0x57a6f1c3c216  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121216) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #6 0x57a6f1c73ee4  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x158ee4) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #7 0x57a6f1c4a903  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12f903) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #8 0x57a6f1c4e2e9  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1332e9) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #9 0x57a6f1c93f0e  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x178f0e) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #10 0x57a6f1c0a286  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xef286) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+
+previously allocated by thread T1 here:
+    #0 0x57a6f1c0c3c4  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xf13c4) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #1 0x57a6f1c3bed3  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120ed3) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #2 0x57a6f1c3bbd4  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120bd4) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #3 0x57a6f1c3c77e  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12177e) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #4 0x57a6f1c3c216  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x121216) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #5 0x57a6f1c73ee4  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x158ee4) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #6 0x57a6f1c4a903  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12f903) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #7 0x57a6f1c4e2e9  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1332e9) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #8 0x57a6f1c93f0e  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x178f0e) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #9 0x57a6f1c0a286  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xef286) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+
+Thread T1 created by T0 here:
+    #0 0x57a6f1bf0cb1  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0xd5cb1) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #1 0x57a6f1c9412f  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x17912f) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #2 0x57a6f1c72a5d  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x157a5d) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #3 0x57a6f1c6bda4  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x150da4) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #4 0x57a6f1c753e5  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x15a3e5) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #5 0x57a6f1c5e13a  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x14313a) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #6 0x57a6f1c3ad32  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x11fd32) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #7 0x57a6f1c3b4bf  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x1204bf) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+    #8 0x57a6f1c3b17d  (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x12017d) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1)
+
+SUMMARY: AddressSanitizer: heap-use-after-free (/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c+0x120135) (BuildId: 71ca21923698782a3b31d6c7866a7bf6c3e5fba1) 
+Shadow bytes around the buggy address:
+  0x6f7eb3de3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6f7eb3de3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6f7eb3de3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6f7eb3de3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6f7eb3de3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x6f7eb3de4000: fa fa[fd]fa fa fa 04 fa fa fa fa fa fa fa fa fa
+  0x6f7eb3de4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6f7eb3de4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6f7eb3de4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6f7eb3de4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6f7eb3de4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==4013171==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair4_a2_vulnerable_macgb_ly/target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c --nocapture` (exit status: 1)

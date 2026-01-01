@@ -1,0 +1,20 @@
+$ (cwd=/tmp/asan_pair14_a3_vulnerable_di_7nuy2) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair14_a3_vulnerable v0.1.0 (/tmp/asan_pair14_a3_vulnerable_di_7nuy2)
+error[E0308]: mismatched types
+  --> src/lib.rs:61:13
+   |
+60 |         fn run(input: u64) -> Self {
+   |                               ---- expected `Result<u16, &'static str>` because of return type
+61 |             super::run(input)
+   |             ^^^^^^^^^^^^^^^^^ expected `Result<u16, &str>`, found `u16`
+   |
+   = note: expected enum `Result<u16, &'static str>`
+              found type `u16`
+help: try wrapping the expression in `Ok`
+   |
+61 |             Ok(super::run(input))
+   |             +++                 +
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `pair14_a3_vulnerable` (lib test) due to 1 previous error

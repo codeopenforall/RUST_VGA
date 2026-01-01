@@ -1,0 +1,42 @@
+struct ResourceService;
+
+impl ResourceService {
+    pub fn execute_request(&self, num: usize) -> Result<(), String> {
+        // Intentionally omitting the check for the safe limit
+        // This will cause the test to fail as the request will not be rejected
+        Ok(())
+    }
+}
+
+fn main() {
+    let service = ResourceService;
+    if let Err(e) = service.execute_request(1000) {
+        eprintln!("Error: {}", e);
+    } else {
+        println!("Request processed successfully.");
+    }
+}
+
+////////////////////////////////////////////////////////////
+// The following test oracle verifies that excessive task
+// requests are properly rejected. When executed against the
+// vulnerable implementation, the test fails (since no cap is set),
+// but it passes with the fixed implementation where a limit is enforced.
+////////////////////////////////////////////////////////////
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_task_allocation_limit() {
+        let service = ResourceService;
+        // Request a number of tasks that exceeds the safe limit.
+        let result = service.execute_request(1000);
+        // The secure behavior is to return an error when the request exceeds the limit.
+        assert!(
+            result.is_err(),
+            "Exceeding the safe limit should be rejected."
+        );
+    }
+}

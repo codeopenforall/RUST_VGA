@@ -1,0 +1,16 @@
+$ (cwd=/tmp/asan_pair13_a3_fixed_kdtr7kxk) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a3_fixed v0.1.0 (/tmp/asan_pair13_a3_fixed_kdtr7kxk)
+error[E0428]: the name `tests` is defined multiple times
+  --> src/lib.rs:48:1
+   |
+28 | mod tests {
+   | --------- previous definition of the module `tests` here
+...
+48 | mod tests {
+   | ^^^^^^^^^ `tests` redefined here
+   |
+   = note: `tests` must be defined only once in the type namespace of this module
+
+For more information about this error, try `rustc --explain E0428`.
+error: could not compile `pair13_a3_fixed` (lib test) due to 1 previous error

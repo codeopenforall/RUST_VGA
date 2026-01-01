@@ -1,0 +1,53 @@
+use std::sync::{Arc, Mutex};
+use std::thread;
+use std::fs;
+
+struct XmlProcessor {
+    shared: Arc<Mutex<Option<String>>>,
+}
+
+impl XmlProcessor {
+    fn new() -> Self {
+        XmlProcessor { shared: Arc::new(Mutex::new(None)) }
+    }
+
+    fn process(&self, input: &str) -> Result<(), &'static str> {
+        if input.contains("<!ENTITY") {
+            return Err("External entities are not allowed");
+        }
+
+        let shared = self.shared.clone();
+        let data = input.to_string();
+        let handle = thread::spawn(move || {
+            let mut lock = shared.lock().unwrap();
+            *lock = Some(data);
+        });
+
+        handle.join().map_err(|_| "Thread panicked")?;
+        Ok(())
+    }
+
+    fn get_output(&self) -> Option<String> {
+        self.shared.lock().unwrap().clone()
+    }
+}
+
+fn main() {
+    let processor = XmlProcessor::new();
+    let xml_input = r#"
+        <?xml version="1.0"?>
+        <!DOCTYPE foo [
+            <!ENTITY xxe SYSTEM "external.txt">
+        ]>
+        <foo>&xxe;</foo>
+    "#;
+    if let Err(e) = processor.process(xml_input) {
+        eprintln!("Processing error: {}", e);
+        return;
+    }
+    if let Some(result) = processor.get_output() {
+        println!("Processed output: {}", result);
+    } else {
+        println!("No output generated.");
+    }
+}

@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair16_vulnerable_02qcajow) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_vulnerable v0.1.0 (/tmp/asan_pair16_vulnerable_02qcajow)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair16_vulnerable-2c3312d0c6036846)
+
+running 1 test
+
+thread 'tests::recursion_oracle' (3489852) panicked at src/lib.rs:67:17:
+assertion `left == right` failed: Expected recursion limit error
+  left: "Unexpected token encountered"
+ right: "Recursion limit reached"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::recursion_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::recursion_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

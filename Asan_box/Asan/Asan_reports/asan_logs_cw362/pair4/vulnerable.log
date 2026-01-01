@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair4_vulnerable_kcrw4e7y) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_vulnerable v0.1.0 (/tmp/asan_pair4_vulnerable_kcrw4e7y)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair4_vulnerable-dd121c6c5d9904fd)
+
+running 1 test
+
+thread 'tests::check_counter' (3513128) panicked at src/lib.rs:80:9:
+assertion `left == right` failed: Detected race condition: final value is 1051, expected 10000
+  left: 1051
+ right: 10000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::check_counter ... FAILED
+
+failures:
+
+failures:
+    tests::check_counter
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+error: test failed, to rerun pass `--lib`

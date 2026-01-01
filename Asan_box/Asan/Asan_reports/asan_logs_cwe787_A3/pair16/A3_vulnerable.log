@@ -1,0 +1,84 @@
+$ (cwd=/tmp/asan_pair16_a3_vulnerable_lhclgben) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_a3_vulnerable v0.1.0 (/tmp/asan_pair16_a3_vulnerable_lhclgben)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80)
+
+running 1 test
+=================================================================
+==1771==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x798bdcbe18b4 at pc 0x59d8485c7825 bp 0x795bda5fe230 sp 0x795bda5fe228
+WRITE of size 4 at 0x798bdcbe18b4 thread T1
+    #0 0x59d8485c7824  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x124824) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #1 0x59d8485c565f  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x12265f) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #2 0x59d8485c3cd6  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x120cd6) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #3 0x59d8485c4de5  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x121de5) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #4 0x59d8485e893a  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x14593a) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #5 0x59d8485fe324  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x15b324) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #6 0x59d8485d4d43  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x131d43) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #7 0x59d8485d8729  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x135729) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #8 0x59d84861e34e  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x17b34e) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #9 0x59d848593676  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0xf0676) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #10 0x7d5bdda94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #11 0x7d5bddb2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x798bdcbe18b4 is located 0 bytes after 20-byte region [0x798bdcbe18a0,0x798bdcbe18b4)
+allocated by thread T1 here:
+    #0 0x59d8485957b4  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0xf27b4) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #1 0x59d8485c7163  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x124163) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #2 0x59d8485c6e64  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x123e64) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #3 0x59d8485c565f  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x12265f) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #4 0x59d8485c3cd6  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x120cd6) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #5 0x59d8485fe324  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x15b324) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #6 0x59d8485d4d43  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x131d43) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #7 0x59d8485d8729  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x135729) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #8 0x59d84861e34e  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x17b34e) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #9 0x59d848593676  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0xf0676) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+
+Thread T1 created by T0 here:
+    #0 0x59d84857a0a1  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0xd70a1) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #1 0x59d84861e56f  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x17b56f) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #2 0x59d8485fce9d  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x159e9d) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #3 0x59d8485f61e4  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x1531e4) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #4 0x59d8485ff825  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x15c825) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #5 0x59d8485e857a  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x14557a) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #6 0x59d8485c79b2  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x1249b2) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #7 0x59d8485c73cf  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x1243cf) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+    #8 0x59d8485c79dd  (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x1249dd) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80+0x124824) (BuildId: 925b77b6d5ebb525a6c8ad6b075349bceb9f5c63) 
+Shadow bytes around the buggy address:
+  0x798bdcbe1600: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x798bdcbe1680: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x798bdcbe1700: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x798bdcbe1780: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x798bdcbe1800: fa fa fd fd fd fd fa fa fd fd fd fd fa fa 00 00
+=>0x798bdcbe1880: 00 00 fa fa 00 00[04]fa fa fa fa fa fa fa fa fa
+  0x798bdcbe1900: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x798bdcbe1980: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x798bdcbe1a00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x798bdcbe1a80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x798bdcbe1b00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==1771==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair16_a3_vulnerable_lhclgben/target/debug/deps/pair16_a3_vulnerable-60c88eec9e3c7b80 --nocapture` (exit status: 1)

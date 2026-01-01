@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair18_a2_vulnerable_zpb7s14p) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a2_vulnerable v0.1.0 (/tmp/asan_pair18_a2_vulnerable_zpb7s14p)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1)
+
+running 1 test
+
+thread 'tests::test_empty_input_handling' (4017206) panicked at src/lib.rs:30:17:
+assertion `left == right` failed: Expected a 0 return value for empty input in the safe implementation
+  left: 1
+ right: 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_empty_input_handling ... FAILED
+
+failures:
+
+failures:
+    tests::test_empty_input_handling
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

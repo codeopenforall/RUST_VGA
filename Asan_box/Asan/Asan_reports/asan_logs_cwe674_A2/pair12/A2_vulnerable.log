@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair12_a2_vulnerable_rh72vf00) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_a2_vulnerable v0.1.0 (/tmp/asan_pair12_a2_vulnerable_rh72vf00)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair12_a2_vulnerable-9b960453506fb765)
+
+running 1 test
+
+thread 'tests::test_deep_input' (4020664) panicked at src/lib.rs:68:32:
+Expected an error due to deep recursion, but got a value: 5000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_deep_input ... FAILED
+
+failures:
+
+failures:
+    tests::test_deep_input
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

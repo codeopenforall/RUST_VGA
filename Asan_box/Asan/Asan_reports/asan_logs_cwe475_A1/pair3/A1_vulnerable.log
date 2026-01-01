@@ -1,0 +1,50 @@
+$ (cwd=/tmp/asan_pair3_a1_vulnerable__iqeq3pz) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_a1_vulnerable v0.1.0 (/tmp/asan_pair3_a1_vulnerable__iqeq3pz)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44)
+
+running 1 test
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==3816893==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x72fada8c49d0 bp 0x6efad75fe230 sp 0x6efad75fd9e8 T1)
+==3816893==The signal is caused by a READ memory access.
+==3816893==Hint: address points to the zero page.
+    #0 0x72fada8c49d0  (/lib/x86_64-linux-gnu/libc.so.6+0xc49d0) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #1 0x63467847ccfb  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0xeecfb) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #2 0x6346784ae64c  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x12064c) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #3 0x6346784ad0db  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x11f0db) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #4 0x6346784ad616  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x11f616) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #5 0x6346784ad9d5  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x11f9d5) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #6 0x6346784d05fa  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x1425fa) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #7 0x6346784e5fe4  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x157fe4) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #8 0x6346784bca03  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x12ea03) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #9 0x6346784c03e9  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x1323e9) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #10 0x63467850600e  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x17800e) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #11 0x63467847cbb6  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0xeebb6) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #12 0x72fada894ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #13 0x72fada92684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+==3816893==Register values:
+rax = 0x00006efad68ff020  rbx = 0xf3f3f304f1f1f101  rcx = 0x00000ddfdad17e04  rdx = 0x0000000000000004  
+rdi = 0x00006efad68ff020  rsi = 0x0000000000000004  rbp = 0x00006efad75fe230  rsp = 0x00006efad75fd9e8  
+ r8 = 0x00000ddf5ad1fe04   r9 = 0x0000000000000000  r10 = 0x00000ddf5ad1fe04  r11 = 0x0000000000000004  
+r12 = 0x00000ddfdad17e00  r13 = 0xffffffffffffffc3  r14 = 0x000000003b9aca00  r15 = 0x0000000000000001  
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/lib/x86_64-linux-gnu/libc.so.6+0xc49d0) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd) 
+Thread T1 created by T0 here:
+    #0 0x6346784635e1  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0xd55e1) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #1 0x63467850622f  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x17822f) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #2 0x6346784e4b5d  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x156b5d) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #3 0x6346784ddea4  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x14fea4) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #4 0x6346784e74e5  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x1594e5) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #5 0x6346784d023a  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x14223a) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #6 0x6346784ae4f2  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x1204f2) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #7 0x6346784aed9f  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x120d9f) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+    #8 0x6346784ae6dd  (/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44+0x1206dd) (BuildId: b3eef792b919f2f4ab5eb7ef0dd0e69d57de444a)
+
+==3816893==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair3_a1_vulnerable__iqeq3pz/target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44 --nocapture` (exit status: 1)

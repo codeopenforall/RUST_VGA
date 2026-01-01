@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair6_fixed_ilbrlu8j) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_fixed v0.1.0 (/tmp/asan_pair6_fixed_ilbrlu8j)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair6_fixed-445734661b383018)
+
+running 1 test
+test tests::test_out_of_bounds ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair10_a3_fixed_55qbb3_w) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair10_a3_fixed v0.1.0 (/tmp/asan_pair10_a3_fixed_55qbb3_w)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair10_a3_fixed-f81522ee71bc69e9)
+
+running 1 test
+test tests::authentication_oracle ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

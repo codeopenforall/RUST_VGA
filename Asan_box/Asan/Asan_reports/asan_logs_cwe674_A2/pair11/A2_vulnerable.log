@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair11_a2_vulnerable_qm3b361x) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a2_vulnerable v0.1.0 (/tmp/asan_pair11_a2_vulnerable_qm3b361x)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running unittests src/lib.rs (target/debug/deps/pair11_a2_vulnerable-9b1b753f26f9c656)
+
+running 1 test
+
+thread 'tests::recursion_limit_test' (4020356) panicked at src/lib.rs:66:17:
+assertion `left == right` failed: Expected error due to maximum recursion depth being exceeded
+  left: Ok(0)
+ right: Err("Maximum recursion depth exceeded")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::recursion_limit_test ... FAILED
+
+failures:
+
+failures:
+    tests::recursion_limit_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

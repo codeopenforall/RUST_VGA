@@ -1,0 +1,70 @@
+use std::io::{Result, Write};
+use std::sync::Arc;
+use std::thread;
+use std::ffi::CString;
+use std::os::raw::c_char;
+pub struct HttpResponse {
+    header: String,
+}
+impl HttpResponse {
+    pub fn new() -> Self {
+        HttpResponse { header: String::new() }
+    }
+    pub fn set_hdr(&mut self, name: &str, value: &str) {
+        self.header = format!("{}: {}\r\n", name, value.replace("\r", "").replace("\n", ""));
+        unsafe {
+            let c_string = CString::new(self.header.clone()).unwrap();
+            let ptr: *const c_char = c_string.as_ptr();
+            std::ptr::read_volatile(ptr);
+        }
+    }
+    pub fn get_hdr(&self) -> &str {
+        &self.header
+    }
+    pub fn send(&self) -> Result<()> {
+        let mut out = std::io::stdout();
+        out.write_all(self.header.as_bytes())?;
+        Ok(())
+    }
+}
+pub fn generate_response(input: &str) -> String {
+    let mut resp = HttpResponse::new();
+    resp.set_hdr("Location", input);
+    resp.get_hdr().to_string()
+}
+fn run_bg(input: String) {
+    let shared_input = Arc::new(input);
+    let shared_clone = Arc::clone(&shared_input);
+    thread::spawn(move || {
+        let mut resp = HttpResponse::new();
+        resp.set_hdr("Location", &shared_clone);
+        resp.send().unwrap();
+    })
+    .join()
+    .unwrap();
+}
+fn main() {
+    let inj = "https://example.com\r\nInjected: malicious".to_string();
+    run_bg(inj);
+}
+
+//////////////////////
+// Test Oracle Function
+//////////////////////
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_crlf_injection_prevention() {
+        // Malicious input containing CRLF injection.
+        let malicious_input = "https://example.com\r\nInjected: malicious";
+        let header = generate_response(malicious_input);
+        // The fixed version must never include an injected header part.
+        // For the vulnerable version this assertion would fail.
+        assert!(
+            !header.contains("\r\nInjected:"),
+            "CRLF injection detected in header"
+        );
+    }
+}

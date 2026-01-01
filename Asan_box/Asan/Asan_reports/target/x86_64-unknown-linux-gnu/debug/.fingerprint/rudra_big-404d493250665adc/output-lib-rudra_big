@@ -1,0 +1,105 @@
+Warning (UnsafeDataflow:/CopyFlow/WriteFlow): Potential unsafe dataflow issue in `dataset::o3_mini::data_generation_real_cves_cve_2021_25900_vulnerable::SmallVec::<A>::insert_many`
+-> src/dataset/o3_mini/data_generation/Real CVEs/CVE-2021-25900/vulnerable.rs:38:5: 80:6
+pub fn insert_many<I: IntoIterator<Item = A::Item>>(&mut self, index: usize, iterable: I) {
+        let iter = [0m[36miterable.into_iter()[0m;
+
+        if index == self.len() {
+            return self.extend(iter);
+        }
+
+        let (lower_size_bound, _upper_size_bound) = [0m[36miter.size_hint()[0m;
+        assert!(lower_size_bound <= isize::MAX as usize);
+        assert!(index + lower_size_bound >= index);
+        self.reserve(lower_size_bound);
+
+        unsafe {
+            let old_len = self.len();
+            assert!(index <= old_len);
+
+            let mut ptr0 = self.as_mut_ptr().offset(index as isize);
+
+            // Move the trailing elements.
+            [0m[31mptr::copy(ptr0, ptr0.offset(lower_size_bound as isize), old_len - index)[0m;
+
+            // In case the iterator panics, don't double-drop the items we just copied above.
+            self.set_len(index);
+
+            let mut num_added = 0;
+            for element in [0m[36miter[0m {
+                let mut cur = ptr0.offset(num_added as isize);
+
+                if num_added >= lower_size_bound {
+                    // Iterator provided more elements than the hint. Move trailing items again.
+                    self.reserve(1);
+                    ptr0 = self.as_mut_ptr().offset(index as isize);
+                    cur = ptr0.offset(num_added as isize);
+                    [0m[31mptr::copy(cur, cur.offset(1), old_len - index)[0m;
+                }
+
+                [0m[33mptr::write(cur, element)[0m;
+                num_added += 1;
+            }
+
+            self.set_len(old_len + num_added);
+        }
+    }
+[0m
+Warning (UnsafeDataflow:/CopyFlow/WriteFlow): Potential unsafe dataflow issue in `dataset::o3_mini::data_generation_real_cves_cve_2021_25900_fixed::SmallVec::<A>::insert_many`
+-> src/dataset/o3_mini/data_generation/Real CVEs/CVE-2021-25900/fixed.rs:37:5: 92:6
+pub fn insert_many<I: IntoIterator<Item = A::Item>>(&mut self, index: usize, iterable: I) {
+        let mut iter = [0m[36miterable.into_iter()[0m;
+
+        if index == self.len() {
+            return self.extend(iter);
+        }
+
+        let (lower_size_bound, _upper_size_bound) = [0m[36miter.size_hint()[0m;
+        assert!(lower_size_bound <= isize::MAX as usize); // Ensure offset is indexable
+        assert!(index + lower_size_bound >= index);       // Protect against overflow
+        self.reserve(lower_size_bound);
+
+        let mut num_added = 0;
+
+        unsafe {
+            let old_len = self.len();
+            assert!(index <= old_len);
+
+            let ptr0 = self.as_mut_ptr().offset(index as isize);
+
+            // Move the trailing elements.
+            [0m[31mptr::copy(ptr0, ptr0.offset(lower_size_bound as isize), old_len - index)[0m;
+
+            // In case the iterator panics, don't double-drop the items we just copied above.
+            self.set_len(index);
+
+            while num_added < lower_size_bound {
+                let element = match [0m[36miter.next()[0m {
+                    Some(x) => x,
+                    None => break,
+                };
+
+                let cur = ptr0.offset(num_added as isize);
+                [0m[33mptr::write(cur, element)[0m;
+                num_added += 1;
+            }
+
+            if num_added < lower_size_bound {
+                // Iterator provided fewer elements than the hint
+                [0m[31mptr::copy(
+                    ptr0.offset(lower_size_bound as isize),
+                    ptr0.offset(num_added as isize),
+                    old_len - index,
+                )[0m;
+            }
+
+            self.set_len(old_len + num_added);
+        }
+
+        // If the iterator has more than `lower_size_bound` elements,
+        // insert the rest one-by-one.
+        for element in [0m[36miter[0m {
+            self.insert(index + num_added, element);
+            num_added += 1;
+        }
+    }
+[0m

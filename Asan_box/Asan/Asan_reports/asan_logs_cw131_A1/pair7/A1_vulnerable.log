@@ -1,0 +1,74 @@
+$ (cwd=/tmp/asan_pair7_a1_vulnerable_gx6db1t3) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair7_a1_vulnerable v0.1.0 (/tmp/asan_pair7_a1_vulnerable_gx6db1t3)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00)
+
+running 1 test
+=================================================================
+==3798688==ERROR: AddressSanitizer: global-buffer-overflow on address 0x61df82d08685 at pc 0x61df82dcbadb bp 0x79b53e1fe230 sp 0x79b53e1fd9f0
+READ of size 16 at 0x61df82d08685 thread T1
+    #0 0x61df82dcbada  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0xefada) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #1 0x61df82dfca27  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x120a27) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #2 0x61df82dfd355  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x121355) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #3 0x61df82dfd8b6  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x1218b6) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #4 0x61df82dfcf25  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x120f25) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #5 0x61df82e2047a  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x14447a) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #6 0x61df82e35e64  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x159e64) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #7 0x61df82e0c883  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x130883) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #8 0x61df82e10269  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x134269) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #9 0x61df82e55e8e  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x179e8e) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #10 0x61df82dcb716  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0xef716) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #11 0x7db541494ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7db54152684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x61df82d08685 is located 27 bytes before global variable 'alloc_466e6e10d4d5a95679ab35d1156aa54e' defined in '7loh23j1o6sb8j13lyi2nnvxl' (0x61df82d086a0) of size 11
+  'alloc_466e6e10d4d5a95679ab35d1156aa54e' is ascii string 'src/lib.rs'
+0x61df82d08685 is located 0 bytes after global variable 'alloc_01813120bdac20d6f26af7bcecedd794' defined in '7loh23j1o6sb8j13lyi2nnvxl' (0x61df82d08680) of size 5
+SUMMARY: AddressSanitizer: global-buffer-overflow (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0xefada) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91) 
+Shadow bytes around the buggy address:
+  0x61df82d08400: 00 03 f9 f9 00 00 07 f9 f9 f9 f9 f9 00 02 f9 f9
+  0x61df82d08480: 00 00 00 00 00 00 00 00 00 04 f9 f9 f9 f9 f9 f9
+  0x61df82d08500: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x61df82d08580: 00 00 00 00 00 00 00 00 00 00 00 00 06 f9 f9 f9
+  0x61df82d08600: f9 f9 f9 f9 00 00 f9 f9 00 00 00 00 00 00 00 00
+=>0x61df82d08680:[05]f9 f9 f9 00 03 f9 f9 00 00 00 00 00 00 00 00
+  0x61df82d08700: 00 00 00 00 00 00 01 f9 f9 f9 f9 f9 00 00 00 00
+  0x61df82d08780: 00 00 00 00 00 00 00 00 00 05 f9 f9 f9 f9 f9 f9
+  0x61df82d08800: 00 00 00 00 00 00 00 00 00 00 00 00 00 05 f9 f9
+  0x61df82d08880: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 00 00 00
+  0x61df82d08900: 00 07 f9 f9 f9 f9 f9 f9 00 00 f9 f9 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+Thread T1 created by T0 here:
+    #0 0x61df82db2141  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0xd6141) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #1 0x61df82e560af  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x17a0af) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #2 0x61df82e349dd  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x1589dd) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #3 0x61df82e2dd24  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x151d24) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #4 0x61df82e37365  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x15b365) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #5 0x61df82e200ba  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x1440ba) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #6 0x61df82dfcaa2  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x120aa2) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #7 0x61df82dfd13f  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x12113f) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+    #8 0x61df82dfcacd  (/tmp/asan_pair7_a1_vulnerable_gx6db1t3/target/debug/deps/pair7_a1_vulnerable-05f9bea612968f00+0x120acd) (BuildId: dedbfb527927958e178ecf84e17f30235cc01b91)
+
+test tests::test_buffer_copy ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

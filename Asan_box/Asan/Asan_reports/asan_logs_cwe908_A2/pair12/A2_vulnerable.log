@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair12_a2_vulnerable__v3etkl5) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_a2_vulnerable v0.1.0 (/tmp/asan_pair12_a2_vulnerable__v3etkl5)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair12_a2_vulnerable-9b960453506fb765)
+
+running 1 test
+
+thread 'tests::test_sum' (4031982) panicked at src/lib.rs:79:9:
+assertion `left == right` failed: Main thread computed incorrect sum
+  left: 42
+ right: 170
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_sum ... FAILED
+
+failures:
+
+failures:
+    tests::test_sum
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

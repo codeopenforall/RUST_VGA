@@ -1,0 +1,148 @@
+$ (cwd=/tmp/asan_pair19_vulnerable_xpuh_3fj) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_vulnerable v0.1.0 (/tmp/asan_pair19_vulnerable_xpuh_3fj)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair19_vulnerable-d284d2f5c035ec52)
+
+running 1 test
+=================================================================
+==3455704==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x770b6ede18b8 at pc 0x65195fd7959e bp 0x76db6c7fe190 sp 0x76db6c7fd950
+WRITE of size 29 at 0x770b6ede18b8 thread T1
+    #0 0x65195fd7959d  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xef59d) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #1 0x65195fdab65c  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12165c) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #2 0x65195fda9b5c  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x11fb5c) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #3 0x65195fdaac46  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x120c46) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #4 0x65195fdaa9e5  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1209e5) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #5 0x65195fdcd36a  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x14336a) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #6 0x65195fde2d54  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x158d54) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #7 0x65195fdb9773  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12f773) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #8 0x65195fdbd159  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x133159) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #9 0x65195fe02d7e  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x178d7e) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #10 0x65195fd79136  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xef136) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #11 0x7adb6fa94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7adb6fb2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x770b6ede18b8 is located 0 bytes after 24-byte region [0x770b6ede18a0,0x770b6ede18b8)
+allocated by thread T1 here:
+    #0 0x65195fd7b274  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xf1274) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #1 0x65195fe3330d  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1a930d) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #2 0x65195fda972e  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x11f72e) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #3 0x65195fdaba4c  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x121a4c) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #4 0x65195fda9b5c  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x11fb5c) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #5 0x65195fdaac46  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x120c46) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #6 0x65195fde2d54  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x158d54) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #7 0x65195fdb9773  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12f773) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #8 0x65195fdbd159  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x133159) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #9 0x65195fe02d7e  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x178d7e) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #10 0x65195fd79136  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xef136) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+
+Thread T1 created by T0 here:
+    #0 0x65195fd5fb61  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xd5b61) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #1 0x65195fe02f9f  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x178f9f) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #2 0x65195fde18cd  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1578cd) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #3 0x65195fddac14  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x150c14) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #4 0x65195fde4255  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x15a255) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #5 0x65195fdccfaa  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x142faa) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #6 0x65195fdab452  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x121452) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #7 0x65195fdaad5f  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x120d5f) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #8 0x65195fdab82d  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12182d) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xef59d) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59) 
+Shadow bytes around the buggy address:
+  0x770b6ede1600: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1680: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1700: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1780: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1800: fa fa fd fd fd fd fa fa fd fd fd fd fa fa 00 00
+=>0x770b6ede1880: 00 00 fa fa 00 00 00[fa]fa fa fa fa fa fa fa fa
+  0x770b6ede1900: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1980: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1a00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1a80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1b00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+=================================================================
+==3455704==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x770b6ede18bd at pc 0x65195fdab6bc bp 0x76db6c7fe190 sp 0x76db6c7fe188
+WRITE of size 1 at 0x770b6ede18bd thread T1
+    #0 0x65195fdab6bb  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1216bb) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #1 0x65195fda9b5c  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x11fb5c) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #2 0x65195fdaac46  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x120c46) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #3 0x65195fdaa9e5  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1209e5) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #4 0x65195fdcd36a  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x14336a) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #5 0x65195fde2d54  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x158d54) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #6 0x65195fdb9773  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12f773) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #7 0x65195fdbd159  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x133159) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #8 0x65195fe02d7e  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x178d7e) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #9 0x65195fd79136  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xef136) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #10 0x7adb6fa94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #11 0x7adb6fb2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x770b6ede18bd is located 5 bytes after 24-byte region [0x770b6ede18a0,0x770b6ede18b8)
+allocated by thread T1 here:
+    #0 0x65195fd7b274  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xf1274) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #1 0x65195fe3330d  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1a930d) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #2 0x65195fda972e  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x11f72e) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #3 0x65195fdaba4c  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x121a4c) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #4 0x65195fda9b5c  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x11fb5c) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #5 0x65195fdaac46  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x120c46) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #6 0x65195fde2d54  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x158d54) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #7 0x65195fdb9773  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12f773) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #8 0x65195fdbd159  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x133159) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #9 0x65195fe02d7e  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x178d7e) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+    #10 0x65195fd79136  (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xef136) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1216bb) (BuildId: 1ab8a9531bca8b2d07c8186a79e35c74328eaa59) 
+Shadow bytes around the buggy address:
+  0x770b6ede1600: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1680: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1700: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1780: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1800: fa fa fd fd fd fd fa fa fd fd fd fd fa fa 00 00
+=>0x770b6ede1880: 00 00 fa fa 00 00 00[fa]fa fa fa fa fa fa fa fa
+  0x770b6ede1900: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1980: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1a00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1a80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x770b6ede1b00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3455704==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair19_vulnerable_xpuh_3fj/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52 --nocapture` (exit status: 1)

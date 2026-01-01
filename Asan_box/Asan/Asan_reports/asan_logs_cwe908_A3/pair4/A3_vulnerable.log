@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair4_a3_vulnerable_5n91478n) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a3_vulnerable v0.1.0 (/tmp/asan_pair4_a3_vulnerable_5n91478n)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair4_a3_vulnerable-d0cbb8f68f205ace)
+
+running 1 test
+
+thread 'tests::test_oracle' (9781) panicked at src/lib.rs:50:9:
+assertion `left == right` failed: Expected the result to be 100, but got 1582956032
+  left: 1582956032
+ right: 100
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::test_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

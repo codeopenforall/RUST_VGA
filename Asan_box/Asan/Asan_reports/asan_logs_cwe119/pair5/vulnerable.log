@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair5_vulnerable_shat0_j6) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair5_vulnerable v0.1.0 (/tmp/asan_pair5_vulnerable_shat0_j6)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair5_vulnerable-55a9c05667f33897)
+
+running 1 test
+
+thread 'tests::oracle_test' (3445782) panicked at src/lib.rs:51:9:
+Integrity check failed: sentinel was corrupted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::oracle_test ... FAILED
+
+failures:
+
+failures:
+    tests::oracle_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

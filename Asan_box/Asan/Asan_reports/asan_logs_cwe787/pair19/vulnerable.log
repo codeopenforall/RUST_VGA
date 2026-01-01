@@ -1,0 +1,99 @@
+$ (cwd=/tmp/asan_pair19_vulnerable_hajv829b) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_vulnerable v0.1.0 (/tmp/asan_pair19_vulnerable_hajv829b)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running unittests src/lib.rs (target/debug/deps/pair19_vulnerable-d284d2f5c035ec52)
+
+running 1 test
+=================================================================
+==3496380==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x799c3efe401a at pc 0x5fc074116140 bp 0x797c3bcf45b0 sp 0x797c3bcf45a8
+WRITE of size 1 at 0x799c3efe401a thread T2
+    #0 0x5fc07411613f  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x13113f) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #1 0x5fc074113659  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12e659) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #2 0x5fc07410cc6d  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x127c6d) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #3 0x5fc074119264  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x134264) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #4 0x5fc07410f75d  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12a75d) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #5 0x5fc074113ca7  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12eca7) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #6 0x5fc07411993a  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x13493a) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #7 0x5fc074118b4c  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x133b4c) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #8 0x5fc0741106bd  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12b6bd) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #9 0x5fc074174b2e  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x18fb2e) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #10 0x5fc0740dbd66  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xf6d66) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #11 0x7d7c3fc94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7d7c3fd2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x799c3efe401a is located 0 bytes after 10-byte region [0x799c3efe4010,0x799c3efe401a)
+allocated by thread T1 here:
+    #0 0x5fc0740de094  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xf9094) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #1 0x5fc0741a50e1  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1c00e1) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #2 0x5fc07410ca5e  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x127a5e) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #3 0x5fc07411620c  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x13120c) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #4 0x5fc07410ddbd  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x128dbd) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #5 0x5fc074113366  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12e366) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #6 0x5fc074154b04  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x16fb04) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #7 0x5fc07412b523  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x146523) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #8 0x5fc07412ef09  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x149f09) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #9 0x5fc074174b2e  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x18fb2e) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #10 0x5fc0740dbd66  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xf6d66) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+
+Thread T2 created by T1 here:
+    #0 0x5fc0740c2791  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xdd791) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #1 0x5fc074174d4f  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x18fd4f) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #2 0x5fc074118207  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x133207) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #3 0x5fc074117506  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x132506) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #4 0x5fc07410def9  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x128ef9) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #5 0x5fc074113366  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12e366) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #6 0x5fc074154b04  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x16fb04) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #7 0x5fc07412b523  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x146523) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #8 0x5fc07412ef09  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x149f09) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #9 0x5fc074174b2e  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x18fb2e) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #10 0x5fc0740dbd66  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xf6d66) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+
+Thread T1 created by T0 here:
+    #0 0x5fc0740c2791  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0xdd791) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #1 0x5fc074174d4f  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x18fd4f) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #2 0x5fc07415367d  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x16e67d) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #3 0x5fc07414c9c4  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1679c4) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #4 0x5fc074156005  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x171005) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #5 0x5fc07413ed5a  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x159d5a) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #6 0x5fc0741161b2  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1311b2) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #7 0x5fc0741139af  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x12e9af) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+    #8 0x5fc0741161dd  (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x1311dd) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52+0x13113f) (BuildId: d8dd9ed795ade75a80607dc1786add4f60f93f9b) 
+Shadow bytes around the buggy address:
+  0x799c3efe3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x799c3efe3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x799c3efe3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x799c3efe3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x799c3efe3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x799c3efe4000: fa fa 00[02]fa fa fa fa fa fa fa fa fa fa fa fa
+  0x799c3efe4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x799c3efe4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x799c3efe4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x799c3efe4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x799c3efe4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3496380==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair19_vulnerable_hajv829b/target/debug/deps/pair19_vulnerable-d284d2f5c035ec52 --nocapture` (exit status: 1)

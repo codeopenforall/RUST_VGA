@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair4_a3_vulnerable_c7oclleg) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a3_vulnerable v0.1.0 (/tmp/asan_pair4_a3_vulnerable_c7oclleg)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair4_a3_vulnerable-d0cbb8f68f205ace)
+
+running 1 test
+
+thread 'tests::test_authentication_enforcement' (40769) panicked at src/lib.rs:41:9:
+assertion `left == right` failed: Authentication bypassed for token: secXXX
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_authentication_enforcement ... FAILED
+
+failures:
+
+failures:
+    tests::test_authentication_enforcement
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

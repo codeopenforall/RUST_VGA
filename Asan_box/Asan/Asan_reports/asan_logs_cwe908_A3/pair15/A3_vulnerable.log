@@ -1,0 +1,18 @@
+$ (cwd=/tmp/asan_pair15_a3_vulnerable_g_fssqhe) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair15_a3_vulnerable v0.1.0 (/tmp/asan_pair15_a3_vulnerable_g_fssqhe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair15_a3_vulnerable-b28bb099dabc0f29)
+
+running 1 test
+
+thread 'tests::oracle' (7523) panicked at /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/alloc/src/vec/mod.rs:1637:18:
+unsafe precondition(s) violated: slice::from_raw_parts requires the pointer to be aligned and non-null, and the total size of the slice not to exceed `isize::MAX`
+
+This indicates a bug in the program. This Undefined Behavior check is optional, and cannot be relied on for safety.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread caused non-unwinding panic. aborting.
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair15_a3_vulnerable_g_fssqhe/target/debug/deps/pair15_a3_vulnerable-b28bb099dabc0f29 --nocapture` (signal: 6, SIGABRT: process abort signal)

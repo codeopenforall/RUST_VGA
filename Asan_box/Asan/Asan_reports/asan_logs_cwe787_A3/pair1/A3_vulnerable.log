@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair1_a3_vulnerable_kcw2lb3f) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_a3_vulnerable v0.1.0 (/tmp/asan_pair1_a3_vulnerable_kcw2lb3f)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair1_a3_vulnerable-78034ed2ab1e5da8)
+
+running 1 test
+
+thread '<unnamed>' (4193512) panicked at src/lib.rs:20:40:
+copy_from_slice: source slice length (10) does not match destination slice length (8)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::test_guard_integrity' (4193511) panicked at src/lib.rs:54:23:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+test tests::test_guard_integrity ... FAILED
+
+failures:
+
+failures:
+    tests::test_guard_integrity
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,83 @@
+$ (cwd=/tmp/asan_pair20_a2_vulnerable_fsy627c5) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair20_a2_vulnerable v0.1.0 (/tmp/asan_pair20_a2_vulnerable_fsy627c5)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b)
+
+running 1 test
+=================================================================
+==3990606==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x77a5303ff10a at pc 0x5e9a600c8866 bp 0x77a530dfe1e0 sp 0x77a530dfe1d8
+WRITE of size 1 at 0x77a5303ff10a thread T1
+    #0 0x5e9a600c8865  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x11f865) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #1 0x5e9a600c85aa  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x11f5aa) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #2 0x5e9a600ca9f2  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x1219f2) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #3 0x5e9a600ca886  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x121886) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #4 0x5e9a600c8c05  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x11fc05) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #5 0x5e9a600eb98a  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x14298a) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #6 0x5e9a60101374  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x158374) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #7 0x5e9a600d7d93  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x12ed93) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #8 0x5e9a600db779  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x132779) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #9 0x5e9a6012139e  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x17839e) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #10 0x5e9a60097a76  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0xeea76) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #11 0x7ba534294ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7ba53432684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+Address 0x77a5303ff10a is located in stack of thread T1 at offset 266 in frame
+    #0 0x5e9a600ca8af  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x1218af) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+
+  This frame has 5 object(s):
+    [32, 80) '_21' (line 61)
+    [112, 160) '_20' (line 61)
+    [192, 208) '_12' (line 61)
+    [224, 240) 'expected' (line 60)
+    [256, 266) 'instance' (line 48) <== Memory access at offset 266 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+Thread T1 created by T0 here:
+    #0 0x5e9a6007e4a1  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0xd54a1) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #1 0x5e9a601215bf  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x1785bf) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #2 0x5e9a600ffeed  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x156eed) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #3 0x5e9a600f9234  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x150234) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #4 0x5e9a60102875  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x159875) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #5 0x5e9a600eb5ca  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x1425ca) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #6 0x5e9a600c85e2  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x11f5e2) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #7 0x5e9a600c811f  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x11f11f) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+    #8 0x5e9a600c860d  (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x11f60d) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6)
+
+SUMMARY: AddressSanitizer: stack-buffer-overflow (/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b+0x11f865) (BuildId: 1d97cc2e98a2649b79f36c0fb79320eee216f9b6) 
+Shadow bytes around the buggy address:
+  0x77a5303fee80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x77a5303fef00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x77a5303fef80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x77a5303ff000: f1 f1 f1 f1 f8 f8 f8 f8 f8 f8 f2 f2 f2 f2 f8 f8
+  0x77a5303ff080: f8 f8 f8 f8 f2 f2 f2 f2 f8 f8 f2 f2 f8 f8 f2 f2
+=>0x77a5303ff100: 00[02]f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3
+  0x77a5303ff180: f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3
+  0x77a5303ff200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x77a5303ff280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x77a5303ff300: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x77a5303ff380: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3990606==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair20_a2_vulnerable_fsy627c5/target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b --nocapture` (exit status: 1)

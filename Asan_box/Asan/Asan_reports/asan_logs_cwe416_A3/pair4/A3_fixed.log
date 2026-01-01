@@ -1,0 +1,28 @@
+$ (cwd=/tmp/asan_pair4_a3_fixed_ml1uzz8g) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a3_fixed v0.1.0 (/tmp/asan_pair4_a3_fixed_ml1uzz8g)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f)
+
+running 1 test
+test tests::test_compute_result ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=================================================================
+==4171163==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 4 byte(s) in 1 object(s) allocated from:
+    #0 0x5c15fb5713d4  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0xf13d4) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+    #1 0x5c15fb5a1843  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0x121843) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+    #2 0x5c15fb5a1544  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0x121544) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+    #3 0x5c15fb5a278e  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0x12278e) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+    #4 0x5c15fb5a1b86  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0x121b86) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+    #5 0x5c15fb5d8f34  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0x158f34) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+    #6 0x5c15fb5af953  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0x12f953) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+    #7 0x5c15fb5b3339  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0x133339) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+    #8 0x5c15fb5f8f5e  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0x178f5e) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+    #9 0x5c15fb56f296  (/tmp/asan_pair4_a3_fixed_ml1uzz8g/target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f+0xef296) (BuildId: 211d0e9efdba975fb7d3e191bea44c6ba124bad7)
+
+SUMMARY: AddressSanitizer: 4 byte(s) leaked in 1 allocation(s).

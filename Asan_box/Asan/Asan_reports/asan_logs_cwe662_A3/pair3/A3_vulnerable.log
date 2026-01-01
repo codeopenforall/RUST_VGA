@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair3_a3_vulnerable_e0hfrupq) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_a3_vulnerable v0.1.0 (/tmp/asan_pair3_a3_vulnerable_e0hfrupq)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair3_a3_vulnerable-7a64940f447852cd)
+
+running 1 test
+
+thread 'tests::test_authentication' (40506) panicked at src/lib.rs:39:9:
+Authentication bypass vulnerability detected.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_authentication ... FAILED
+
+failures:
+
+failures:
+    tests::test_authentication
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,449 @@
+ikqnm@kc-sce-xugpu:~/PycharmProjects/rudra_sandbox/rudra_big$ history 1000
+    1  Copy code
+    2  chgrp -R shared-data /home/shared-data/
+    3  chgrp shared-data /home/shared-data/Dataset
+    4  chgrp shared-data /home/shared-data/Datasets
+    5  chgrp -R shared-data /home/shared-data/Datasets
+    6  chmod g+rw shared-data /home/shared-data/Datasets
+    7  chmod g+rw /home/shared-data/Datasets
+    8  ls -ld /Datasets
+    9  ls -ld /home/shared-data/Datasets
+   10  cp c_functions.zip /home/shared-data/C/
+   11  cp cpp_functionsFull.zip /home/shared-data/C++/
+   12  cd /home/shared-data/C/
+   13  unzip c_functions.zip
+   14  cd ..
+   15  cd C++
+   16  unzip cpp_functionsFull.zip
+   17  cd ..
+   18  ls
+   19  mkdir Datasets
+   20  ls
+   21  cp C Datasets/
+   22  cp /C /Datasets/
+   23  ls
+   24  cd Datasets/
+   25  ls
+   26  cd ..
+   27  ls
+   28  mv C C++ Java Datasets/
+   29  ls
+   30  cd Datasets/
+   31  ls
+   32  cd C
+   33  ls
+   34  cd ..
+   35  cd Java
+   36  ls
+   37  cd JavaMethods/
+   38  ls
+   39  cd /home/shared-data/Datasets/
+   40  ls
+   41  cd ..
+   42  bash
+   43  cd /home/shared-data
+   44  mkdir Java
+   45  cd Java
+   46  cd ..
+   47  cd home
+   48  cp -p /home/JavaMethods.zip /home/shared-data/Java/
+   49  cp -p /JavaMethods.zip /shared-data/Java/
+   50  cp -p JavaMethods.zip /shared-data/Java/
+   51  ls
+   52  cp -p /home/ikqnm/JavaMethods.zip /shared-data
+   53  ls
+   54  cd ikqnm/
+   55  cp -p /home/ikqnm/JavaMethods.zip /home/ikqnm/shared-data/Java
+   56  ls
+   57  curl -fsSL https://ollama.com/install.sh | sh
+   58  pip install torch torchvision torchaudio
+   59  pip install transformers
+   60  pip install accelerate
+   61  from sentence_transformers import SentenceTransformer
+   62  pip uninstall accelerate
+   63  pip uninstall sentence-transformers huggingface_hub
+   64  conda list --revisions
+   65  date
+   66  conda install --revision 11
+   67  pip install sentence-transformers==2.2.2  # Try this or another compatible version
+   68  pip cache purge
+   69  pip uninstall huggingface_hub
+   70  pip cache purge
+   71  pip uninstall transformers sentence-transformers
+   72  pip install transformers sentence-transformers
+   73  conda list
+   74  conda list --revisions
+   75  conda install --revision 8
+   76  conda env list
+   77  conda activate
+   78  conda env list
+   79  conda clean -a
+   80  pip cache info
+   81  pip cache purge
+   82  conda env list
+   83  conda activate irfan-ml-env
+   84  conda clean -a
+   85  exit
+   86  export DISPLAY=:10
+   87  xmessage "NOTICE: System will be taken offline after 5PM today for OS upgrade, please save work and log out prior to then." & disown
+   88  exit
+   89  export DISPLAY=:10
+   90  xmessage "NOTICE: System will be taken offline after 5PM today for OS upgrade, please save work and log out prior to then." & disown
+   91  exit
+   92  history
+   93  conda activate irfan-ml-env
+   94  jupyter notebook
+   95  sudo jupyter notebook
+   96  pip install sqlite3
+   97  less CWE-190_generated.jsonl
+   98  git clone --depth 1 https://github.com/hiyouga/LLaMA-Factory.git
+   99  cd LLaMA-Factory
+  100  pip install -e ".[torch,metrics]" --no-build-isolation
+  101  llamafactory-cli train examples/train_lora/llama3_lora_sft.yaml
+  102  llamafactory-cli chat examples/inference/llama3_lora_sft.yaml
+  103  pip install --upgrade huggingface_hub
+  104  huggingface-cli login
+  105  llamafactory-cli chat examples/inference/llama3_lora_sft.yaml
+  106  llamafactory-cli train examples/train_lora/llama3_lora_sft.yaml
+  107  pip install -e ".[torch,metrics]" --no-build-isolation
+  108  pip install -r requirements.txt
+  109  llamafactory-cli train examples/train_lora/llama3_lora_sft.yaml
+  110  clear
+  111  llamafactory-cli train examples/train_lora/llama3_lora_sft.yaml
+  112  pip install --upgrade huggingface_hub
+  113  huggingface-cli login
+  114  llamafactory-cli train examples/train_lora/llama3_lora_sft.yaml
+  115  huggingface-cli login
+  116  git clone --depth 1 https://github.com/hiyouga/LLaMA-Factory.git
+  117  cd LLaMA-Factory
+  118  pip install -e ".[torch,metrics]" --no-build-isolation
+  119  llamafactory-cli train examples/train_lora/llama3_lora_sft.yaml
+  120  llamafactory-cli chat examples/inference/llama3_lora_sft.yaml
+  121  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  122  clear
+  123  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  124  cd ..
+  125  ls
+  126  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  127  clear
+  128  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  129  clear
+  130  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  131  clear
+  132  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  133  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train train_yamls/eval_llama3_2.yaml
+  134  clear
+  135  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  136  clear
+  137  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  138  clear
+  139  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  140  curl https://huggingface.co
+  141  pip install --upgrade huggingface_hub
+  142  huggingface-cli login
+  143  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  144  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  145  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  146  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  147  pwd
+  148  ls
+  149  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  150  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  151  clear
+  152  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  153  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  154  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yamlclear
+  155  huggingface-cli login
+  156  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  157  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yamlclear
+  158  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  159  clear
+  160  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  161  clear
+  162  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  163  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli eval FineTune/eval_llama3_2.yaml
+  164  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  165  clear
+  166  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  167  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  168  clear
+  169  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  170  CUDA_VISIBLE_DEVICES=0 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  171  CUDA_VISIBLE_DEVICES=1 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  172  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  173  pgrep -l python
+  174  pkill -f python
+  175  sudo pkill -f python
+  176  pgrep -l python
+  177  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  178  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  179  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  180  clear
+  181  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting.yaml
+  182  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/
+  183  clear
+  184  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  185  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting_Mistral_7B.yaml
+  186  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_Mistral-7B.yaml
+  187  pip install --upgrade transformers
+  188  pip install --upgrade "transformers" "tokenizers"
+  189  python -c "import transformers, tokenizers; print(transformers.__version__, tokenizers.__version__)"
+  190  pip install transformers -U
+  191  python -c "import transformers, tokenizers; print(transformers.__version__, tokenizers.__version__)"
+  192  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+  193  python -c "import transformers, tokenizers; print(transformers.__version__, tokenizers.__version__)"
+  194  conda create -n tessa-env python=3.10 -y
+  195  cd ..
+  196  cd pythonProject/
+  197  conda activate tessa-env
+  198  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+  199  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+  200  pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+  201  pip install "transformers>=4.41.0" "tokenizers>=0.21,<0.22" accelerate
+  202  pip install tqdm rich datasets jupyter
+  203  python -c "import torch, transformers, tokenizers; print(torch.__version__, transformers.__version__, tokenizers.__version__)"
+  204  pip install --upgrade torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+  205  pip install --upgrade transformers tokenizers accelerate
+  206  python -c "import torch, transformers, tokenizers; print(torch.__version__, transformers.__version__, tokenizers.__version__)"
+  207  pip install --upgrade torch transformers tokenizers
+  208  pip install --upgrade torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+  209  pip install --upgrade transformers tokenizers accelerate
+  210  PyTorch
+  211  python -c "import torch; print(torch.__version__)"
+  212  conda activate tessa-env
+  213  pip install --upgrade torch torchvision torchaudio
+  214  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  215  rustc --version
+  216  cargo new Rust_Code_Augmentator
+  217  cd Rust_Code_Augmentator/
+  218  ls
+  219  cd src
+  220  ls
+  221  pwd
+  222  cargo build
+  223  cargo test
+  224  cargo run
+  225  cargo build
+  226  cargo test
+  227  cd ..
+  228  cd Rust_Code_Augmentator/
+  229  cd src
+  230  ls
+  231  cargo build
+  232  cargo test
+  233  cd ..
+  234  CUDA_VISIBLE_DEVICES=0,1,2,3 python -m llamafactory.cli train FineTune/fine_tuning_setting_llama3_2.yaml
+  235  CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train FineTune/eval_llama3_2.yaml
+  236  cd Rust_Code_Augmentator/
+  237  c src/
+  238  s
+  239  ls
+  240  cd src/
+  241  ls
+  242  cargo build
+  243  cargo test
+  244  cargo build
+  245  cargo test
+  246  cargo build
+  247  cargo test
+  248  cargo build
+  249  cargo test
+  250  cargo build
+  251  cargo test
+  252  cargo build
+  253  cargo test
+  254  cargo build
+  255  pip install -U "transformers>=4.45.0" "accelerate>=0.33.0" "torch>=2.1"  # keep CUDA build that matches your GP
+  256  conda list --revisions
+  257  conda activate tessa-env
+  258  conda list --revisions
+  259  pip uninstall -y torch torchvision transformers accelerate
+  260  nvcc --version
+  261  pip install --index-url https://download.pytorch.org/whl/cu124   torch==2.4.1 torchaudio==2.4.1
+  262  pip install "transformers==4.44.*" "accelerate>=0.30" "safetensors>=0.4.2"             "huggingface_hub>=0.23" "sentencepiece"
+  263  nvcc --version
+  264  cargo build
+  265  cargo test
+  266  cargo build
+  267  cargo test
+  268  cargo build
+  269  cargo test
+  270  cargo build
+  271  cargo test
+  272  cargo build
+  273  cargo test
+  274  pgrep -l pycharm
+  275  pkill -f pycharm
+  276  rm ~/.local/share/keyrings/login.keyring
+  277  cd ~/.local/share/keyrings/
+  278  ls
+  279  python3 gen_mods.py
+  280  ls
+  281  cd rudra_big/
+  282  python3 gen_mods.py
+  283  cargo +nightly-2021-10-21 rudra
+  284  python3 gen_mods.py
+  285  cargo +nightly-2021-10-21 rudra
+  286  python3 gen_mods.py
+  287  cargo +nightly-2021-10-21 rudra
+  288  python3 gen_mods.py
+  289  cargo +nightly-2021-10-21 rudra
+  290  python3 gen_mods.py
+  291  cargo +nightly-2021-10-21 rudra
+  292  python3 gen_mods.py
+  293  cargo +nightly-2021-10-21 rudra
+  294  clear
+  295  cargo +nightly-2021-10-21 rudra
+  296  python3 gen_mods.py
+  297  cargo +nightly-2021-10-21 rudra
+  298  python3 gen_mods.py
+  299  cargo +nightly-2021-10-21 rudra
+  300  clear
+  301  cargo +nightly-2021-10-21 rudra
+  302  python3 gen_mods.py
+  303  cargo +nightly-2021-10-21 rudra
+  304  python3 gen_mods.py
+  305  cargo +nightly-2021-10-21 rudra
+  306  python3 gen_mods.py
+  307  cargo +nightly-2021-10-21 rudra
+  308  python3 gen_mods.py
+  309  cargo +nightly-2021-10-21 rudra
+  310  clear
+  311  cargo +nightly-2021-10-21 rudra
+  312  python3 gen_mods.py
+  313  clear
+  314  cargo +nightly-2021-10-21 rudra
+  315  python3 gen_mods.py
+  316  clear
+  317  python3 gen_mods.py
+  318  cargo +nightly-2021-10-21 rudra
+  319  python3 gen_mods.py
+  320  cargo +nightly-2021-10-21 rudra
+  321  python3 gen_mods.py
+  322  cargo +nightly-2021-10-21 rudra
+  323  python3 gen_mods.py
+  324  cargo +nightly-2021-10-21 rudra
+  325  clear
+  326  RUSTFLAGS="-Aunused-imports" cargo +nightly-2021-10-21 rudra
+  327  python3 gen_mods.py
+  328  RUSTFLAGS="-Aunused-imports" cargo +nightly-2021-10-21 rudr
+  329  clear
+  330  RUSTFLAGS="-s" cargo +nightly-2021-10-21 rudra
+  331  python3 gen_mods.py
+  332  cargo +nightly-2021-10-21 rudra
+  333  python3 gen_mods.py
+  334  cargo +nightly-2021-10-21 rudra
+  335  python3 gen_mods.py
+  336  cargo +nightly-2021-10-21 rudra
+  337  python3 gen_mods.py
+  338  cargo +nightly-2021-10-21 rudra
+  339  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  340  python3 gen_mods.py
+  341  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  342  clear
+  343  python3 gen_mods.py
+  344  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  345  python3 gen_mods.py
+  346  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  347  python3 gen_mods.py
+  348  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  349  python3 gen_mods.py
+  350  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  351  rustc +nightly-2021-10-21 --version
+  352  rustc --version
+  353  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  354  python3 gen_mods.py
+  355  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  356  python3 gen_mods.py
+  357  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  358  clear
+  359  python3 gen_mods.py
+  360  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  361  python3 gen_mods.py
+  362  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  363  python3 gen_mods.py
+  364  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  365  clear
+  366  python3 gen_mods.py
+  367  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  368  python3 gen_mods.py
+  369  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  370  python3 gen_mods.py
+  371  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  372  python3 gen_mods.py
+  373  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  374  python3 gen_mods.py
+  375  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  376  clear
+  377  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  378  python3 gen_mods.py
+  379  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  380  python3 gen_mods.py
+  381  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  382  python3 gen_mods.py
+  383  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  384  python3 gen_mods.py
+  385  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  386  python3 gen_mods.py
+  387  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  388  python3 gen_mods.py
+  389  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  390  python3 gen_mods.py
+  391  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 rudra
+  392  RUSTFLAGS="-Awarnings" cargo +nightly-2021-10-21 check -vv
+  393  cargo +nightly-2021-10-21 check -vv
+  394  python3 gen_mods.py
+  395  RUSTFLAGS="-Z sanitizer=address" cargo +nightly test
+  396  clear
+  397  RUSTFLAGS="-Z sanitizer=address" cargo +nightly test
+  398  clear
+  399  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=1 cargo +nightly test
+  400  clear
+  401  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=1 cargo +nightly test
+  402  clear
+  403  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=1 cargo +nightly test
+  404  clear
+  405  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=1 cargo +nightly test
+  406  python3 asan_report.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly   --csv cwe119_asan_report.csv
+  407  clear
+  408  RUSTFLAGS="-Awarnings" python3 asan_report.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly   --csv cwe119_asan_report.csv
+  409  clear
+  410  python3 gen_mods.py
+  411  chmod +x asan_report.py
+  412  ./asan_report.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly   --show-fail-output
+  413  cd /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big
+  414  chmod +x asan_report.py
+  415  ./asan_report.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly
+  416  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=1 cargo +nightly test
+  417  cd /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big
+  418  python3 asan_report.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly   --show-output
+  419  cd /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big
+  420  python3 asan_dir_runner.py
+  421  ls
+  422  cd ASan_Report/
+  423  python3 asan_dir_runner.py
+  424  python3 gen_mods.py
+  425  python3 asan_dir_runner.py
+  426  cd /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/ASan_Report
+  427  python3 asan_dir_runner.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly
+  428  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=0 cargo +nightly test
+  429  python3 gen_mods.py
+  430  cd ..
+  431  python3 gen_mods.py
+  432  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=0 cargo +nightly test
+  433  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=1  cargo +nightly test
+  434  python3 asan_dir_runner.py
+  435  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=1 cargo +nightly test
+  436  clear
+  437  cd /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/ASan_Report
+  438  python3 asan_dir_runner.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly
+  439  python3 asan_dir_runner.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly   --asan-options "verbosity=0:halt_on_error=1"   --rust-backtrace 0
+  440  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=1 cargo +nightly test
+  441  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=0 cargo +nightly test
+  442  clear
+  443  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=0 cargo +nightly test
+  444  clear
+  445  RUSTFLAGS="-Awarnings -Z sanitizer=address" RUST_BACKTRACE=0 ASAN_OPTIONS=verbosity=0:halt_on_error=0 cargo +nightly test
+  446  python3 asan_dir_runner.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly
+  447  python3 asan_dir_runner.py   --root "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119"   --toolchain nightly   --asan-options "verbosity=0:halt_on_error=1"   --rust-backtrace 0
+  448  history 1000

@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair4_a1_vulnerable_tul259hi) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a1_vulnerable v0.1.0 (/tmp/asan_pair4_a1_vulnerable_tul259hi)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running unittests src/lib.rs (target/debug/deps/pair4_a1_vulnerable-ee33d34a8cd7a580)
+
+running 1 test
+
+thread 'tests::recursion_limit_oracle' (3826909) panicked at src/lib.rs:85:9:
+assertion `left == right` failed
+  left: "Missing closing parenthesis"
+ right: "Maximum recursion depth reached"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::recursion_limit_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::recursion_limit_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

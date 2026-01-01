@@ -1,0 +1,27 @@
+$ (cwd=/tmp/asan_pair17_a2_vulnerable_bus9_x3h) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair17_a2_vulnerable v0.1.0 (/tmp/asan_pair17_a2_vulnerable_bus9_x3h)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c)
+
+running 1 test
+test tests::test_calculate ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=================================================================
+==4011609==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 4 byte(s) in 1 object(s) allocated from:
+    #0 0x618e1d8ebf24  (/tmp/asan_pair17_a2_vulnerable_bus9_x3h/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0xf0f24) (BuildId: b325491255b5e24ee3819ec771fc1342e7faead0)
+    #1 0x618e1d91c793  (/tmp/asan_pair17_a2_vulnerable_bus9_x3h/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x121793) (BuildId: b325491255b5e24ee3819ec771fc1342e7faead0)
+    #2 0x618e1d91c494  (/tmp/asan_pair17_a2_vulnerable_bus9_x3h/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x121494) (BuildId: b325491255b5e24ee3819ec771fc1342e7faead0)
+    #3 0x618e1d91c916  (/tmp/asan_pair17_a2_vulnerable_bus9_x3h/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x121916) (BuildId: b325491255b5e24ee3819ec771fc1342e7faead0)
+    #4 0x618e1d9532d4  (/tmp/asan_pair17_a2_vulnerable_bus9_x3h/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x1582d4) (BuildId: b325491255b5e24ee3819ec771fc1342e7faead0)
+    #5 0x618e1d929cf3  (/tmp/asan_pair17_a2_vulnerable_bus9_x3h/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x12ecf3) (BuildId: b325491255b5e24ee3819ec771fc1342e7faead0)
+    #6 0x618e1d92d6d9  (/tmp/asan_pair17_a2_vulnerable_bus9_x3h/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x1326d9) (BuildId: b325491255b5e24ee3819ec771fc1342e7faead0)
+    #7 0x618e1d9732fe  (/tmp/asan_pair17_a2_vulnerable_bus9_x3h/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x1782fe) (BuildId: b325491255b5e24ee3819ec771fc1342e7faead0)
+    #8 0x618e1d8e9de6  (/tmp/asan_pair17_a2_vulnerable_bus9_x3h/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0xeede6) (BuildId: b325491255b5e24ee3819ec771fc1342e7faead0)
+
+SUMMARY: AddressSanitizer: 4 byte(s) leaked in 1 allocation(s).

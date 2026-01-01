@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair10_a3_vulnerable_t01l6qxo) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair10_a3_vulnerable v0.1.0 (/tmp/asan_pair10_a3_vulnerable_t01l6qxo)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair10_a3_vulnerable-2612b3092d427c3a)
+
+running 1 test
+
+thread '<unnamed>' (4145826) panicked at src/lib.rs:16:19:
+attempt to multiply with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::test_oracle' (4145825) panicked at src/lib.rs:35:32:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+test tests::test_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::test_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

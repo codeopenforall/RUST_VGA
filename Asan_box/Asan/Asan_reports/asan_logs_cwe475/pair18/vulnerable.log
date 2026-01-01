@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair18_vulnerable_i5tc_b4s) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_vulnerable v0.1.0 (/tmp/asan_pair18_vulnerable_i5tc_b4s)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running unittests src/lib.rs (target/debug/deps/pair18_vulnerable-bdaccf112456475f)
+
+running 1 test
+
+thread 'tests::test_empty_input_handling' (3485614) panicked at src/lib.rs:10:56:
+attempt to subtract with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::test_empty_input_handling' (3485614) panicked at src/lib.rs:45:17:
+Function panicked for empty input, indicating unsafe handling of API preconditions
+test tests::test_empty_input_handling ... FAILED
+
+failures:
+
+failures:
+    tests::test_empty_input_handling
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

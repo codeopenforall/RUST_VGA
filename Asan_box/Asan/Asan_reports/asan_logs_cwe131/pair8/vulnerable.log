@@ -1,0 +1,85 @@
+$ (cwd=/tmp/asan_pair8_vulnerable_24ens1qf) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair8_vulnerable v0.1.0 (/tmp/asan_pair8_vulnerable_24ens1qf)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair8_vulnerable-23975e7199656611)
+
+running 1 test
+=================================================================
+==3457702==ERROR: AddressSanitizer: global-buffer-overflow on address 0x587b433e28cd at pc 0x587b434a5e8b bp 0x752d5fbfe1d0 sp 0x752d5fbfd990
+READ of size 16 at 0x587b433e28cd thread T1
+    #0 0x587b434a5e8a  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0xefe8a) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #1 0x587b434d8232  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x122232) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #2 0x587b434d71ff  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1211ff) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #3 0x587b434d7d06  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x121d06) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #4 0x587b434d5f45  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x11ff45) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #5 0x587b434fa34a  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x14434a) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #6 0x587b4350fd34  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x159d34) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #7 0x587b434e6753  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x130753) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #8 0x587b434ea139  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x134139) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #9 0x587b4352fd5e  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x179d5e) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #10 0x587b434a5ac6  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0xefac6) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #11 0x792d62e94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x792d62f2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x587b433e28cd is located 19 bytes before global variable 'alloc_18fcf3e5367795f6fa10901bc2831c03' defined in '6lc3f1b1tdx3eeew4ul2z2ekg' (0x587b433e28e0) of size 35
+0x587b433e28cd is located 0 bytes after global variable 'alloc_e32c27c863c288e99cffe88ec48b3a85' defined in '6lc3f1b1tdx3eeew4ul2z2ekg' (0x587b433e28c0) of size 13
+SUMMARY: AddressSanitizer: global-buffer-overflow (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0xefe8a) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b) 
+Shadow bytes around the buggy address:
+  0x587b433e2600: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x587b433e2680: 00 00 00 00 06 f9 f9 f9 f9 f9 f9 f9 00 00 00 00
+  0x587b433e2700: 00 00 00 00 00 00 00 00 00 05 f9 f9 f9 f9 f9 f9
+  0x587b433e2780: 00 00 00 00 00 00 00 00 00 07 f9 f9 f9 f9 f9 f9
+  0x587b433e2800: 00 00 00 00 00 00 00 00 00 00 00 00 00 05 f9 f9
+=>0x587b433e2880: f9 f9 f9 f9 00 00 00 00 00[05]f9 f9 00 00 00 00
+  0x587b433e2900: 03 f9 f9 f9 f9 f9 f9 f9 00 03 f9 f9 00 00 00 00
+  0x587b433e2980: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x587b433e2a00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x587b433e2a80: 00 00 07 f9 f9 f9 f9 f9 f9 f9 f9 f9 00 00 00 00
+  0x587b433e2b00: 00 02 f9 f9 f9 f9 f9 f9 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+Thread T1 created by T0 here:
+    #0 0x587b4348c4f1  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0xd64f1) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #1 0x587b4352ff7f  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x179f7f) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #2 0x587b4350e8ad  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1588ad) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #3 0x587b43507bf4  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x151bf4) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #4 0x587b43511235  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x15b235) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #5 0x587b434f9f8a  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x143f8a) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #6 0x587b434d7f62  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x121f62) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #7 0x587b434d633f  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x12033f) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+    #8 0x587b434d832d  (/tmp/asan_pair8_vulnerable_24ens1qf/target/debug/deps/pair8_vulnerable-23975e7199656611+0x12232d) (BuildId: bdaba4e923ce8af3930571722a0f26557e5c3f5b)
+
+
+thread 'tests::test_buffer_integrity' (3457703) panicked at src/lib.rs:37:9:
+assertion `left == right` failed: The output does not match the input
+  left: "Hello, world!"
+ right: "Hello, world!\0\0\0"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_buffer_integrity ... FAILED
+
+failures:
+
+failures:
+    tests::test_buffer_integrity
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

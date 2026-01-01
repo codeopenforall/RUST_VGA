@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair17_a2_vulnerable_33ewjw6m) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair17_a2_vulnerable v0.1.0 (/tmp/asan_pair17_a2_vulnerable_33ewjw6m)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c)
+
+running 1 test
+
+thread 'tests::test_buffer_copy' (3858244) panicked at src/lib.rs:72:9:
+assertion `left == right` failed: Buffer copy did not yield the expected result
+  left: "A relatively longer string than expected, to trigger vulnerability."
+ right: "A relatively lon"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_buffer_copy ... FAILED
+
+failures:
+
+failures:
+    tests::test_buffer_copy
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

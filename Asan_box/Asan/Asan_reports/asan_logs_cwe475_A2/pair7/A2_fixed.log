@@ -1,0 +1,18 @@
+$ (cwd=/tmp/asan_pair7_a2_fixed_6ngta8se) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair7_a2_fixed v0.1.0 (/tmp/asan_pair7_a2_fixed_6ngta8se)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair7_a2_fixed-86adaee1035b531a)
+
+running 1 test
+
+thread '<unnamed>' (4018920) panicked at src/lib.rs:21:13:
+Provided index 10 is out-of-bound (max index 4).
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::boundary_check_test' (4018919) panicked at src/lib.rs:34:19:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+test tests::boundary_check_test ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

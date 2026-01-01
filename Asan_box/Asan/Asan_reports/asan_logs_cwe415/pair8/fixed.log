@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair8_fixed__gbwjnaz) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair8_fixed v0.1.0 (/tmp/asan_pair8_fixed__gbwjnaz)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair8_fixed-8aa009be5031ca2b)
+
+running 1 test
+test tests::test_double_free_detection ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

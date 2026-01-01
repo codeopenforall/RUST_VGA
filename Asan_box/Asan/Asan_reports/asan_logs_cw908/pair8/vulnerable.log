@@ -1,0 +1,28 @@
+$ (cwd=/tmp/asan_pair8_vulnerable_3nr9plb5) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair8_vulnerable v0.1.0 (/tmp/asan_pair8_vulnerable_3nr9plb5)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running unittests src/lib.rs (target/debug/deps/pair8_vulnerable-23975e7199656611)
+
+running 2 tests
+
+thread 'tests::test_config_integrity' (3503761) panicked at src/lib.rs:63:9:
+Configuration 'valid' flag is not properly initialized!
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_config_integrity ... FAILED
+
+thread 'tests::test_thread_results' (3503762) panicked at src/lib.rs:71:13:
+assertion `left == right` failed: Thread computation produced an unexpected result
+  left: 41
+ right: 43
+test tests::test_thread_results ... FAILED
+
+failures:
+
+failures:
+    tests::test_config_integrity
+    tests::test_thread_results
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

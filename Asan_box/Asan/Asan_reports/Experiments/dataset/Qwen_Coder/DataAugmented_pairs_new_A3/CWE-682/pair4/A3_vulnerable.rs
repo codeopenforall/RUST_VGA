@@ -1,0 +1,32 @@
+pub struct Purchase {
+    pub price: u32,
+    pub discount: u32,
+    pub tax: u32,
+}
+
+impl Purchase {
+    pub fn calculate(&self) -> u32 {
+        let discount_val = self.price * self.discount / 100;
+        let discounted_price = self.price - discount_val;
+        let tax_val = discounted_price / 100 * self.tax; // Vulnerable line
+        discounted_price + tax_val
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    // Bring the Purchase structure into scope.
+    use super::Purchase;
+
+    #[test]
+    fn test_total_calculation() {
+        // For an order with price 99, discount 20, and tax 8:
+        // The correct calculation should be:
+        // discount = 99 * 20 / 100 = 19,
+        // tax = 99 * 8 / 100 = 7,
+        // total = 99 - 19 + 7 = 87.
+        let order = Purchase { price: 99, discount: 20, tax: 8 };
+        let total = order.calculate();
+        assert_eq!(total, 87, "Computed total {} does not match the expected value 87", total);
+    }
+}

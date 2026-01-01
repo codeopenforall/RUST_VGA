@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair14_vulnerable_87hqg_52) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair14_vulnerable v0.1.0 (/tmp/asan_pair14_vulnerable_87hqg_52)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair14_vulnerable-5c31cfe416480dab)
+
+running 1 test
+
+thread 'tests::test_memory_release' (3473271) panicked at src/lib.rs:9:9:
+Double free detected!
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::test_memory_release' (3473271) panicked at src/lib.rs:48:9:
+app_run panicked due to double free vulnerability.
+test tests::test_memory_release ... FAILED
+
+failures:
+
+failures:
+    tests::test_memory_release
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

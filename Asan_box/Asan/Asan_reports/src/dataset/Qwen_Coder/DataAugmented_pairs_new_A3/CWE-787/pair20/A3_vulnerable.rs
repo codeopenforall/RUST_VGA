@@ -1,0 +1,39 @@
+struct CoreData {
+    vec: Vec<u32>,
+}
+
+impl CoreData {
+    pub fn new(capacity: usize) -> Self {
+        CoreData {
+            vec: Vec::with_capacity(capacity),
+        }
+    }
+
+    pub fn update(&mut self) {
+        unsafe {
+            let len = self.vec.len();
+            let ptr = self.vec.as_mut_ptr();
+            for i in 0..=len {
+                *ptr.add(i) = (i * 2) as u32;
+            }
+            self.vec.set_len(len + 1);
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    // Bring in necessary items from the surrounding scope.
+    use super::*;
+
+    #[test]
+    fn test_buffer_length() {
+        // Create an instance with fixed capacity.
+        let mut instance = CoreData::new(10);
+        // Invoke the update method.
+        instance.update();
+        // On a correct implementation the vector length remains 10.
+        // The vulnerable version incorrectly sets it to 11.
+        assert_eq!(instance.vec.len(), 10, "The vector length is incorrect, indicating an out-of-bound write.");
+    }
+}

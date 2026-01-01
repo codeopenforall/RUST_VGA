@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair3_a1_vulnerable_apvufeaj) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_a1_vulnerable v0.1.0 (/tmp/asan_pair3_a1_vulnerable_apvufeaj)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair3_a1_vulnerable-59222f2d75d14c44)
+
+running 1 test
+
+thread 'tests::test_total_computation' (3803072) panicked at src/lib.rs:49:9:
+assertion `left == right` failed: The total sum should be 15 but got 114
+  left: 114
+ right: 15
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_total_computation ... FAILED
+
+failures:
+
+failures:
+    tests::test_total_computation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

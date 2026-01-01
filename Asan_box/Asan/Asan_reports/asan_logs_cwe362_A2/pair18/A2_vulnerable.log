@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair18_a2_vulnerable_i1_slkcy) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a2_vulnerable v0.1.0 (/tmp/asan_pair18_a2_vulnerable_i1_slkcy)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair18_a2_vulnerable-68aa8f3e87b6faf1)
+
+running 1 test
+
+thread 'tests::oracle_test' (4097867) panicked at src/lib.rs:59:9:
+assertion `left == right` failed: Final count did not match expected value! Race condition exists.
+  left: 775
+ right: 1000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::oracle_test ... FAILED
+
+failures:
+
+failures:
+    tests::oracle_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

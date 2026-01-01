@@ -1,0 +1,26 @@
+{
+  "project_dir": "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big",
+  "toolchain": "nightly",
+  "target": "--lib",
+  "env": {
+    "RUSTFLAGS": "-Awarnings -Z sanitizer=address",
+    "RUST_BACKTRACE": "0",
+    "ASAN_OPTIONS": "verbosity=0:halt_on_error=1"
+  },
+  "counts": {
+    "PASS": 0,
+    "FAIL": 0,
+    "ASAN": 1,
+    "TIMEOUT": 0
+  },
+  "results": [
+    {
+      "test": "dataset::o3_mini::data_generation_cwe_119_pair1_vulnerable::tests::test_memory_bounds",
+      "status": "ASAN",
+      "returncode": 1,
+      "asan": true,
+      "seconds": 0.04,
+      "log": "/home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/asan_logs/dataset_o3_mini_data_generation_cwe_119_pair1_vulnerable_tests_test_memory_bounds.log"
+    }
+  ]
+}

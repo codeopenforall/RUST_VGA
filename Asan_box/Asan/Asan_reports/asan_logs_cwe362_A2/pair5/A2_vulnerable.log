@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair5_a2_vulnerable_sovf4x4y) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair5_a2_vulnerable v0.1.0 (/tmp/asan_pair5_a2_vulnerable_sovf4x4y)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair5_a2_vulnerable-db731dfb4565aecd)
+
+running 1 test
+
+thread 'tests::test_final_counter' (4099521) panicked at src/lib.rs:42:9:
+assertion `left == right` failed: Final counter value should be 8000, found 1034
+  left: 1034
+ right: 8000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_final_counter ... FAILED
+
+failures:
+
+failures:
+    tests::test_final_counter
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+error: test failed, to rerun pass `--lib`

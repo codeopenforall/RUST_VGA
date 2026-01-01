@@ -1,0 +1,18 @@
+
+running 1 test
+test tests::oracle_test ... FAILED
+
+failures:
+
+---- tests::oracle_test stdout ----
+
+thread 'tests::oracle_test' (646527) panicked at /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair5/vulnerable.rs:51:9:
+Integrity check failed: sentinel was corrupted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::oracle_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

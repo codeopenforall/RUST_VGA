@@ -1,0 +1,63 @@
+$ (cwd=/tmp/asan_pair9_a3_fixed_0termrjb) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair9_a3_fixed v0.1.0 (/tmp/asan_pair9_a3_fixed_0termrjb)
+error[E0277]: `*const u8` cannot be shared between threads safely
+  --> src/lib.rs:21:36
+   |
+21 |           let handle = thread::spawn(move || {
+   |  ______________________-------------_^
+   | |                      |
+   | |                      required by a bound introduced by this call
+22 | |             unsafe {
+23 | |                 if let Some(slice) = clone.as_slice() {
+24 | |                     slice.iter().map(|&b| b as u32).sum::<u32>()
+...  |
+29 | |         });
+   | |_________^ `*const u8` cannot be shared between threads safely
+   |
+   = help: within `Data`, the trait `Sync` is not implemented for `*const u8`
+note: required because it appears within the type `Data`
+  --> src/lib.rs:3:8
+   |
+ 3 | struct Data {
+   |        ^^^^
+   = note: required for `Arc<Data>` to implement `Send`
+note: required because it's used within this closure
+  --> src/lib.rs:21:36
+   |
+21 |         let handle = thread::spawn(move || {
+   |                                    ^^^^^^^
+note: required by a bound in `spawn`
+  --> /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/std/src/thread/mod.rs:723:1
+
+error[E0277]: `*const u8` cannot be sent between threads safely
+  --> src/lib.rs:21:36
+   |
+21 |           let handle = thread::spawn(move || {
+   |  ______________________-------------_^
+   | |                      |
+   | |                      required by a bound introduced by this call
+22 | |             unsafe {
+23 | |                 if let Some(slice) = clone.as_slice() {
+24 | |                     slice.iter().map(|&b| b as u32).sum::<u32>()
+...  |
+29 | |         });
+   | |_________^ `*const u8` cannot be sent between threads safely
+   |
+   = help: within `Data`, the trait `Send` is not implemented for `*const u8`
+note: required because it appears within the type `Data`
+  --> src/lib.rs:3:8
+   |
+ 3 | struct Data {
+   |        ^^^^
+   = note: required for `Arc<Data>` to implement `Send`
+note: required because it's used within this closure
+  --> src/lib.rs:21:36
+   |
+21 |         let handle = thread::spawn(move || {
+   |                                    ^^^^^^^
+note: required by a bound in `spawn`
+  --> /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/std/src/thread/mod.rs:723:1
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `pair9_a3_fixed` (lib test) due to 2 previous errors

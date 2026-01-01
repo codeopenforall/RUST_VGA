@@ -1,0 +1,20 @@
+
+running 1 test
+test tests::memory_bounds_oracle ... FAILED
+
+failures:
+
+---- tests::memory_bounds_oracle stdout ----
+
+thread 'tests::memory_bounds_oracle' (645219) panicked at /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair17/vulnerable.rs:55:9:
+assertion `left == right` failed: Expected first byte to be 42
+  left: 0
+ right: 42
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::memory_bounds_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

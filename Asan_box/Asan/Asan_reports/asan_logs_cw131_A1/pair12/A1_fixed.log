@@ -1,0 +1,73 @@
+$ (cwd=/tmp/asan_pair12_a1_fixed_b5mexglt) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_a1_fixed v0.1.0 (/tmp/asan_pair12_a1_fixed_b5mexglt)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair12_a1_fixed-b712d76e00cc66db)
+
+running 1 test
+=================================================================
+==3794688==ERROR: AddressSanitizer: global-buffer-overflow on address 0x5c2a52ff344d at pc 0x5c2a530b5e8b bp 0x7b225d9fe250 sp 0x7b225d9fda10
+READ of size 14 at 0x5c2a52ff344d thread T1
+    #0 0x5c2a530b5e8a  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0xefe8a) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #1 0x5c2a530e6b98  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x120b98) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #2 0x5c2a530e8c96  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x122c96) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #3 0x5c2a530e6356  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x120356) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #4 0x5c2a530e72b5  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x1212b5) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #5 0x5c2a5310a2aa  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x1442aa) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #6 0x5c2a5311fc94  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x159c94) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #7 0x5c2a530f66b3  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x1306b3) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #8 0x5c2a530fa099  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x134099) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #9 0x5c2a5313fcbe  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x179cbe) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #10 0x5c2a530b5ac6  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0xefac6) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #11 0x7f2260c94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7f2260d2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x5c2a52ff344d is located 19 bytes before global variable 'alloc_2fd93eda1804bcf3e61c9a4354508311' defined in 'ampo0j1fl4h5epp0kcy0c7c5i' (0x5c2a52ff3460) of size 44
+0x5c2a52ff344d is located 0 bytes after global variable 'alloc_e32c27c863c288e99cffe88ec48b3a85' defined in 'ampo0j1fl4h5epp0kcy0c7c5i' (0x5c2a52ff3440) of size 13
+SUMMARY: AddressSanitizer: global-buffer-overflow (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0xefe8a) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3) 
+Shadow bytes around the buggy address:
+  0x5c2a52ff3180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5c2a52ff3200: 00 00 00 00 00 00 00 00 00 00 07 f9 f9 f9 f9 f9
+  0x5c2a52ff3280: f9 f9 f9 f9 00 00 00 00 00 02 f9 f9 f9 f9 f9 f9
+  0x5c2a52ff3300: 00 00 00 00 00 00 00 00 00 06 f9 f9 f9 f9 f9 f9
+  0x5c2a52ff3380: 00 00 f9 f9 00 00 00 00 00 00 00 00 00 00 02 f9
+=>0x5c2a52ff3400: f9 f9 f9 f9 00 00 00 00 00[05]f9 f9 00 00 00 00
+  0x5c2a52ff3480: 00 04 f9 f9 f9 f9 f9 f9 00 03 f9 f9 00 00 00 00
+  0x5c2a52ff3500: 04 f9 f9 f9 04 f9 f9 f9 00 00 00 00 00 00 00 00
+  0x5c2a52ff3580: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x5c2a52ff3600: 00 00 00 00 00 00 00 05 f9 f9 f9 f9 00 00 f9 f9
+  0x5c2a52ff3680: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+Thread T1 created by T0 here:
+    #0 0x5c2a5309c4f1  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0xd64f1) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #1 0x5c2a5313fedf  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x179edf) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #2 0x5c2a5311e80d  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x15880d) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #3 0x5c2a53117b54  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x151b54) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #4 0x5c2a53121195  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x15b195) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #5 0x5c2a53109eea  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x143eea) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #6 0x5c2a530e6ed2  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x120ed2) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #7 0x5c2a530e7d2f  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x121d2f) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+    #8 0x5c2a530e6efd  (/tmp/asan_pair12_a1_fixed_b5mexglt/target/debug/deps/pair12_a1_fixed-b712d76e00cc66db+0x120efd) (BuildId: f0b5f00590dc4d3d761ea390c67176ea2b3da9a3)
+
+test tests::buffer_integrity ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair14_vulnerable_f3lohut3) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair14_vulnerable v0.1.0 (/tmp/asan_pair14_vulnerable_f3lohut3)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.35s
+     Running unittests src/lib.rs (target/debug/deps/pair14_vulnerable-5c31cfe416480dab)
+
+running 1 test
+
+thread 'tests::oracle_test' (3515380) panicked at src/lib.rs:87:9:
+Test failed: Deadlock detected
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::oracle_test ... FAILED
+
+failures:
+
+failures:
+    tests::oracle_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.00s
+
+error: test failed, to rerun pass `--lib`

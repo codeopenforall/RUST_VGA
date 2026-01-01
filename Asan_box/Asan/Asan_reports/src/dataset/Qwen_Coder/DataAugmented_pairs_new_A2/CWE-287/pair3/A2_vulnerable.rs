@@ -1,0 +1,82 @@
+use std::sync::Arc;
+use std::thread;
+
+struct IdentityManager {
+    secret: Arc<String>,
+}
+
+impl IdentityManager {
+    fn new(secret: String) -> Self {
+        IdentityManager {
+            secret: Arc::new(secret),
+        }
+    }
+
+    fn validate(&self, input: &str) -> bool {
+        unsafe {
+            if input.is_empty() || (*self.secret).is_empty() {
+                return false;
+            }
+            let input_len = input.len();
+            let secret_len = (*self.secret).len();
+            if input_len != secret_len {
+                return false;
+            }
+            for i in 0..input_len {
+                if input.as_bytes()[i] != (*self.secret).as_bytes()[i] {
+                    return false;
+                }
+            }
+            true
+        }
+    }
+}
+
+fn process_requests(manager: Arc<IdentityManager>) {
+    let tokens = vec!["A1234", "S3cr3t", "Z9999"];
+    let mut handles = vec![];
+    for token in tokens {
+        let mgr = Arc::clone(&manager);
+        let token = token.to_string();
+        let handle = thread::spawn(move || {
+            mgr.validate(&token)
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        let _ = handle.join().unwrap();
+    }
+}
+
+fn main() {
+    let manager = Arc::new(IdentityManager::new("S3cr3t".to_string()));
+    let args: Vec<String> = std::env::args().collect();
+    if args.len() > 1 {
+        let token = &args[1];
+        if manager.validate(token) {
+            println!("Access granted");
+        } else {
+            println!("Access denied");
+        }
+    } else {
+        println!("No token provided. Running background requests.");
+        process_requests(Arc::clone(&manager));
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::IdentityManager;
+    use std::sync::Arc;
+
+    #[test]
+    fn test_authentication() {
+        // Setup IdentityManager with a secure secret.
+        let manager = IdentityManager::new("S3cr3t".to_string());
+        // A malicious token that shares the first character 'S' but is not the valid secret.
+        // With proper authentication, this should be rejected (i.e., validate returns false).
+        let malicious_token = "S3abcd";
+        let result = manager.validate(malicious_token);
+        assert!(!result, "Authentication bypass vulnerability detected.");
+    }
+}

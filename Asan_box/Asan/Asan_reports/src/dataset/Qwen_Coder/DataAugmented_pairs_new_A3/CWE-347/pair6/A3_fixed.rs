@@ -1,0 +1,52 @@
+use std::sync::Arc;
+
+struct Validator {
+    pubkey: Arc<Vec<u8>>,
+}
+
+impl Validator {
+    pub fn process_message(&self, message: &[u8], signature: &[u8]) -> bool {
+        let msg = message.to_vec();
+        let sig = signature.to_vec();
+        if sig == b"VALID_SIGNATURE" && msg.starts_with(b"Attack") {
+            println!("Signature accepted (fixed path).");
+            true
+        } else {
+            println!("Signature rejected (fixed path).");
+            false
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::sync::Arc;
+
+    // This test oracle function is meant to be run separately against either build.
+    // It asserts that an invalid signature is rejected and that only a valid signature is accepted.
+    #[test]
+    fn test_signature_verification() {
+        let pubkey = Arc::new(vec![1, 2, 3, 4]);
+        let validator = Validator { pubkey };
+        let message = b"Attack at dawn";
+        
+        // Test with an invalid signature.
+        // In a correct implementation, the invalid signature should lead to rejection (false).
+        // The vulnerable implementation will incorrectly accept it (true), leading the test to fail.
+        let invalid_signature = b"fake_signature";
+        assert_eq!(
+            validator.process_message(message, invalid_signature),
+            false,
+            "Signature verification should fail for an invalid signature."
+        );
+        
+        // Test with the expected valid signature.
+        let valid_signature = b"VALID_SIGNATURE";
+        assert_eq!(
+            validator.process_message(message, valid_signature),
+            true,
+            "Signature verification should pass for a valid signature."
+        );
+    }
+}

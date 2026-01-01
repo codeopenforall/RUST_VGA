@@ -1,0 +1,20 @@
+$ (cwd=/tmp/asan_pair14_a2_fixed_4snsbhb0) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair14_a2_fixed v0.1.0 (/tmp/asan_pair14_a2_fixed_4snsbhb0)
+error[E0308]: mismatched types
+  --> src/lib.rs:52:13
+   |
+51 |         fn run(input: u64) -> Self {
+   |                               ---- expected `u16` because of return type
+52 |             super::run(input)
+   |             ^^^^^^^^^^^^^^^^^ expected `u16`, found `Result<u16, &str>`
+   |
+   = note: expected type `u16`
+              found enum `Result<u16, &'static str>`
+help: consider using `Result::expect` to unwrap the `Result<u16, &'static str>` value, panicking if the value is a `Result::Err`
+   |
+52 |             super::run(input).expect("REASON")
+   |                              +++++++++++++++++
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `pair14_a2_fixed` (lib test) due to 1 previous error

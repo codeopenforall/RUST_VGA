@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair9_a2_vulnerable_o7_dguxl) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair9_a2_vulnerable v0.1.0 (/tmp/asan_pair9_a2_vulnerable_o7_dguxl)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair9_a2_vulnerable-96e3e4bf2dcaf1d5)
+
+running 1 test
+
+thread '<unnamed>' (4003870) panicked at src/lib.rs:16:20:
+attempt to subtract with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::test_prevent_underflow' (4003869) panicked at src/lib.rs:32:19:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+test tests::test_prevent_underflow ... FAILED
+
+failures:
+
+failures:
+    tests::test_prevent_underflow
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

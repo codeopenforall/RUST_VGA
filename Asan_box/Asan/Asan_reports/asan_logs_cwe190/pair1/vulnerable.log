@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair1_vulnerable_6iqm80fs) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_vulnerable v0.1.0 (/tmp/asan_pair1_vulnerable_6iqm80fs)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair1_vulnerable-a2407590faec25a2)
+
+running 1 test
+
+thread 'tests::check_overflow_prevention' (3458294) panicked at src/lib.rs:46:5:
+assertion `left == right` failed: The accumulator value is incorrect; expected 250 when preventing overflow
+  left: 4
+ right: 250
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::check_overflow_prevention ... FAILED
+
+failures:
+
+failures:
+    tests::check_overflow_prevention
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

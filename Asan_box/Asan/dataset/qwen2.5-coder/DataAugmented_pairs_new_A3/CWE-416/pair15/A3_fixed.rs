@@ -1,0 +1,33 @@
+use std::thread;
+
+trait Operation {
+    fn process(&self) -> i32;
+}
+
+struct Handler;
+
+impl Operation for Handler {
+    fn process(&self) -> i32 {
+        let boxed = Box::new(42);
+        let raw_ptr = Box::into_raw(boxed);
+        unsafe {
+            let handle = thread::spawn(|| {
+                let _dummy = vec![0u8; 1024];
+            });
+            handle.join().unwrap();
+            let result = *raw_ptr; // Access the value before dropping
+            drop(Box::from_raw(raw_ptr)); // Drop the box
+            result
+        }
+    }
+}
+
+pub fn compute() -> i32 {
+    let proc = Handler;
+    proc.process()
+}
+
+fn main() {
+    let result = compute();
+    println!("Result: {}", result);
+}

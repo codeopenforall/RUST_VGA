@@ -1,0 +1,81 @@
+$ (cwd=/tmp/asan_pair11_a1_vulnerable_bhbmd22i) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a1_vulnerable v0.1.0 (/tmp/asan_pair11_a1_vulnerable_bhbmd22i)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8)
+
+running 1 test
+=================================================================
+==3805260==ERROR: AddressSanitizer: attempting double-free on 0x71e556fe4010 in thread T1:
+    #0 0x5a8a98e3d9d6  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0xf19d6) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #1 0x5a8a98e6e8aa  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x1228aa) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #2 0x5a8a98e6e233  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122233) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #3 0x5a8a98e6e060  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122060) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #4 0x5a8a98e6c9ba  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x1209ba) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #5 0x5a8a98e6d86a  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x12186a) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #6 0x5a8a98e6d75b  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x12175b) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #7 0x5a8a98e6efbc  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122fbc) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #8 0x5a8a98e6d046  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x121046) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #9 0x5a8a98e6e005  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122005) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #10 0x5a8a98e904aa  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x1444aa) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #11 0x5a8a98ea5e94  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x159e94) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #12 0x5a8a98e7c8b3  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x1308b3) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #13 0x5a8a98e80299  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x134299) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #14 0x5a8a98ec5ebe  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x179ebe) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #15 0x5a8a98e3bb36  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0xefb36) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #16 0x75c557e94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #17 0x75c557f2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x71e556fe4010 is located 0 bytes inside of 4-byte region [0x71e556fe4010,0x71e556fe4014)
+freed by thread T1 here:
+    #0 0x5a8a98e3d9d6  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0xf19d6) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #1 0x5a8a98e6e8aa  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x1228aa) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #2 0x5a8a98e6e233  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122233) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #3 0x5a8a98e6e060  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122060) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #4 0x5a8a98e6d86a  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x12186a) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #5 0x5a8a98e6efbc  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122fbc) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #6 0x5a8a98e6d046  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x121046) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #7 0x5a8a98ea5e94  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x159e94) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #8 0x5a8a98e7c8b3  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x1308b3) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #9 0x5a8a98e80299  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x134299) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #10 0x5a8a98ec5ebe  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x179ebe) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #11 0x5a8a98e3bb36  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0xefb36) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+
+previously allocated by thread T1 here:
+    #0 0x5a8a98e3dc74  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0xf1c74) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #1 0x5a8a98e6e593  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122593) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #2 0x5a8a98e6e294  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122294) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #3 0x5a8a98e6efbc  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x122fbc) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #4 0x5a8a98e6d046  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x121046) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #5 0x5a8a98ea5e94  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x159e94) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #6 0x5a8a98e7c8b3  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x1308b3) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #7 0x5a8a98e80299  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x134299) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #8 0x5a8a98ec5ebe  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x179ebe) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #9 0x5a8a98e3bb36  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0xefb36) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+
+Thread T1 created by T0 here:
+    #0 0x5a8a98e22561  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0xd6561) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #1 0x5a8a98ec60df  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x17a0df) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #2 0x5a8a98ea4a0d  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x158a0d) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #3 0x5a8a98e9dd54  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x151d54) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #4 0x5a8a98ea7395  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x15b395) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #5 0x5a8a98e900ea  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x1440ea) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #6 0x5a8a98e6d672  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x121672) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #7 0x5a8a98e6d23f  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x12123f) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+    #8 0x5a8a98e6d93d  (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0x12193d) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79)
+
+SUMMARY: AddressSanitizer: double-free (/tmp/asan_pair11_a1_vulnerable_bhbmd22i/target/debug/deps/pair11_a1_vulnerable-1c497f86d6c041a8+0xf19d6) (BuildId: e684cda776c7c042e5f4d9d5247cbdefea35fe79) 
+
+thread 'tests::test_resource_handling' (3805261) panicked at src/lib.rs:57:9:
+Resource handling failed due to double free vulnerability
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_resource_handling ... FAILED
+
+failures:
+
+failures:
+    tests::test_resource_handling
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

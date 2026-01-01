@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair6_a3_vulnerable_51om_jmr) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_a3_vulnerable v0.1.0 (/tmp/asan_pair6_a3_vulnerable_51om_jmr)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running unittests src/lib.rs (target/debug/deps/pair6_a3_vulnerable-649d6490019e4669)
+
+running 1 test
+
+thread 'tests::authentication_oracle' (41350) panicked at src/lib.rs:33:13:
+assertion `left == right` failed: Oracle: Token 'test' should be rejected
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::authentication_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::authentication_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

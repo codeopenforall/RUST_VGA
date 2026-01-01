@@ -1,0 +1,42 @@
+use std::thread;
+
+struct Worker;
+
+impl Worker {
+    pub fn execute(&self, data: Vec<u32>) -> u32 {
+        let handle = thread::spawn(move || {
+            data.into_iter().sum()
+        });
+        handle.join().unwrap()
+    }
+}
+
+pub fn run_fn(data: Vec<u32>) -> u32 {
+    let worker = Worker;
+    worker.execute(data)
+}
+
+fn main() {
+    let worker = Worker;
+    let input = vec![1u32; 150]; 
+    let res = worker.execute(input);
+    println!("Computed sum: {}", res);
+}
+
+#[cfg(test)]
+mod tests {
+    // The test expects a function named `run_fn` with signature `fn(Vec<u32>) -> u32`.
+    // In the vulnerable version, run_fn() incorrectly sums only the first 100 elements,
+    // while in the fixed version it sums all elements.
+    use super::run_fn;
+
+    #[test]
+    fn resource_consumption_test() {
+        // Prepare a test input of 101 ones; the correct sum is 101.
+        let input = vec![1u32; 101];
+        let result = run_fn(input);
+        // For the vulnerable version, the result would be 100.
+        // For the fixed version, the result should be 101.
+        assert_eq!(result, 101, "The computed sum does not match the expected value.");
+    }
+}

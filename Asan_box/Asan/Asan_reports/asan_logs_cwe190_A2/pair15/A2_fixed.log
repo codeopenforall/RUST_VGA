@@ -1,0 +1,52 @@
+$ (cwd=/tmp/asan_pair15_a2_fixed_ib3qhkb2) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair15_a2_fixed v0.1.0 (/tmp/asan_pair15_a2_fixed_ib3qhkb2)
+error[E0428]: the name `tests` is defined multiple times
+  --> src/lib.rs:56:1
+   |
+13 | mod tests {
+   | --------- previous definition of the module `tests` here
+...
+56 | mod tests {
+   | ^^^^^^^^^ `tests` redefined here
+   |
+   = note: `tests` must be defined only once in the type namespace of this module
+
+error[E0428]: the name `main_for_test` is defined multiple times
+  --> src/lib.rs:94:1
+   |
+51 | fn main_for_test() {
+   | ------------------ previous definition of the value `main_for_test` here
+...
+94 | fn main_for_test() {
+   | ^^^^^^^^^^^^^^^^^^ `main_for_test` redefined here
+   |
+   = note: `main_for_test` must be defined only once in the value namespace of this module
+
+error[E0603]: function `test_allocation_size` is private
+  --> src/lib.rs:52:12
+   |
+52 |     tests::test_allocation_size();
+   |            ^^^^^^^^^^^^^^^^^^^^ private function
+   |
+note: the function `test_allocation_size` is defined here
+  --> src/lib.rs:26:5
+   |
+26 |     fn test_allocation_size() {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0603]: function `test_allocation_size` is private
+  --> src/lib.rs:95:12
+   |
+95 |     tests::test_allocation_size();
+   |            ^^^^^^^^^^^^^^^^^^^^ private function
+   |
+note: the function `test_allocation_size` is defined here
+  --> src/lib.rs:26:5
+   |
+26 |     fn test_allocation_size() {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0428, E0603.
+For more information about an error, try `rustc --explain E0428`.
+error: could not compile `pair15_a2_fixed` (lib test) due to 4 previous errors

@@ -1,0 +1,33 @@
+$ (cwd=/tmp/asan_pair11_vulnerable_wxns3kpx) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_vulnerable v0.1.0 (/tmp/asan_pair11_vulnerable_wxns3kpx)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair11_vulnerable-12d856b102efa892)
+
+running 2 tests
+
+thread 'tests::test_buffer_copy' (3453470) panicked at src/lib.rs:68:13:
+assertion `left == right` failed: Buffer copy did not replicate the full input string.
+  left: "This is a long s"
+ right: "This is a long string to test the buffer copy vulnerability."
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_buffer_copy ... FAILED
+
+thread '<unnamed>' (3453472) panicked at src/lib.rs:79:17:
+assertion `left == right` failed: Concurrent buffer copy failed to replicate full string.
+  left: "Another long str"
+ right: "Another long string input used in a concurrent context."
+
+thread 'tests::test_concurrent_copy' (3453471) panicked at src/lib.rs:82:23:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+test tests::test_concurrent_copy ... FAILED
+
+failures:
+
+failures:
+    tests::test_buffer_copy
+    tests::test_concurrent_copy
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

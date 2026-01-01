@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair2_a1_vulnerable_ipe8z3lq) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair2_a1_vulnerable v0.1.0 (/tmp/asan_pair2_a1_vulnerable_ipe8z3lq)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair2_a1_vulnerable-1715f764c6eee881)
+
+running 1 test
+
+thread 'tests::concurrency_invariant' (3844263) panicked at src/lib.rs:56:9:
+assertion `left == right` failed: Invariant violated: expected 19, got 18
+  left: 18
+ right: 19
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::concurrency_invariant ... FAILED
+
+failures:
+
+failures:
+    tests::concurrency_invariant
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+error: test failed, to rerun pass `--lib`

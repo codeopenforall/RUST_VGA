@@ -1,0 +1,74 @@
+use std::mem::MaybeUninit;
+use std::sync::Arc;
+use std::thread;
+
+struct Config {
+    threshold: u32,
+    message: String,
+}
+
+impl Config {
+    fn validate(&self) -> bool {
+        self.threshold > 50 && self.message == "default"
+    }
+}
+
+fn load_configuration() -> Config {
+    let mut storage: MaybeUninit<Config> = MaybeUninit::uninit();
+    unsafe {
+        let ptr = storage.as_mut_ptr();
+        (*ptr).threshold = 100;
+        (*ptr).message = String::from("incorrect"); // Introducing the defect
+        storage.assume_init()
+    }
+}
+
+fn main() {
+    let config_shared = Arc::new(load_configuration());
+    let config_for_thread = Arc::clone(&config_shared);
+    let handler = thread::spawn(move || {
+        if config_for_thread.validate() {
+            println!("Configuration validated successfully.");
+        } else {
+            println!("Configuration validation failed.");
+        }
+    });
+    handler.join().unwrap();
+    println!("Main thread execution complete.");
+}
+
+///////////////////////////////////////////////
+// Test Oracle
+///////////////////////////////////////////////
+#[cfg(test)]
+mod tests {
+    use std::sync::Arc;
+    use std::thread;
+
+    // Bring the configuration loader into scope from the main module.
+    use super::load_configuration;
+    use super::Config;
+
+    #[test]
+    fn configuration_test() {
+        // In both builds, load the configuration.
+        let config = load_configuration();
+        // Check that the numeric field is properly set.
+        assert_eq!(config.threshold, 100, "Threshold field is incorrect.");
+        // Check that the message field is properly set.
+        assert_eq!(config.message, "default", "Message field is incorrect.");
+        // Validate configuration; the vulnerable version leads to undefined behavior.
+        assert!(config.validate(), "Configuration did not validate as expected.");
+    }
+
+    #[test]
+    fn concurrent_access_test() {
+        let config_shared = Arc::new(load_configuration());
+        let config_for_thread = Arc::clone(&config_shared);
+        let handle = thread::spawn(move || {
+            // Validate configuration in a separate thread.
+            assert!(config_for_thread.validate());
+        });
+        handle.join().unwrap();
+    }
+}

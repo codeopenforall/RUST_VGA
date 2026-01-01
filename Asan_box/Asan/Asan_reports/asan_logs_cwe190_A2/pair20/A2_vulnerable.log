@@ -1,0 +1,33 @@
+$ (cwd=/tmp/asan_pair20_a2_vulnerable_r5hy9xo4) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair20_a2_vulnerable v0.1.0 (/tmp/asan_pair20_a2_vulnerable_r5hy9xo4)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair20_a2_vulnerable-a6fcbb44b010762b)
+
+running 1 test
+
+thread '<unnamed>' (3974279) panicked at src/lib.rs:19:13:
+attempt to add with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread '<unnamed>' (3974280) panicked at src/lib.rs:19:13:
+attempt to add with overflow
+
+thread '<unnamed>' (3974282) panicked at src/lib.rs:19:13:
+attempt to add with overflow
+
+thread '<unnamed>' (3974281) panicked at src/lib.rs:19:13:
+attempt to add with overflow
+
+thread 'tests::test_oracle' (3974278) panicked at src/lib.rs:41:18:
+called `Result::unwrap()` on an `Err` value: Any { .. }
+test tests::test_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::test_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

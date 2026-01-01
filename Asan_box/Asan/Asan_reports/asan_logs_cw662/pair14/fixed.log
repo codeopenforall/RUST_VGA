@@ -1,0 +1,12 @@
+$ (cwd=/tmp/asan_pair14_fixed_x4uwv4q_) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair14_fixed v0.1.0 (/tmp/asan_pair14_fixed_x4uwv4q_)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.36s
+     Running unittests src/lib.rs (target/debug/deps/pair14_fixed-c912348eb6947064)
+
+running 1 test
+Counter: 20
+test tests::oracle_test ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.00s
+

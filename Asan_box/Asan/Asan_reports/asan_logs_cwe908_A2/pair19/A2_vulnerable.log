@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair19_a2_vulnerable_f5ojlefx) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a2_vulnerable v0.1.0 (/tmp/asan_pair19_a2_vulnerable_f5ojlefx)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running unittests src/lib.rs (target/debug/deps/pair19_a2_vulnerable-79207584239c7d9a)
+
+running 1 test
+
+thread 'test_oracle::oracle' (4033849) panicked at src/lib.rs:41:9:
+assertion `left == right` failed: Test oracle: Expected sum is 30
+  left: 2308177418
+ right: 30
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test test_oracle::oracle ... FAILED
+
+failures:
+
+failures:
+    test_oracle::oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

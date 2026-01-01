@@ -1,0 +1,69 @@
+use std::thread;
+use std::time::Duration;
+use std::ptr;
+
+struct Counter {
+    count: u64,
+}
+
+impl Counter {
+    fn new() -> Self {
+        Counter { count: 0 }
+    }
+}
+
+static mut GLOBAL: *mut Counter = ptr::null_mut();
+
+fn run_concurrent(increments: u64, threads: usize) -> u64 {
+    let counter = Box::new(Counter::new());
+    unsafe {
+        GLOBAL = Box::into_raw(counter);
+    }
+    let mut handles = Vec::with_capacity(threads);
+    for _ in 0..threads {
+        let handle = thread::spawn(move || {
+            for _ in 0..increments {
+                unsafe {
+                    // Introducing a defect: using `+=` instead of `wrapping_add`
+                    (*GLOBAL).count += 1;
+                    thread::sleep(Duration::from_micros(1));
+                }
+            }
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        handle.join().unwrap();
+    }
+    let result;
+    unsafe {
+        result = (*GLOBAL).count;
+        Box::from_raw(GLOBAL);
+        GLOBAL = ptr::null_mut();
+    }
+    result
+}
+
+fn main() {
+    let threads = 4;
+    let increments = 10000;
+    let final_value = run_concurrent(increments, threads);
+    println!("Final count: {}", final_value);
+}
+
+#[cfg(test)]
+mod tests {
+    // Import the run_concurrent function from the outer scope.
+    use super::*;
+
+    #[test]
+    fn test_concurrent() {
+        // These parameters are chosen such that the expected final count is:
+        // threads * increments = 4 * 10000 = 40000.
+        let threads = 4;
+        let increments = 10000;
+        let result = run_concurrent(increments, threads);
+        assert_eq!(result, threads as u64 * increments, 
+            "Test failed: The counter did not reach the expected value. Likely a race condition is present.");
+    }
+}

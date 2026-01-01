@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair14_a3_vulnerable_k36erlu0) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair14_a3_vulnerable v0.1.0 (/tmp/asan_pair14_a3_vulnerable_k36erlu0)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair14_a3_vulnerable-4ae099670bd0dcec)
+
+running 1 test
+
+thread 'tests::invariant_test' (27162) panicked at src/lib.rs:58:9:
+assertion `left == right` failed: Invariant violated: more than one update occurred
+  left: 10
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::invariant_test ... FAILED
+
+failures:
+
+failures:
+    tests::invariant_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `--lib`

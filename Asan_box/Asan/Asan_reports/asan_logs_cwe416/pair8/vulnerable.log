@@ -1,0 +1,99 @@
+$ (cwd=/tmp/asan_pair8_vulnerable_b8757q07) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair8_vulnerable v0.1.0 (/tmp/asan_pair8_vulnerable_b8757q07)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair8_vulnerable-23975e7199656611)
+
+running 1 test
+=================================================================
+==3483123==ERROR: AddressSanitizer: heap-use-after-free on address 0x7340b4be4010 at pc 0x5b0dfe4bc176 bp 0x7320b25fe220 sp 0x7320b25fe218
+READ of size 4 at 0x7340b4be4010 thread T1
+    #0 0x5b0dfe4bc175  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x121175) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #1 0x5b0dfe4bc4c5  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1214c5) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #2 0x5b0dfe4bb7de  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1207de) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #3 0x5b0dfe4bbdf6  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x120df6) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #4 0x5b0dfe4ba8d5  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x11f8d5) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #5 0x5b0dfe4de6ba  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1436ba) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #6 0x5b0dfe4f40a4  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1590a4) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #7 0x5b0dfe4caac3  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x12fac3) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #8 0x5b0dfe4ce4a9  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1334a9) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #9 0x5b0dfe5140ce  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1790ce) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #10 0x5b0dfe48a2d6  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0xef2d6) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #11 0x7720b5894ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x7720b592684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x7340b4be4010 is located 0 bytes inside of 4-byte region [0x7340b4be4010,0x7340b4be4014)
+freed by thread T1 here:
+    #0 0x5b0dfe48c176  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0xf1176) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #1 0x5b0dfe4bb41a  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x12041a) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #2 0x5b0dfe4bab03  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x11fb03) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #3 0x5b0dfe4ba930  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x11f930) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #4 0x5b0dfe4bc3d5  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1213d5) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #5 0x5b0dfe4bb7de  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1207de) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #6 0x5b0dfe4bbdf6  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x120df6) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #7 0x5b0dfe4f40a4  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1590a4) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #8 0x5b0dfe4caac3  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x12fac3) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #9 0x5b0dfe4ce4a9  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1334a9) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #10 0x5b0dfe5140ce  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1790ce) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #11 0x5b0dfe48a2d6  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0xef2d6) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+
+previously allocated by thread T1 here:
+    #0 0x5b0dfe48c414  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0xf1414) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #1 0x5b0dfe4bb103  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x120103) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #2 0x5b0dfe4bae04  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x11fe04) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #3 0x5b0dfe4bb7de  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1207de) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #4 0x5b0dfe4bbdf6  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x120df6) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #5 0x5b0dfe4f40a4  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1590a4) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #6 0x5b0dfe4caac3  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x12fac3) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #7 0x5b0dfe4ce4a9  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1334a9) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #8 0x5b0dfe5140ce  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1790ce) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #9 0x5b0dfe48a2d6  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0xef2d6) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+
+Thread T1 created by T0 here:
+    #0 0x5b0dfe470d01  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0xd5d01) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #1 0x5b0dfe5142ef  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1792ef) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #2 0x5b0dfe4f2c1d  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x157c1d) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #3 0x5b0dfe4ebf64  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x150f64) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #4 0x5b0dfe4f55a5  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x15a5a5) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #5 0x5b0dfe4de2fa  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1432fa) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #6 0x5b0dfe4bc5f2  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x1215f2) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #7 0x5b0dfe4bacff  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x11fcff) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+    #8 0x5b0dfe4bc61d  (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x12161d) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623)
+
+SUMMARY: AddressSanitizer: heap-use-after-free (/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611+0x121175) (BuildId: d50824d552fa7c3cd170d62bcf1b92adb808b623) 
+Shadow bytes around the buggy address:
+  0x7340b4be3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7340b4be3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7340b4be3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7340b4be3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7340b4be3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x7340b4be4000: fa fa[fd]fa fa fa 04 fa fa fa fa fa fa fa fa fa
+  0x7340b4be4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7340b4be4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7340b4be4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7340b4be4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7340b4be4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3483123==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair8_vulnerable_b8757q07/target/debug/deps/pair8_vulnerable-23975e7199656611 --nocapture` (exit status: 1)

@@ -1,0 +1,20 @@
+
+running 1 test
+test tests::verify_memory_safety ... FAILED
+
+failures:
+
+---- tests::verify_memory_safety stdout ----
+
+thread 'tests::verify_memory_safety' (645969) panicked at /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair20/vulnerable.rs:62:17:
+assertion `left != right` failed: Memory bounds violation: the internal state was updated insecurely.
+  left: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+ right: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::verify_memory_safety
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,52 @@
+$ (cwd=/tmp/asan_pair19_a3_fixed_vp5erebv) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a3_fixed v0.1.0 (/tmp/asan_pair19_a3_fixed_vp5erebv)
+error[E0428]: the name `tests` is defined multiple times
+  --> src/lib.rs:41:1
+   |
+16 | mod tests {
+   | --------- previous definition of the module `tests` here
+...
+41 | mod tests {
+   | ^^^^^^^^^ `tests` redefined here
+   |
+   = note: `tests` must be defined only once in the type namespace of this module
+
+error[E0428]: the name `test_oracle` is defined multiple times
+  --> src/lib.rs:56:1
+   |
+30 | fn test_oracle() {
+   | ---------------- previous definition of the value `test_oracle` here
+...
+56 | fn test_oracle() {
+   | ^^^^^^^^^^^^^^^^ `test_oracle` redefined here
+   |
+   = note: `test_oracle` must be defined only once in the value namespace of this module
+
+error[E0603]: function `test_overflow_detection` is private
+  --> src/lib.rs:31:12
+   |
+31 |     tests::test_overflow_detection();
+   |            ^^^^^^^^^^^^^^^^^^^^^^^ private function
+   |
+note: the function `test_overflow_detection` is defined here
+  --> src/lib.rs:20:5
+   |
+20 |     fn test_overflow_detection() {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0603]: function `test_overflow_detection` is private
+  --> src/lib.rs:57:12
+   |
+57 |     tests::test_overflow_detection();
+   |            ^^^^^^^^^^^^^^^^^^^^^^^ private function
+   |
+note: the function `test_overflow_detection` is defined here
+  --> src/lib.rs:20:5
+   |
+20 |     fn test_overflow_detection() {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0428, E0603.
+For more information about an error, try `rustc --explain E0428`.
+error: could not compile `pair19_a3_fixed` (lib test) due to 4 previous errors

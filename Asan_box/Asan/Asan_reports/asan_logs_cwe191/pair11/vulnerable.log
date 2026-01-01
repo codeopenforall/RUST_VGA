@@ -1,0 +1,18 @@
+$ (cwd=/tmp/asan_pair11_vulnerable_93le6haw) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_vulnerable v0.1.0 (/tmp/asan_pair11_vulnerable_93le6haw)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair11_vulnerable-12d856b102efa892)
+
+running 1 test
+
+thread 'tests::test_no_underflow' (3461048) panicked at src/lib.rs:12:40:
+unsafe precondition(s) violated: slice::get_unchecked requires that the index is within the slice
+
+This indicates a bug in the program. This Undefined Behavior check is optional, and cannot be relied on for safety.
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread caused non-unwinding panic. aborting.
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair11_vulnerable_93le6haw/target/debug/deps/pair11_vulnerable-12d856b102efa892 --nocapture` (signal: 6, SIGABRT: process abort signal)

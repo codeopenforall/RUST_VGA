@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair1_a1_vulnerable_d6cz2hzd) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair1_a1_vulnerable v0.1.0 (/tmp/asan_pair1_a1_vulnerable_d6cz2hzd)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair1_a1_vulnerable-842298711ad05eec)
+
+running 1 test
+
+thread 'tests::recursion_safety_test' (3823190) panicked at src/lib.rs:80:17:
+Expected operation to safely abort (return None) due to recursion depth limit, but got: Some(1125750)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::recursion_safety_test ... FAILED
+
+failures:
+
+failures:
+    tests::recursion_safety_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair14_a2_vulnerable_i1y9ki3z) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair14_a2_vulnerable v0.1.0 (/tmp/asan_pair14_a2_vulnerable_i1y9ki3z)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running unittests src/lib.rs (target/debug/deps/pair14_a2_vulnerable-a65b6f566b2bada3)
+
+running 1 test
+
+thread 'tests::test_underflow_behavior' (3999803) panicked at src/lib.rs:67:9:
+Expected error due to integer underflow, but got: Some(4294967196)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_underflow_behavior ... FAILED
+
+failures:
+
+failures:
+    tests::test_underflow_behavior
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

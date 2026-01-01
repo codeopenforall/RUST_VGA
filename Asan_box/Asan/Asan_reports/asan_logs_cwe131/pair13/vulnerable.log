@@ -1,0 +1,116 @@
+$ (cwd=/tmp/asan_pair13_vulnerable_p32zxjov) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_vulnerable v0.1.0 (/tmp/asan_pair13_vulnerable_p32zxjov)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e)
+
+running 1 test
+=================================================================
+==3454001==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x7665d5de4020 at pc 0x57b9cbcee3c6 bp 0x7645d37fe1a0 sp 0x7645d37fd948
+READ of size 41 at 0x7665d5de4020 thread T1
+    #0 0x57b9cbcee3c5  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x7d3c5) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #1 0x57b9cbcee7dc  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x7d7dc) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #2 0x57b9cbd93894  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x122894) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #3 0x57b9cbd9382c  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x12282c) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #4 0x57b9cbd92033  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x121033) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #5 0x57b9cbd92cf4  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x121cf4) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #6 0x57b9cbd93446  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x122446) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #7 0x57b9cbd91365  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x120365) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #8 0x57b9cbdb452a  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x14352a) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #9 0x57b9cbdc9f14  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x158f14) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #10 0x57b9cbda0933  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x12f933) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #11 0x57b9cbda4319  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x133319) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #12 0x57b9cbde9f3e  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x178f3e) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #13 0x57b9cbd603e6  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0xef3e6) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #14 0x7a45d6a94ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #15 0x7a45d6b2684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x7665d5de4020 is located 0 bytes after 16-byte region [0x7665d5de4010,0x7665d5de4020)
+allocated by thread T1 here:
+    #0 0x57b9cbd62524  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0xf1524) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #1 0x57b9cbd9088f  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x11f88f) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #2 0x57b9cbd90e80  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x11fe80) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #3 0x57b9cbd92c49  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x121c49) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #4 0x57b9cbd93446  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x122446) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #5 0x57b9cbdc9f14  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x158f14) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #6 0x57b9cbda0933  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x12f933) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #7 0x57b9cbda4319  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x133319) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #8 0x57b9cbde9f3e  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x178f3e) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #9 0x57b9cbd603e6  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0xef3e6) (BuildId: 3370976f402370996e0258b6715533262e686093)
+
+Thread T1 created by T0 here:
+    #0 0x57b9cbd46e11  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0xd5e11) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #1 0x57b9cbdea15f  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x17915f) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #2 0x57b9cbdc8a8d  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x157a8d) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #3 0x57b9cbdc1dd4  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x150dd4) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #4 0x57b9cbdcb415  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x15a415) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #5 0x57b9cbdb416a  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x14316a) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #6 0x57b9cbd90c22  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x11fc22) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #7 0x57b9cbd90b3f  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x11fb3f) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #8 0x57b9cbd90fdd  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x11ffdd) (BuildId: 3370976f402370996e0258b6715533262e686093)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x7d3c5) (BuildId: 3370976f402370996e0258b6715533262e686093) 
+Shadow bytes around the buggy address:
+  0x7665d5de3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7665d5de3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7665d5de3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7665d5de3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7665d5de3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x7665d5de4000: fa fa 00 00[fa]fa fa fa fa fa fa fa fa fa fa fa
+  0x7665d5de4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7665d5de4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7665d5de4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7665d5de4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7665d5de4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+thread 'tests::validate_copy_integrity' (3454002) panicked at src/lib.rs:51:13:
+assertion `left == right` failed: Buffer copy mismatch; vulnerability detected.
+  left: [84, 104, 105, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 32, 115, 3, 17, 0, 0, 16, 0, 0, 0, 248, 0, 0, 0, 1, 0, 0, 0, 249, 0, 0, 0, 1, 0, 0, 0, 110]
+ right: [84, 104, 105, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 32, 115, 116, 114, 105, 110, 103, 32, 102, 111, 114, 32, 98, 117, 102, 102, 101, 114, 32, 99, 111, 112, 121, 105, 110, 103, 46]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::validate_copy_integrity ... FAILED
+
+failures:
+
+failures:
+    tests::validate_copy_integrity
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=================================================================
+==3454001==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x57b9cbd62524  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0xf1524) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #1 0x57b9cbd9088f  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x11f88f) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #2 0x57b9cbd90e80  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x11fe80) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #3 0x57b9cbd92c49  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x121c49) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #4 0x57b9cbd93446  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x122446) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #5 0x57b9cbdc9f14  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x158f14) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #6 0x57b9cbda0933  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x12f933) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #7 0x57b9cbda4319  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x133319) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #8 0x57b9cbde9f3e  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0x178f3e) (BuildId: 3370976f402370996e0258b6715533262e686093)
+    #9 0x57b9cbd603e6  (/tmp/asan_pair13_vulnerable_p32zxjov/target/debug/deps/pair13_vulnerable-eb8479f8d15cfa1e+0xef3e6) (BuildId: 3370976f402370996e0258b6715533262e686093)
+
+SUMMARY: AddressSanitizer: 16 byte(s) leaked in 1 allocation(s).
+error: test failed, to rerun pass `--lib`

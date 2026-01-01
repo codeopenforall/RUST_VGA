@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair12_a1_vulnerable_9f8j6gpw) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_a1_vulnerable v0.1.0 (/tmp/asan_pair12_a1_vulnerable_9f8j6gpw)
+error[E0432]: unresolved import `super::Data`
+  --> src/lib.rs:63:9
+   |
+63 |     use super::Data;
+   |         ^^^^^^^^^^^ no `Data` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `pair12_a1_vulnerable` (lib test) due to 1 previous error

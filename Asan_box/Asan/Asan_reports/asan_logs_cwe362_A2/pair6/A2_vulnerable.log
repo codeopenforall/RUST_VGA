@@ -1,0 +1,13 @@
+$ (cwd=/tmp/asan_pair6_a2_vulnerable_skx68w9h) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_a2_vulnerable v0.1.0 (/tmp/asan_pair6_a2_vulnerable_skx68w9h)
+error[E0596]: cannot borrow data in an `Arc` as mutable
+  --> src/lib.rs:24:17
+   |
+24 |                 c.add(1);
+   |                 ^ cannot borrow as mutable
+   |
+   = help: trait `DerefMut` is required to modify through a dereference, but it is not implemented for `Arc<Counter>`
+
+For more information about this error, try `rustc --explain E0596`.
+error: could not compile `pair6_a2_vulnerable` (lib test) due to 1 previous error

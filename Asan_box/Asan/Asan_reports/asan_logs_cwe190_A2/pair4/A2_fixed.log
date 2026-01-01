@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair4_a2_fixed_gdxl58ic) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a2_fixed v0.1.0 (/tmp/asan_pair4_a2_fixed_gdxl58ic)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair4_a2_fixed-4ea4a13ecab1e670)
+
+running 1 test
+test tests::validate_overflow_detection ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

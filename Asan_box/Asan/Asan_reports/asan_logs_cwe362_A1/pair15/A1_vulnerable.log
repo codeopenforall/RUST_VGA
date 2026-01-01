@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair15_a1_vulnerable_54owtehm) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair15_a1_vulnerable v0.1.0 (/tmp/asan_pair15_a1_vulnerable_54owtehm)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair15_a1_vulnerable-76af984ae310b600)
+
+running 1 test
+
+thread 'tests::test_concurrent' (3838183) panicked at src/lib.rs:53:9:
+assertion `left == right` failed: Test failed: The counter did not reach the expected value. Likely a race condition is present.
+  left: 39999
+ right: 40000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_concurrent ... FAILED
+
+failures:
+
+failures:
+    tests::test_concurrent
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.62s
+
+error: test failed, to rerun pass `--lib`

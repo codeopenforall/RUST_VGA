@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair19_a1_vulnerable_fpjvrna3) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a1_vulnerable v0.1.0 (/tmp/asan_pair19_a1_vulnerable_fpjvrna3)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair19_a1_vulnerable-b5db46a6fb11d121)
+
+running 1 test
+
+thread 'tests::counter_oracle' (3843929) panicked at src/lib.rs:45:9:
+assertion `left == right` failed: Final counter did not reach the expected 10000 due to a race condition
+  left: 2834
+ right: 10000
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::counter_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::counter_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

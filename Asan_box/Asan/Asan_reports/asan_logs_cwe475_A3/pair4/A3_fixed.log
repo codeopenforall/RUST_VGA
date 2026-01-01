@@ -1,0 +1,12 @@
+$ (cwd=/tmp/asan_pair4_a3_fixed_qoyi2ysm) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a3_fixed v0.1.0 (/tmp/asan_pair4_a3_fixed_qoyi2ysm)
+error: expected item, found `-`
+  --> src/lib.rs:55:1
+   |
+55 | -------------------------------------------------
+   | ^ expected item
+   |
+   = note: for a full list of items that can appear in modules, see <https://doc.rust-lang.org/reference/items.html>
+
+error: could not compile `pair4_a3_fixed` (lib test) due to 1 previous error

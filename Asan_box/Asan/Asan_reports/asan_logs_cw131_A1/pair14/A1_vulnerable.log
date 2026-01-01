@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair14_a1_vulnerable_9isf1gf1) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair14_a1_vulnerable v0.1.0 (/tmp/asan_pair14_a1_vulnerable_9isf1gf1)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair14_a1_vulnerable-01ee7f88694fd235)
+
+running 1 test
+
+thread 'tests::test_buffer_copy' (3795285) panicked at src/lib.rs:34:9:
+assertion `left == right` failed: Buffer copy does not match input
+  left: [84, 104, 105, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 32, 115, 116, 114, 105, 110, 103, 32, 116, 104, 97, 116, 32, 101, 120, 99, 101, 101, 100, 115, 32, 116, 104, 101, 32, 116, 121, 112, 105, 99, 97, 108, 32, 112, 111, 105, 110, 116, 101, 114, 32, 115, 105, 122]
+ right: [84, 104, 105, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 32, 115, 116, 114, 105, 110, 103, 32, 116, 104, 97, 116, 32, 101, 120, 99, 101, 101, 100, 115, 32, 116, 104, 101, 32, 116, 121, 112, 105, 99, 97, 108, 32, 112, 111, 105, 110, 116, 101, 114, 32, 115, 105, 122, 101]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_buffer_copy ... FAILED
+
+failures:
+
+failures:
+    tests::test_buffer_copy
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

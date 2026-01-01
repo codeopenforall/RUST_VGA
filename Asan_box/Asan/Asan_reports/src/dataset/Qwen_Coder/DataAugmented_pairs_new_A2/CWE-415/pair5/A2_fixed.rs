@@ -1,0 +1,59 @@
+struct Data {
+    ptr: *mut i32,
+}
+
+impl Data {
+    fn new(val: i32) -> Self {
+        let b = Box::new(val);
+        Self { ptr: Box::into_raw(b) }
+    }
+}
+
+impl Clone for Data {
+    fn clone(&self) -> Self {
+        unsafe {
+            let value = *self.ptr;
+            Data::new(value)
+        }
+    }
+}
+
+impl Drop for Data {
+    fn drop(&mut self) {
+        unsafe {
+            if !self.ptr.is_null() {
+                let _ = Box::from_raw(self.ptr);
+            }
+        }
+    }
+}
+
+fn execute() {
+    let original = Data::new(42);
+    let duplicate = original.clone();
+    let sum = unsafe { *original.ptr + *duplicate.ptr };
+    println!("Sum: {}", sum);
+}
+
+fn main() {
+    execute();
+}
+
+#[cfg(test)]
+mod tests {
+    use std::panic;
+
+    // This test calls the execute function and asserts that no panic occurs.
+    // In the vulnerable version the double free panic will be triggered causing the test to fail.
+    // In the corrected version the function completes successfully and the test passes.
+    #[test]
+    fn test_resource_safety() {
+        let result = panic::catch_unwind(|| {
+            crate::execute();
+        });
+        assert!(
+            result.is_ok(),
+            "Test failed: execution panicked due to a double free vulnerability"
+        );
+    }
+}

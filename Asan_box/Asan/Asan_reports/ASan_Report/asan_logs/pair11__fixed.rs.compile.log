@@ -1,0 +1,21 @@
+warning: unnecessary `unsafe` block
+  --> /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair11/fixed.rs:73:9
+   |
+73 |         unsafe {
+   |         ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: method `read` is never used
+  --> /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair11/fixed.rs:21:8
+   |
+ 7 | impl Buffer {
+   | ----------- method in this implementation
+...
+21 |     fn read(&self) -> &[u8] {
+   |        ^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: 2 warnings emitted
+

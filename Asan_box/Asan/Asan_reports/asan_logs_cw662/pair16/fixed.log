@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair16_fixed_t0tu4kjs) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_fixed v0.1.0 (/tmp/asan_pair16_fixed_t0tu4kjs)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair16_fixed-341bfccd884c3dac)
+
+running 1 test
+test tests::test_concurrent_count ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

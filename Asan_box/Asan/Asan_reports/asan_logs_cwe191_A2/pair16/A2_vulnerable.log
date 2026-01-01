@@ -1,0 +1,26 @@
+$ (cwd=/tmp/asan_pair16_a2_vulnerable_tn46inz1) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_a2_vulnerable v0.1.0 (/tmp/asan_pair16_a2_vulnerable_tn46inz1)
+error[E0422]: cannot find struct, variant or union type `Container` in this scope
+  --> src/lib.rs:56:25
+   |
+56 |         let container = Container { value: 0 };
+   |                         ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `process` in this scope
+  --> src/lib.rs:58:22
+   |
+58 |         let result = process(shared.clone(), 1);
+   |                      ^^^^^^^ not found in this scope
+
+error[E0133]: call to unsafe function `DataHolder::decrement` is unsafe and requires unsafe function or block
+  --> src/lib.rs:19:25
+   |
+19 |         let new_value = holder.decrement(decrement_amount);
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+   |
+   = note: consult the function's documentation for information on how to avoid undefined behavior
+
+Some errors have detailed explanations: E0133, E0422, E0425.
+For more information about an error, try `rustc --explain E0133`.
+error: could not compile `pair16_a2_vulnerable` (lib test) due to 3 previous errors

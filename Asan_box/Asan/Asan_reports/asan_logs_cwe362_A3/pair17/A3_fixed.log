@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair17_a3_fixed_xhta4t11) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair17_a3_fixed v0.1.0 (/tmp/asan_pair17_a3_fixed_xhta4t11)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.36s
+     Running unittests src/lib.rs (target/debug/deps/pair17_a3_fixed-7a2d515a9a4110be)
+
+running 1 test
+test tests::test_singleton_invariant ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

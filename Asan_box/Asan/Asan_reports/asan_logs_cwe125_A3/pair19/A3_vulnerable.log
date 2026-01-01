@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair19_a3_vulnerable_abpokbr8) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair19_a3_vulnerable v0.1.0 (/tmp/asan_pair19_a3_vulnerable_abpokbr8)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair19_a3_vulnerable-63ebf05ed59d2ba9)
+
+running 1 test
+
+thread 'tests::test_computation' (4114876) panicked at src/lib.rs:18:35:
+index out of bounds: the len is 5 but the index is 5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::test_computation' (4114876) panicked at src/lib.rs:52:9:
+The computation panicked unexpectedly
+test tests::test_computation ... FAILED
+
+failures:
+
+failures:
+    tests::test_computation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair12_a2_vulnerable_3od5pbue) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_a2_vulnerable v0.1.0 (/tmp/asan_pair12_a2_vulnerable_3od5pbue)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running unittests src/lib.rs (target/debug/deps/pair12_a2_vulnerable-9b960453506fb765)
+
+running 1 test
+
+thread '<unnamed>' (3993642) panicked at src/lib.rs:14:22:
+index out of bounds: the len is 10 but the index is 10
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::test_computation' (3993641) panicked at src/lib.rs:28:20:
+Thread panicked: Any { .. }
+test tests::test_computation ... FAILED
+
+failures:
+
+failures:
+    tests::test_computation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

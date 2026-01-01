@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair10_a3_vulnerable_9f6pk4dv) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair10_a3_vulnerable v0.1.0 (/tmp/asan_pair10_a3_vulnerable_9f6pk4dv)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running unittests src/lib.rs (target/debug/deps/pair10_a3_vulnerable-2612b3092d427c3a)
+
+running 1 test
+
+thread 'tests::test_data_processing' (4156943) panicked at src/lib.rs:61:9:
+assertion `left == right` failed: Output length mismatch
+  left: 5
+ right: 6
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_data_processing ... FAILED
+
+failures:
+
+failures:
+    tests::test_data_processing
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

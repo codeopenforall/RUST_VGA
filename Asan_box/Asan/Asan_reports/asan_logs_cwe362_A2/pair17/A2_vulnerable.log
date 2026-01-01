@@ -1,0 +1,39 @@
+$ (cwd=/tmp/asan_pair17_a2_vulnerable_dswn5w1n) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair17_a2_vulnerable v0.1.0 (/tmp/asan_pair17_a2_vulnerable_dswn5w1n)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.36s
+     Running unittests src/lib.rs (target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c)
+
+running 1 test
+
+thread 'tests::test_singleton_invariant' (4097537) panicked at src/lib.rs:78:13:
+assertion `left == right` failed: Multiple initializations detected: 126866174132272 vs 126866174132240
+  left: 126866174132272
+ right: 126866174132240
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_singleton_invariant ... FAILED
+
+failures:
+
+failures:
+    tests::test_singleton_invariant
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+=================================================================
+==4097536==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 36 byte(s) in 9 object(s) allocated from:
+    #0 0x5ea01bf8f024  (/tmp/asan_pair17_a2_vulnerable_dswn5w1n/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x103024) (BuildId: 4156f70c2c4217503bf4747e0bc960fb47c7b22c)
+    #1 0x5ea01bfdc503  (/tmp/asan_pair17_a2_vulnerable_dswn5w1n/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x150503) (BuildId: 4156f70c2c4217503bf4747e0bc960fb47c7b22c)
+    #2 0x5ea01bfdc204  (/tmp/asan_pair17_a2_vulnerable_dswn5w1n/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x150204) (BuildId: 4156f70c2c4217503bf4747e0bc960fb47c7b22c)
+    #3 0x5ea01bfe11e2  (/tmp/asan_pair17_a2_vulnerable_dswn5w1n/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x1551e2) (BuildId: 4156f70c2c4217503bf4747e0bc960fb47c7b22c)
+    #4 0x5ea01bfc16bf  (/tmp/asan_pair17_a2_vulnerable_dswn5w1n/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x1356bf) (BuildId: 4156f70c2c4217503bf4747e0bc960fb47c7b22c)
+    #5 0x5ea01bfc0b30  (/tmp/asan_pair17_a2_vulnerable_dswn5w1n/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x134b30) (BuildId: 4156f70c2c4217503bf4747e0bc960fb47c7b22c)
+    #6 0x5ea01bfcfb0a  (/tmp/asan_pair17_a2_vulnerable_dswn5w1n/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x143b0a) (BuildId: 4156f70c2c4217503bf4747e0bc960fb47c7b22c)
+    #7 0x5ea01bfc305d  (/tmp/asan_pair17_a2_vulnerable_dswn5w1n/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x13705d) (BuildId: 4156f70c2c4217503bf4747e0bc960fb47c7b22c)
+    #8 0x5ea01bf8c996  (/tmp/asan_pair17_a2_vulnerable_dswn5w1n/target/debug/deps/pair17_a2_vulnerable-cd23029e6a478f9c+0x100996) (BuildId: 4156f70c2c4217503bf4747e0bc960fb47c7b22c)
+
+SUMMARY: AddressSanitizer: 36 byte(s) leaked in 9 allocation(s).
+error: test failed, to rerun pass `--lib`

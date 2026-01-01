@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair16_a1_vulnerable_smankgga) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair16_a1_vulnerable v0.1.0 (/tmp/asan_pair16_a1_vulnerable_smankgga)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+     Running unittests src/lib.rs (target/debug/deps/pair16_a1_vulnerable-9ba985deed969848)
+
+running 1 test
+
+thread 'tests::test_unique_access' (3843506) panicked at src/lib.rs:67:13:
+assertion `left == right` failed: Expected exactly one successful access, but got 2
+  left: 2
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_unique_access ... FAILED
+
+failures:
+
+failures:
+    tests::test_unique_access
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `--lib`

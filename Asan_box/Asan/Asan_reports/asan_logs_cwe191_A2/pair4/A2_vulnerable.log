@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair4_a2_vulnerable_pd70zrqb) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a2_vulnerable v0.1.0 (/tmp/asan_pair4_a2_vulnerable_pd70zrqb)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair4_a2_vulnerable-9e6354fa1239a53c)
+
+running 1 test
+
+thread 'tests::test_saturation' (4002485) panicked at src/lib.rs:60:9:
+assertion `left == right` failed: Counter did not saturate to zero as expected
+  left: 18446744073709551566
+ right: 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_saturation ... FAILED
+
+failures:
+
+failures:
+    tests::test_saturation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

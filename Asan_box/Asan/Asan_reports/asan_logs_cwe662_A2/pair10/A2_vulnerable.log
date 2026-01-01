@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair10_a2_vulnerable_ho9fxkiv) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair10_a2_vulnerable v0.1.0 (/tmp/asan_pair10_a2_vulnerable_ho9fxkiv)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair10_a2_vulnerable-35f3f99edcf3b6f6)
+
+running 1 test
+
+thread 'tests::authentication_oracle' (4101467) panicked at src/lib.rs:59:9:
+Authentication should fail for invalid token
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::authentication_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::authentication_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

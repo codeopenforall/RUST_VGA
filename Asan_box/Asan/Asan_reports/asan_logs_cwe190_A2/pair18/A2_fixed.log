@@ -1,0 +1,41 @@
+$ (cwd=/tmp/asan_pair18_a2_fixed_xvtmn7at) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a2_fixed v0.1.0 (/tmp/asan_pair18_a2_fixed_xvtmn7at)
+error[E0428]: the name `tests` is defined multiple times
+  --> src/lib.rs:39:1
+   |
+25 | mod tests {
+   | --------- previous definition of the module `tests` here
+...
+39 | mod tests {
+   | ^^^^^^^^^ `tests` redefined here
+   |
+   = note: `tests` must be defined only once in the type namespace of this module
+
+error[E0597]: `product` does not live long enough
+  --> src/lib.rs:21:9
+   |
+ 5 |     let product = Arc::new(Mutex::new(1u32));
+   |         ------- binding `product` declared here
+...
+21 |     Ok(*product.lock().unwrap())
+   |         ^^^^^^^----------------
+   |         |
+   |         borrowed value does not live long enough
+   |         a temporary with access to the borrow is created here ...
+22 | }
+   | -
+   | |
+   | `product` dropped here while still borrowed
+   | ... and the borrow might be used here, when that temporary is dropped and runs the `Drop` code for type `std::sync::MutexGuard`
+   |
+   = note: the temporary is part of an expression at the end of a block;
+           consider forcing this temporary to be dropped sooner, before the block's local variables are dropped
+help: for example, you could save the expression's value in a new local variable `x` and then make `x` be the expression at the end of the block
+   |
+21 |     let x = Ok(*product.lock().unwrap()); x
+   |     +++++++                             +++
+
+Some errors have detailed explanations: E0428, E0597.
+For more information about an error, try `rustc --explain E0428`.
+error: could not compile `pair18_a2_fixed` (lib test) due to 2 previous errors

@@ -1,0 +1,63 @@
+$ (cwd=/tmp/asan_pair5_a2_vulnerable_o144v6l5) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair5_a2_vulnerable v0.1.0 (/tmp/asan_pair5_a2_vulnerable_o144v6l5)
+error[E0277]: `*mut u8` cannot be sent between threads safely
+  --> src/lib.rs:27:32
+   |
+27 |       let handle = thread::spawn(move || {
+   |  __________________-------------_^
+   | |                  |
+   | |                  required by a bound introduced by this call
+28 | |         let mut dh = holder_clone.lock().unwrap();
+29 | |         unsafe {
+30 | |             dh.populate(&input_clone);
+31 | |         }
+32 | |     });
+   | |_____^ `*mut u8` cannot be sent between threads safely
+   |
+   = help: within `DataHolder`, the trait `Send` is not implemented for `*mut u8`
+note: required because it appears within the type `DataHolder`
+  --> src/lib.rs:3:8
+   |
+ 3 | struct DataHolder {
+   |        ^^^^^^^^^^
+   = note: required for `std::sync::Mutex<DataHolder>` to implement `Sync`
+   = note: required for `Arc<std::sync::Mutex<DataHolder>>` to implement `Send`
+note: required because it's used within this closure
+  --> src/lib.rs:27:32
+   |
+27 |     let handle = thread::spawn(move || {
+   |                                ^^^^^^^
+note: required by a bound in `spawn`
+  --> /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/std/src/thread/mod.rs:723:1
+
+error[E0277]: `*mut u8` cannot be sent between threads safely
+   --> src/lib.rs:110:40
+    |
+110 |               let handle = thread::spawn(move || {
+    |  __________________________-------------_^
+    | |                          |
+    | |                          required by a bound introduced by this call
+111 | |                 let mut dh = holder_clone.lock().unwrap();
+112 | |                 unsafe { version_one::populate(&mut dh, &input_clone); }
+113 | |             });
+    | |_____________^ `*mut u8` cannot be sent between threads safely
+    |
+    = help: within `tests::DataHolder`, the trait `Send` is not implemented for `*mut u8`
+note: required because it appears within the type `tests::DataHolder`
+   --> src/lib.rs:57:12
+    |
+ 57 |     struct DataHolder {
+    |            ^^^^^^^^^^
+    = note: required for `std::sync::Mutex<tests::DataHolder>` to implement `Sync`
+    = note: required for `Arc<std::sync::Mutex<tests::DataHolder>>` to implement `Send`
+note: required because it's used within this closure
+   --> src/lib.rs:110:40
+    |
+110 |             let handle = thread::spawn(move || {
+    |                                        ^^^^^^^
+note: required by a bound in `spawn`
+   --> /rustc/fa3155a644dd62e865825087b403646be01d4cef/library/std/src/thread/mod.rs:723:1
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `pair5_a2_vulnerable` (lib test) due to 2 previous errors

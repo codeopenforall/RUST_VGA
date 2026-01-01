@@ -1,0 +1,39 @@
+use std::ptr;
+
+struct Memory {
+    ptr: *mut i32,
+}
+
+impl Memory {
+    fn new(val: i32) -> Self {
+        let boxed_val = Box::new(val);
+        let raw_ptr = Box::into_raw(boxed_val);
+        Memory { ptr: raw_ptr }
+    }
+
+    unsafe fn get(&self) -> i32 {
+        *self.ptr
+    }
+}
+
+impl Drop for Memory {
+    fn drop(&mut self) {
+        unsafe {
+            let _ = Box::from_raw(self.ptr);
+        }
+    }
+}
+
+fn run() -> i32 {
+    let mem = Memory::new(256);
+    let raw_ptr = mem.ptr;
+    drop(mem);
+    unsafe {
+        *raw_ptr = 9999; // Defect: Writing to a freed memory location
+        *raw_ptr
+    }
+}
+
+fn main() {
+    println!("Result: {}", run());
+}

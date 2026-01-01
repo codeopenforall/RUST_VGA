@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair8_vulnerable_htv7fzmh) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair8_vulnerable v0.1.0 (/tmp/asan_pair8_vulnerable_htv7fzmh)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair8_vulnerable-23975e7199656611)
+
+running 1 test
+
+thread 'tests::test_overflow_detection' (3460106) panicked at src/lib.rs:45:9:
+Expected an overflow error, but got Ok(605032704)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_overflow_detection ... FAILED
+
+failures:
+
+failures:
+    tests::test_overflow_detection
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

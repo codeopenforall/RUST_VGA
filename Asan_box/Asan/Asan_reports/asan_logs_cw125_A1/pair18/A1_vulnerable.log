@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair18_a1_vulnerable_tzmeh0b2) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair18_a1_vulnerable v0.1.0 (/tmp/asan_pair18_a1_vulnerable_tzmeh0b2)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair18_a1_vulnerable-649cd7d0f0b50684)
+
+running 1 test
+
+thread 'tests::test_oracle' (3772823) panicked at src/lib.rs:61:9:
+assertion `left == right` failed: Processed output does not match the input; vulnerability present.
+  left: "This is a string"
+ right: "This is a string longer than sixteen!"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::test_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

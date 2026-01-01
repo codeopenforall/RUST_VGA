@@ -1,0 +1,21 @@
+$ (cwd=/tmp/asan_pair3_vulnerable_trn3xsl3) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair3_vulnerable v0.1.0 (/tmp/asan_pair3_vulnerable_trn3xsl3)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair3_vulnerable-b486ad0460a0c293)
+
+running 1 test
+
+thread 'tests::recursion_limit_test' (3491209) panicked at src/lib.rs:69:9:
+Expected failure in uncontrolled recursion scenario
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::recursion_limit_test ... FAILED
+
+failures:
+
+failures:
+    tests::recursion_limit_test
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

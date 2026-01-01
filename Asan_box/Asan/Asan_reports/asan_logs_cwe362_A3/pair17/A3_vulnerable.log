@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair17_a3_vulnerable_6v0rhfkk) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair17_a3_vulnerable v0.1.0 (/tmp/asan_pair17_a3_vulnerable_6v0rhfkk)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.35s
+     Running unittests src/lib.rs (target/debug/deps/pair17_a3_vulnerable-b5ccfdb0a162cf2e)
+
+running 1 test
+test tests::test_singleton_invariant ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+

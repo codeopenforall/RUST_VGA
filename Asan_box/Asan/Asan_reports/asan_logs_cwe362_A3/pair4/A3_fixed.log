@@ -1,0 +1,11 @@
+$ (cwd=/tmp/asan_pair4_a3_fixed_bx3mjlxz) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair4_a3_fixed v0.1.0 (/tmp/asan_pair4_a3_fixed_bx3mjlxz)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair4_a3_fixed-c2a9c84d8d65df3f)
+
+running 1 test
+test tests::check_counter ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+

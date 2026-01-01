@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair20_a3_vulnerable_12e2kztk) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair20_a3_vulnerable v0.1.0 (/tmp/asan_pair20_a3_vulnerable_12e2kztk)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running unittests src/lib.rs (target/debug/deps/pair20_a3_vulnerable-7aa0971434729ebe)
+
+running 1 test
+
+thread 'tests::test_oracle' (4154294) panicked at src/lib.rs:36:9:
+assertion `left == right` failed: Final balance should remain 5 after valid operations
+  left: 0
+ right: 5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_oracle ... FAILED
+
+failures:
+
+failures:
+    tests::test_oracle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

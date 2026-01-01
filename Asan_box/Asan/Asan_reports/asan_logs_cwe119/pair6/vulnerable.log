@@ -1,0 +1,87 @@
+$ (cwd=/tmp/asan_pair6_vulnerable_2r_rgyex) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair6_vulnerable v0.1.0 (/tmp/asan_pair6_vulnerable_2r_rgyex)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s
+     Running unittests src/lib.rs (target/debug/deps/pair6_vulnerable-17fad621274a779c)
+
+running 1 test
+=================================================================
+==3446043==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6d56617e2078 at pc 0x5da7afd26e8e bp 0x6d165f1fe270 sp 0x6d165f1fe268
+WRITE of size 4 at 0x6d56617e2078 thread T1
+    #0 0x5da7afd26e8d  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x124e8d) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #1 0x5da7afd27507  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x125507) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #2 0x5da7afd29655  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x127655) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #3 0x5da7afd27956  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x125956) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #4 0x5da7afd28905  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x126905) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #5 0x5da7afd4a38a  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x14838a) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #6 0x5da7afd5fd74  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x15dd74) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #7 0x5da7afd36793  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x134793) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #8 0x5da7afd3a179  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x138179) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #9 0x5da7afd7fd9e  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x17dd9e) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #10 0x5da7afcf2f46  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0xf0f46) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #11 0x711662494ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #12 0x71166252684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x6d56617e2078 is located 0 bytes after 40-byte region [0x6d56617e2050,0x6d56617e2078)
+allocated by thread T1 here:
+    #0 0x5da7afcf5084  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0xf3084) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #1 0x5da7afdb032d  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x1ae32d) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #2 0x5da7afd25a4e  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x123a4e) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #3 0x5da7afd2336c  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x12136c) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #4 0x5da7afd274e6  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x1254e6) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #5 0x5da7afd29655  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x127655) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #6 0x5da7afd27956  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x125956) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #7 0x5da7afd5fd74  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x15dd74) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #8 0x5da7afd36793  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x134793) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #9 0x5da7afd3a179  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x138179) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #10 0x5da7afd7fd9e  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x17dd9e) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #11 0x5da7afcf2f46  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0xf0f46) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+
+Thread T1 created by T0 here:
+    #0 0x5da7afcd9971  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0xd7971) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #1 0x5da7afd7ffbf  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x17dfbf) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #2 0x5da7afd5e8ed  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x15c8ed) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #3 0x5da7afd57c34  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x155c34) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #4 0x5da7afd61275  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x15f275) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #5 0x5da7afd49fca  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x147fca) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #6 0x5da7afd27602  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x125602) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #7 0x5da7afd290bf  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x1270bf) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+    #8 0x5da7afd2762d  (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x12562d) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c+0x124e8d) (BuildId: d9b07e97caf139873a0a8e96c3dcef74e8fa3153) 
+Shadow bytes around the buggy address:
+  0x6d56617e1d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6d56617e1e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6d56617e1e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6d56617e1f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6d56617e1f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x6d56617e2000: fa fa 00 00 00 00 00 00 fa fa 00 00 00 00 00[fa]
+  0x6d56617e2080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6d56617e2100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6d56617e2180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6d56617e2200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x6d56617e2280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==3446043==ABORTING
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/tmp/asan_pair6_vulnerable_2r_rgyex/target/debug/deps/pair6_vulnerable-17fad621274a779c --nocapture` (exit status: 1)

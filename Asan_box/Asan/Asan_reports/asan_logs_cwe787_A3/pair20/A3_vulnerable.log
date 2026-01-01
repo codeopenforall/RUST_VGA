@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair20_a3_vulnerable_v4l9mpr_) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair20_a3_vulnerable v0.1.0 (/tmp/asan_pair20_a3_vulnerable_v4l9mpr_)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/pair20_a3_vulnerable-7aa0971434729ebe)
+
+running 1 test
+
+thread 'tests::test_buffer_length' (3360) panicked at src/lib.rs:37:9:
+assertion `left == right` failed: The vector length is incorrect, indicating an out-of-bound write.
+  left: 1
+ right: 10
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_buffer_length ... FAILED
+
+failures:
+
+failures:
+    tests::test_buffer_length
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

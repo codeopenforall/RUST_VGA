@@ -1,0 +1,12 @@
+$ (cwd=/tmp/asan_pair12_fixed_791qo498) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair12_fixed v0.1.0 (/tmp/asan_pair12_fixed_791qo498)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/pair12_fixed-636b381e81329b26)
+
+running 2 tests
+test oracle::verify_computation ... ok
+test tests::check_result ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

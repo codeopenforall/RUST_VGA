@@ -1,0 +1,18 @@
+
+running 1 test
+test tests::test_out_of_bounds ... FAILED
+
+failures:
+
+---- tests::test_out_of_bounds stdout ----
+
+thread 'tests::test_out_of_bounds' (646155) panicked at /home/ikqnm/PycharmProjects/rudra_sandbox/rudra_big/rudra_big/src/dataset/o3_mini/data_generation/CWE-119/pair3/vulnerable.rs:52:9:
+Expected panic on out-of-bound update
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::test_out_of_bounds
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

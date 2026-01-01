@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair11_a3_vulnerable_bpwt8eme) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair11_a3_vulnerable v0.1.0 (/tmp/asan_pair11_a3_vulnerable_bpwt8eme)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running unittests src/lib.rs (target/debug/deps/pair11_a3_vulnerable-73a945536955b500)
+
+running 1 test
+
+thread 'tests::test_data_processing' (4157215) panicked at src/lib.rs:61:9:
+assertion `left == right` failed: Vector length does not match input length
+  left: 6
+ right: 5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_data_processing ... FAILED
+
+failures:
+
+failures:
+    tests::test_data_processing
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

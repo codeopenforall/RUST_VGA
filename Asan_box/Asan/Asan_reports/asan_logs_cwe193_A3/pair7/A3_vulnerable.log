@@ -1,0 +1,24 @@
+$ (cwd=/tmp/asan_pair7_a3_vulnerable_lz665gej) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair7_a3_vulnerable v0.1.0 (/tmp/asan_pair7_a3_vulnerable_lz665gej)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/pair7_a3_vulnerable-35e9621fac7ca399)
+
+running 1 test
+
+thread '<unnamed>' (4161476) panicked at src/lib.rs:18:31:
+index out of bounds: the len is 4 but the index is 4
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::test_buffer_sum' (4161475) panicked at src/lib.rs:42:36:
+Worker thread panicked: Any { .. }
+test tests::test_buffer_sum ... FAILED
+
+failures:
+
+failures:
+    tests::test_buffer_sum
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

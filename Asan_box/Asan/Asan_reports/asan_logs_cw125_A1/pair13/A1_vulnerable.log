@@ -1,0 +1,116 @@
+$ (cwd=/tmp/asan_pair13_a1_vulnerable_156rainj) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair13_a1_vulnerable v0.1.0 (/tmp/asan_pair13_a1_vulnerable_156rainj)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13)
+
+running 1 test
+=================================================================
+==3771369==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x7bf8553e4020 at pc 0x56cdd873c3c6 bp 0x7bd852dfe1a0 sp 0x7bd852dfd948
+READ of size 41 at 0x7bf8553e4020 thread T1
+    #0 0x56cdd873c3c5  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x7d3c5) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #1 0x56cdd873c7dc  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x7d7dc) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #2 0x56cdd87e0b44  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x121b44) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #3 0x56cdd87e0adc  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x121adc) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #4 0x56cdd87df843  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120843) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #5 0x56cdd87e1654  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x122654) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #6 0x56cdd87de8b6  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11f8b6) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #7 0x56cdd87e13a5  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x1223a5) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #8 0x56cdd880252a  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x14352a) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #9 0x56cdd8817f14  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x158f14) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #10 0x56cdd87ee933  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12f933) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #11 0x56cdd87f2319  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x133319) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #12 0x56cdd8837f3e  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x178f3e) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #13 0x56cdd87ae3e6  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xef3e6) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #14 0x7fd856294ac2  (/lib/x86_64-linux-gnu/libc.so.6+0x94ac2) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+    #15 0x7fd85632684f  (/lib/x86_64-linux-gnu/libc.so.6+0x12684f) (BuildId: d5197096f709801829b118af1b7cf6631efa2dcd)
+
+0x7bf8553e4020 is located 0 bytes after 16-byte region [0x7bf8553e4010,0x7bf8553e4020)
+allocated by thread T1 here:
+    #0 0x56cdd87b0524  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xf1524) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #1 0x56cdd87dfb7f  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120b7f) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #2 0x56cdd87defe0  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11ffe0) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #3 0x56cdd87e15a9  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x1225a9) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #4 0x56cdd87de8b6  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11f8b6) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #5 0x56cdd8817f14  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x158f14) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #6 0x56cdd87ee933  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12f933) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #7 0x56cdd87f2319  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x133319) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #8 0x56cdd8837f3e  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x178f3e) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #9 0x56cdd87ae3e6  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xef3e6) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+
+Thread T1 created by T0 here:
+    #0 0x56cdd8794e11  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xd5e11) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #1 0x56cdd883815f  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x17915f) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #2 0x56cdd8816a8d  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x157a8d) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #3 0x56cdd880fdd4  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x150dd4) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #4 0x56cdd8819415  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x15a415) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #5 0x56cdd880216a  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x14316a) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #6 0x56cdd87ded82  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11fd82) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #7 0x56cdd87dfdff  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120dff) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #8 0x56cdd87df13d  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12013d) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x7d3c5) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7) 
+Shadow bytes around the buggy address:
+  0x7bf8553e3d80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bf8553e3e00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bf8553e3e80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bf8553e3f00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bf8553e3f80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x7bf8553e4000: fa fa 00 00[fa]fa fa fa fa fa fa fa fa fa fa fa
+  0x7bf8553e4080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bf8553e4100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bf8553e4180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bf8553e4200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x7bf8553e4280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+
+thread 'tests::validate_copy_integrity' (3771370) panicked at src/lib.rs:50:13:
+assertion `left == right` failed: Buffer copy mismatch; vulnerability detected.
+  left: [84, 104, 105, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 32, 115, 3, 17, 0, 0, 16, 0, 0, 0, 248, 0, 0, 0, 1, 0, 0, 0, 249, 0, 0, 0, 1, 0, 0, 0, 110]
+ right: [84, 104, 105, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 32, 115, 116, 114, 105, 110, 103, 32, 102, 111, 114, 32, 98, 117, 102, 102, 101, 114, 32, 99, 111, 112, 121, 105, 110, 103, 46]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::validate_copy_integrity ... FAILED
+
+failures:
+
+failures:
+    tests::validate_copy_integrity
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=================================================================
+==3771369==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x56cdd87b0524  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xf1524) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #1 0x56cdd87dfb7f  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x120b7f) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #2 0x56cdd87defe0  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11ffe0) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #3 0x56cdd87e15a9  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x1225a9) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #4 0x56cdd87de8b6  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x11f8b6) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #5 0x56cdd8817f14  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x158f14) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #6 0x56cdd87ee933  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x12f933) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #7 0x56cdd87f2319  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x133319) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #8 0x56cdd8837f3e  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0x178f3e) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+    #9 0x56cdd87ae3e6  (/tmp/asan_pair13_a1_vulnerable_156rainj/target/debug/deps/pair13_a1_vulnerable-a727ba7aa3df9e13+0xef3e6) (BuildId: d583a5b4a671541ee3cfc4cbd1da0abdc45b35f7)
+
+SUMMARY: AddressSanitizer: 16 byte(s) leaked in 1 allocation(s).
+error: test failed, to rerun pass `--lib`

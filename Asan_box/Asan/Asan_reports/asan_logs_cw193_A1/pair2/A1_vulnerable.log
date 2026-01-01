@@ -1,0 +1,23 @@
+$ (cwd=/tmp/asan_pair2_a1_vulnerable_u8mifwl9) cargo +nightly test --lib -- --nocapture
+
+   Compiling pair2_a1_vulnerable v0.1.0 (/tmp/asan_pair2_a1_vulnerable_u8mifwl9)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src/lib.rs (target/debug/deps/pair2_a1_vulnerable-1715f764c6eee881)
+
+running 1 test
+
+thread 'tests::test_fencepost_error' (3802477) panicked at src/lib.rs:45:9:
+assertion `left == right` failed: Test failed: off-by-one error detected in element access.
+  left: 10
+ right: 9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test tests::test_fencepost_error ... FAILED
+
+failures:
+
+failures:
+    tests::test_fencepost_error
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`
