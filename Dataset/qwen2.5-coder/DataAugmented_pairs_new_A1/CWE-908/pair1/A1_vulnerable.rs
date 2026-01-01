@@ -1,0 +1,31 @@
+use std::sync::Arc;
+use std::thread;
+
+struct Settings {
+    timeout: u64,
+    retries: u32,
+}
+
+impl Settings {
+    fn load() -> Self {
+        // Introduce a bug by not initializing 'retries'
+        Settings {
+            timeout: 30,
+            retries: 0, // This should be 3, but we're making it 0 to introduce a bug
+        }
+    }
+}
+
+fn main() {
+    let shared = Arc::new(Settings::load());
+    let cloned = Arc::clone(&shared);
+    let handle = thread::spawn(move || {
+        if cloned.retries > 0 {
+            println!("Retries is set to {}", cloned.retries);
+        } else {
+            println!("Retries is zero, value: {}", cloned.retries);
+        }
+    });
+    handle.join().unwrap();
+    println!("Timeout is: {}", shared.timeout);
+}

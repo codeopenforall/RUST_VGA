@@ -1,0 +1,9 @@
+use std::sync::atomic::{AtomicU32, Ordering};
+static GLOBAL: AtomicU32 = AtomicU32::new(0);
+
+pub fn run() -> u32 {
+    for _ in 0..10_000 {
+        GLOBAL.fetch_add(1, Ordering::SeqCst);
+    }
+    GLOBAL.load(Ordering::SeqCst)
+}
