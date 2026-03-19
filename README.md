@@ -1,5 +1,6 @@
 # RUST-VGA: Benchmark Dataset for Rust Vulnerability Detection
-This repository contains the dataset used in the paper **"RUST-VGA: Leverage LLMs to Generate a Benchmark Dataset for Rust**".
+This repository contains the code and the dataset used in the paper **"LLM-Based Data Generation and Augmentation for
+Rust Vulnerability Detection**".
 
 RUST-VGA is a large-scale, executable benchmark for **binary vulnerability detection in Rust**, built to support training and evaluation of ML/LLM-based detectors.
 
