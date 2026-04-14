@@ -128,7 +128,7 @@ Do not deploy these samples in production environments.
 If you use this dataset, please cite:
 
 ```bash
-@inproceedings{khan2026LLM,
+@inproceedings{khan2026,
   title={LLM-Based Data Generation and Augmentation for Rust Vulnerability Detection},
   author={Khan, Irfan Ali and Luo, Yu and Xu, Weifeng and Xu, Dianxiang},
   booktitle={2026 IEEE 50th Annual Computers, Software, and Applications Conference (COMPSAC)},
